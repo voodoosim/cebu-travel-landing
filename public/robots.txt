@@ -3,7 +3,7 @@ User-agent: *
 Allow: /
 
 # Sitemap
-Sitemap: https://cebutravel.com/sitemap.xml
+Sitemap: https://cebu.sasori.dev/sitemap.xml
 
 # Disallow admin and API routes
 Disallow: /api/

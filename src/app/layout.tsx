@@ -14,7 +14,7 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  metadataBase: new URL('https://cebutravel.com'),
+  metadataBase: new URL('https://cebu.sasori.dev'),
 
   title: {
     default: "Cebu Travel - Discover the Paradise | Island Hopping & Tours",
