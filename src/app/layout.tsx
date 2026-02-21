@@ -1,6 +1,5 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
-import Script from "next/script";
 import "./globals.css";
 import { LocalBusinessSchema, TourProductsSchema, FAQSchema } from "./components/StructuredData";
 
@@ -51,7 +50,7 @@ export const metadata: Metadata = {
     type: "website",
     locale: "en_US",
     siteName: "Cebu Travel",
-    url: "https://cebutravel.com",
+    url: "https://cebu.sasori.dev",
     images: [
       {
         url: '/og-image.jpg',
@@ -70,7 +69,7 @@ export const metadata: Metadata = {
   },
 
   alternates: {
-    canonical: 'https://cebutravel.com',
+    canonical: 'https://cebu.sasori.dev',
   },
 
   category: 'travel',
@@ -87,18 +86,6 @@ export default function RootLayout({
         <LocalBusinessSchema />
         <TourProductsSchema />
         <FAQSchema />
-        <Script
-          src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"
-          strategy="afterInteractive"
-        />
-        <Script id="google-analytics" strategy="afterInteractive">
-          {`
-            window.dataLayer = window.dataLayer || [];
-            function gtag(){dataLayer.push(arguments);}
-            gtag('js', new Date());
-            gtag('config', 'G-XXXXXXXXXX');
-          `}
-        </Script>
       </head>
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}

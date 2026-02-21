@@ -4,7 +4,7 @@ export function LocalBusinessSchema() {
     "@type": "TravelAgency",
     "name": "Cebu Travel",
     "description": "Premium island hopping tours and adventures in Cebu, Philippines",
-    "url": "https://cebutravel.com",
+    "url": "https://cebu.sasori.dev",
     "telephone": "+63-32-123-4567",
     "email": "info@cebutravel.com",
     "address": {
@@ -96,13 +96,13 @@ export function TourProductsSchema() {
       "@type": "Product",
       "name": "Island Hopping Adventure",
       "description": "Visit the most beautiful islands in Mactan. Snorkel in crystal clear waters and enjoy a BBQ lunch.",
-      "image": "https://cebutravel.com/island-hopping.jpg",
+      "image": "https://cebu.sasori.dev/island-hopping.jpg",
       "offers": {
         "@type": "Offer",
         "price": "45",
         "priceCurrency": "USD",
         "availability": "https://schema.org/InStock",
-        "url": "https://cebutravel.com/tours/island-hopping"
+        "url": "https://cebu.sasori.dev/tours/island-hopping"
       },
       "aggregateRating": {
         "@type": "AggregateRating",
@@ -115,13 +115,13 @@ export function TourProductsSchema() {
       "@type": "Product",
       "name": "Oslob Whale Shark Watching",
       "description": "A once-in-a-lifetime experience swimming with the gentle giants of the sea in Oslob.",
-      "image": "https://cebutravel.com/whale-sharks.jpg",
+      "image": "https://cebu.sasori.dev/whale-sharks.jpg",
       "offers": {
         "@type": "Offer",
         "price": "60",
         "priceCurrency": "USD",
         "availability": "https://schema.org/InStock",
-        "url": "https://cebutravel.com/tours/whale-sharks"
+        "url": "https://cebu.sasori.dev/tours/whale-sharks"
       },
       "aggregateRating": {
         "@type": "AggregateRating",
@@ -134,13 +134,13 @@ export function TourProductsSchema() {
       "@type": "Product",
       "name": "Kawasan Falls Canyoneering",
       "description": "Jump, slide, and swim through the canyons of Badian ending at the majestic Kawasan Falls.",
-      "image": "https://cebutravel.com/kawasan-falls.jpg",
+      "image": "https://cebu.sasori.dev/kawasan-falls.jpg",
       "offers": {
         "@type": "Offer",
         "price": "55",
         "priceCurrency": "USD",
         "availability": "https://schema.org/InStock",
-        "url": "https://cebutravel.com/tours/canyoneering"
+        "url": "https://cebu.sasori.dev/tours/canyoneering"
       },
       "aggregateRating": {
         "@type": "AggregateRating",
