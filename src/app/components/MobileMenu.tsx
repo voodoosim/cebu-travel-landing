@@ -4,9 +4,10 @@ import { useState } from "react";
 import Link from "next/link";
 
 const navLinks = [
-  { href: "#tours", label: "Tours" },
-  { href: "#about", label: "About" },
-  { href: "#reviews", label: "Reviews" },
+  { href: "#courses", label: "골프장" },
+  { href: "#packages", label: "패키지" },
+  { href: "#about", label: "소개" },
+  { href: "#reviews", label: "후기" },
   { href: "#faq", label: "FAQ" },
 ];
 
@@ -37,7 +38,7 @@ export default function MobileMenu() {
                 key={link.href}
                 href={link.href}
                 onClick={() => setOpen(false)}
-                className="px-4 py-3 text-sm font-medium text-slate-700 hover:text-teal-600 hover:bg-teal-50 rounded-lg transition-colors"
+                className="px-4 py-3 text-sm font-medium text-slate-700 hover:text-emerald-600 hover:bg-emerald-50 rounded-lg transition-colors"
               >
                 {link.label}
               </Link>
@@ -45,9 +46,9 @@ export default function MobileMenu() {
             <Link
               href="#cta"
               onClick={() => setOpen(false)}
-              className="mt-2 bg-teal-600 text-white text-center px-4 py-3 rounded-full text-sm font-semibold"
+              className="mt-2 bg-emerald-600 text-white text-center px-4 py-3 rounded-full text-sm font-semibold"
             >
-              Book Now
+              예약 문의
             </Link>
           </nav>
         </div>

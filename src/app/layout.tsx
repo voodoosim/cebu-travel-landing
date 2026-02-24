@@ -17,21 +17,23 @@ export const metadata: Metadata = {
   metadataBase: new URL('https://cebu.sasori.dev'),
 
   title: {
-    default: "Cebu Travel - Discover the Paradise | Island Hopping & Tours",
-    template: "%s | Cebu Travel"
+    default: "세부 골프 투어 | 6개 골프장 맞춤 패키지 | 알타비스타, 에어베이스, 세부CC, 릴로안, 퀸스아일랜드",
+    template: "%s | 세부골프투어"
   },
 
-  description: "Experience the best of Cebu with our premium island hopping tours, diving adventures, and city excursions. Book your dream vacation in the Philippines today.",
+  description: "세부 현지 한국인 운영 골프 투어 전문. 알타비스타, 에어베이스, 세부CC, 클럽필리피노, 릴로안, 퀸스 아일랜드 등 세부 전역 6개 골프장 맞춤 패키지. 공항 픽업, 전용 차량, 한국어 상담.",
 
   keywords: [
-    "Cebu", "Travel", "Philippines", "Island Hopping", "Diving",
-    "Moalboal", "Oslob", "Kawasan Falls", "Whale Sharks", "Canyoneering",
-    "Beach Tours", "Cebu Tours", "Mactan Island"
+    "세부 골프", "세부 골프 투어", "세부 골프장", "세부 골프 패키지",
+    "세부 골프 3박4일", "세부 골프 54홀", "알타비스타 골프", "에어베이스 골프",
+    "세부 컨트리클럽", "클럽필리피노 세부", "릴로안 골프", "퀸스아일랜드 골프",
+    "세부 골프 여행", "필리핀 세부 골프", "막탄 골프", "세부 골프 리조트",
+    "Cebu golf tour", "Cebu golf package", "Cebu golf courses"
   ],
 
-  authors: [{ name: "Cebu Travel" }],
-  creator: "Cebu Travel",
-  publisher: "Cebu Travel",
+  authors: [{ name: "세부골프투어" }],
+  creator: "세부골프투어",
+  publisher: "세부골프투어",
 
   robots: {
     index: true,
@@ -45,27 +47,27 @@ export const metadata: Metadata = {
   },
 
   openGraph: {
-    title: "Cebu Travel - Discover the Paradise",
-    description: "Experience the best of Cebu with our premium island hopping tours, diving adventures, and city excursions.",
+    title: "세부 골프 투어 | 6개 골프장 맞춤 패키지",
+    description: "세부 현지 한국인 운영 골프 투어. 알타비스타, 에어베이스, 세부CC, 릴로안, 퀸스 아일랜드 등 6개 골프장 맞춤 패키지.",
     type: "website",
-    locale: "en_US",
-    siteName: "Cebu Travel",
+    locale: "ko_KR",
+    siteName: "세부골프투어",
     url: "https://cebu.sasori.dev",
     images: [
       {
-        url: '/og-image.jpg',
-        width: 1200,
-        height: 630,
-        alt: "Cebu Travel - Paradise Islands",
+        url: '/images/hero-golf.webp',
+        width: 1536,
+        height: 864,
+        alt: "세부 골프장 전경",
       },
     ],
   },
 
   twitter: {
     card: 'summary_large_image',
-    title: "Cebu Travel - Discover the Paradise",
-    description: "Experience the best of Cebu with our premium tours",
-    images: ['/twitter-image.jpg'],
+    title: "세부 골프 투어 | 6개 골프장 맞춤 패키지",
+    description: "세부 현지 한국인 운영 골프 투어. 알타비스타, 에어베이스, 세부CC, 릴로안, 퀸스 아일랜드.",
+    images: ['/images/hero-golf.webp'],
   },
 
   alternates: {
@@ -81,7 +83,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
+    <html lang="ko">
       <head>
         <LocalBusinessSchema />
         <TourProductsSchema />

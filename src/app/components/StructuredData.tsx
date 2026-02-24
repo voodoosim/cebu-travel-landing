@@ -2,11 +2,10 @@ export function LocalBusinessSchema() {
   const schema = {
     "@context": "https://schema.org",
     "@type": "TravelAgency",
-    "name": "Cebu Travel",
-    "description": "Premium island hopping tours and adventures in Cebu, Philippines",
+    "name": "세부골프투어",
+    "description": "세부 현지 한국인 운영 골프 투어 전문. 알타비스타, 에어베이스, 세부CC, 클럽필리피노, 릴로안, 퀸스 아일랜드 등 세부 전역 6개 골프장 맞춤 패키지.",
     "url": "https://cebu.sasori.dev",
-    "telephone": "+63-32-123-4567",
-    "email": "info@cebutravel.com",
+    "telephone": "+63-912-345-6789",
     "address": {
       "@type": "PostalAddress",
       "addressLocality": "Cebu City",
@@ -20,7 +19,7 @@ export function LocalBusinessSchema() {
     "aggregateRating": {
       "@type": "AggregateRating",
       "ratingValue": "4.9",
-      "reviewCount": "423"
+      "reviewCount": "320"
     },
     "priceRange": "$$"
   };
@@ -40,42 +39,42 @@ export function FAQSchema() {
     "mainEntity": [
       {
         "@type": "Question",
-        "name": "세부 여행 최적 시기는 언제인가요?",
+        "name": "세부에서 이용 가능한 골프장은 어디인가요?",
         "acceptedAnswer": {
           "@type": "Answer",
-          "text": "세부 여행의 최적 시기는 건기인 11월부터 5월까지입니다. 이 기간에는 날씨가 맑고 화창하여 섬 호핑과 다이빙을 즐기기에 완벽합니다."
+          "text": "알타비스타, 막탄 에어베이스, 세부 컨트리클럽, 클럽필리피노, 릴로안, 퀸스 아일랜드 등 세부 주요 골프장 6곳을 모두 이용하실 수 있습니다."
         }
       },
       {
         "@type": "Question",
-        "name": "세부 공항에서 시내까지 어떻게 가나요?",
+        "name": "세부 골프 캐디팁은 얼마를 주나요?",
         "acceptedAnswer": {
           "@type": "Answer",
-          "text": "막탄 세부 국제공항에서 세부 시내까지는 택시로 약 30-40분 소요됩니다. Grab 앱을 이용하거나 공항 택시를 이용할 수 있습니다."
+          "text": "캐디팁은 1인당 300~500페소가 일반적입니다. 기사팁은 팀당 300~500페소입니다."
         }
       },
       {
         "@type": "Question",
-        "name": "고래상어 투어 예약은 필수인가요?",
+        "name": "세부 골프 여행 최적 시기는 언제인가요?",
         "acceptedAnswer": {
           "@type": "Answer",
-          "text": "오슬롭 고래상어 투어는 사전 예약을 강력히 권장합니다. 특히 성수기(12월-4월)에는 현장 예약이 어려울 수 있으며, 새벽 일찍 출발해야 합니다."
+          "text": "11월부터 5월까지가 건기로 골프하기 가장 좋습니다. 특히 1~3월은 날씨가 쾌적하고 비가 거의 없어 인기가 많습니다."
         }
       },
       {
         "@type": "Question",
-        "name": "세부에서 필리핀 페소로 환전할 수 있나요?",
+        "name": "세부 골프 투어 예약은 얼마나 전에 해야 하나요?",
         "acceptedAnswer": {
           "@type": "Answer",
-          "text": "세부 공항과 시내 쇼핑몰에 환전소가 많습니다. 환율은 시내 환전소가 공항보다 유리합니다. ATM도 널리 이용 가능합니다."
+          "text": "최소 2주 전 예약을 권장합니다. 성수기(12~3월)에는 한 달 전 예약이 안전합니다."
         }
       },
       {
         "@type": "Question",
-        "name": "세부 투어 비용은 얼마나 드나요?",
+        "name": "도착 당일 라운딩이 가능한가요?",
         "acceptedAnswer": {
           "@type": "Answer",
-          "text": "아일랜드 호핑 투어는 약 $45, 고래상어 투어는 $60, 카와산 폭포 캐녀닝은 $55부터 시작합니다. 모든 투어에는 가이드, 장비, 점심이 포함됩니다."
+          "text": "네, 막탄 에어베이스 골프장은 공항에서 차량 5~10분 거리라 도착 당일 라운딩이 가능합니다."
         }
       }
     ]
@@ -94,15 +93,14 @@ export function TourProductsSchema() {
     {
       "@context": "https://schema.org",
       "@type": "Product",
-      "name": "Island Hopping Adventure",
-      "description": "Visit the most beautiful islands in Mactan. Snorkel in crystal clear waters and enjoy a BBQ lunch.",
-      "image": "https://cebu.sasori.dev/island-hopping.jpg",
+      "name": "세부 시티 코스 패키지 - 54홀",
+      "description": "알타비스타 + 에어베이스 + 세부CC. 세부 시내 3대 명문 코스를 3일간 라운딩하는 인기 패키지.",
+      "image": "https://cebu.sasori.dev/images/golf-highland.webp",
       "offers": {
         "@type": "Offer",
-        "price": "45",
-        "priceCurrency": "USD",
+        "priceCurrency": "KRW",
         "availability": "https://schema.org/InStock",
-        "url": "https://cebu.sasori.dev/tours/island-hopping"
+        "url": "https://cebu.sasori.dev/#packages"
       },
       "aggregateRating": {
         "@type": "AggregateRating",
@@ -113,15 +111,14 @@ export function TourProductsSchema() {
     {
       "@context": "https://schema.org",
       "@type": "Product",
-      "name": "Oslob Whale Shark Watching",
-      "description": "A once-in-a-lifetime experience swimming with the gentle giants of the sea in Oslob.",
-      "image": "https://cebu.sasori.dev/whale-sharks.jpg",
+      "name": "세부 풀코스 패키지 - 72홀",
+      "description": "시내 코스 + 북부 코스까지 4일 라운딩. 다양한 코스 경험과 여유로운 일정.",
+      "image": "https://cebu.sasori.dev/images/golf-coastal.webp",
       "offers": {
         "@type": "Offer",
-        "price": "60",
-        "priceCurrency": "USD",
+        "priceCurrency": "KRW",
         "availability": "https://schema.org/InStock",
-        "url": "https://cebu.sasori.dev/tours/whale-sharks"
+        "url": "https://cebu.sasori.dev/#packages"
       },
       "aggregateRating": {
         "@type": "AggregateRating",
@@ -132,15 +129,14 @@ export function TourProductsSchema() {
     {
       "@context": "https://schema.org",
       "@type": "Product",
-      "name": "Kawasan Falls Canyoneering",
-      "description": "Jump, slide, and swim through the canyons of Badian ending at the majestic Kawasan Falls.",
-      "image": "https://cebu.sasori.dev/kawasan-falls.jpg",
+      "name": "세부 리조트 패키지",
+      "description": "퀸스 아일랜드 리조트에서 숙박과 라운딩을 동시에. 태평양 뷰와 함께하는 프리미엄 골프.",
+      "image": "https://cebu.sasori.dev/images/golf-clubhouse.webp",
       "offers": {
         "@type": "Offer",
-        "price": "55",
-        "priceCurrency": "USD",
+        "priceCurrency": "KRW",
         "availability": "https://schema.org/InStock",
-        "url": "https://cebu.sasori.dev/tours/canyoneering"
+        "url": "https://cebu.sasori.dev/#packages"
       },
       "aggregateRating": {
         "@type": "AggregateRating",
