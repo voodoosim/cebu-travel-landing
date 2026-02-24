@@ -4,6 +4,7 @@ import { MapPin, Star, ChevronDown, Phone, MessageCircle, Clock, Flag, Palmtree,
 import MobileMenu from "./components/MobileMenu";
 import ExchangeRate from "./components/ExchangeRate";
 import BookingForm from "./components/BookingForm";
+import UserMenu from "./components/layout/UserMenu";
 
 const services = [
   {
@@ -218,9 +219,12 @@ export default function Home() {
             <Link href="#activities" className="text-sm font-medium hover:text-emerald-600 transition-colors">액티비티</Link>
             <Link href="#faq" className="text-sm font-medium hover:text-emerald-600 transition-colors">FAQ</Link>
           </nav>
-          <Link href="#cta" className="hidden md:inline-block bg-emerald-600 hover:bg-emerald-700 text-white px-5 py-2 rounded-full text-sm font-semibold transition-all shadow-md hover:shadow-lg">
-            무료 상담
-          </Link>
+          <div className="hidden md:flex items-center gap-4">
+            <Link href="#cta" className="bg-emerald-600 hover:bg-emerald-700 text-white px-5 py-2 rounded-full text-sm font-semibold transition-all shadow-md hover:shadow-lg">
+              무료 상담
+            </Link>
+            <UserMenu />
+          </div>
           <MobileMenu />
         </div>
       </header>
