@@ -1,0 +1,29 @@
+services:
+  nextjs:
+    build: .
+    ports:
+      - "127.0.0.1:3000:3000"
+    env_file: .env
+    environment:
+      - DATABASE_URL=postgresql://cebu:${DB_PASSWORD}@postgres:5432/cebuguide
+    depends_on:
+      postgres:
+        condition: service_healthy
+    restart: unless-stopped
+
+  postgres:
+    image: postgres:16-alpine
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+    environment:
+      - POSTGRES_USER=cebu
+      - POSTGRES_PASSWORD=${DB_PASSWORD}
+      - POSTGRES_DB=cebuguide
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U cebu"]
+      interval: 5s
+      retries: 5
+    restart: unless-stopped
+
+volumes:
+  pgdata:
