@@ -29,61 +29,56 @@ export default function ExchangeRate() {
 
   if (loading) {
     return (
-      <div className="bg-white rounded-xl p-6 shadow-md border border-slate-100 animate-pulse">
-        <div className="h-6 bg-slate-200 rounded w-1/3 mb-4" />
-        <div className="h-4 bg-slate-200 rounded w-1/2 mb-2" />
-        <div className="h-4 bg-slate-200 rounded w-1/2" />
+      <div className="bg-gradient-to-br from-emerald-50 to-teal-50 rounded-2xl p-8 shadow-lg border border-emerald-100 animate-pulse">
+        <div className="h-8 bg-emerald-200/50 rounded w-1/3 mx-auto mb-6" />
+        <div className="h-16 bg-emerald-200/50 rounded w-2/3 mx-auto" />
       </div>
     );
   }
 
   const krw = rates?.KRW;
-  const usd = rates?.USD;
   const hasKRW = krw?.amount != null && krw?.php != null;
-  const hasUSD = usd?.amount != null && usd?.php != null;
 
-  if (!hasKRW && !hasUSD) {
+  if (!hasKRW) {
     return null;
   }
 
   return (
-    <div className="bg-white rounded-xl p-6 shadow-md border border-slate-100">
-      <h3 className="text-lg font-bold text-slate-900 mb-4">
+    <div className="bg-gradient-to-br from-emerald-50 to-teal-50 rounded-2xl p-8 shadow-lg border border-emerald-100">
+      <h3 className="text-lg font-bold text-slate-700 text-center mb-6">
         오늘의 환율
       </h3>
-      <div className="space-y-3">
-        {hasKRW && (
-          <div className="flex justify-between items-center py-1">
-            <span className="text-slate-600 flex items-center gap-2">
-              <span className="text-xl leading-none" role="img" aria-label="Korea">&#x1F1F0;&#x1F1F7;</span>
-              원화
-              <span className="text-slate-300 mx-1">&rarr;</span>
-              <span className="text-xl leading-none" role="img" aria-label="Philippines">&#x1F1F5;&#x1F1ED;</span>
-              페소
-            </span>
-            <span className="font-semibold text-emerald-600">
-              {krw!.amount!.toLocaleString()}원 = {krw!.php!.toLocaleString()}페소
-            </span>
-          </div>
-        )}
-        {hasUSD && (
-          <div className="flex justify-between items-center py-1">
-            <span className="text-slate-600 flex items-center gap-2">
-              <span className="text-xl leading-none" role="img" aria-label="USA">&#x1F1FA;&#x1F1F8;</span>
-              달러
-              <span className="text-slate-300 mx-1">&rarr;</span>
-              <span className="text-xl leading-none" role="img" aria-label="Philippines">&#x1F1F5;&#x1F1ED;</span>
-              페소
-            </span>
-            <span className="font-semibold text-emerald-600">
-              {usd!.amount!.toLocaleString()}달러 = {usd!.php!.toLocaleString()}페소
-            </span>
-          </div>
-        )}
+
+      <div className="flex items-center justify-center gap-4 sm:gap-6">
+        {/* 한국 */}
+        <div className="flex flex-col items-center gap-2">
+          <span className="text-4xl sm:text-5xl" role="img" aria-label="Korea">&#x1F1F0;&#x1F1F7;</span>
+          <span className="text-xs text-slate-500 font-medium">KRW</span>
+          <span className="text-2xl sm:text-3xl font-bold text-slate-900">
+            {krw!.amount!.toLocaleString()}
+          </span>
+          <span className="text-sm text-slate-500">원</span>
+        </div>
+
+        {/* 화살표 */}
+        <div className="flex flex-col items-center gap-1 px-2">
+          <span className="text-3xl text-emerald-500 font-light">=</span>
+        </div>
+
+        {/* 필리핀 */}
+        <div className="flex flex-col items-center gap-2">
+          <span className="text-4xl sm:text-5xl" role="img" aria-label="Philippines">&#x1F1F5;&#x1F1ED;</span>
+          <span className="text-xs text-slate-500 font-medium">PHP</span>
+          <span className="text-2xl sm:text-3xl font-bold text-emerald-600">
+            {krw!.php!.toLocaleString()}
+          </span>
+          <span className="text-sm text-slate-500">페소</span>
+        </div>
       </div>
+
       {rates?.updated_at && (
-        <p className="text-xs text-slate-400 mt-4">
-          업데이트: {new Date(rates.updated_at).toLocaleDateString("ko-KR")}
+        <p className="text-xs text-slate-400 text-center mt-6">
+          {new Date(rates.updated_at).toLocaleDateString("ko-KR")} 기준
         </p>
       )}
     </div>

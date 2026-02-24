@@ -66,7 +66,7 @@ export default function BookingForm() {
     <form onSubmit={handleSubmit} className="space-y-4">
       <div>
         <label className="block text-sm font-medium text-slate-700 mb-1">
-          이름 *
+          이름 * <span className="text-xs text-slate-400 font-normal">예) 홍길동</span>
         </label>
         <input
           type="text"
@@ -75,13 +75,12 @@ export default function BookingForm() {
           value={formData.name}
           onChange={(e) => setFormData({ ...formData, name: e.target.value })}
           className="w-full px-4 py-2 rounded-lg border border-slate-300 focus:ring-2 focus:ring-emerald-500 focus:border-transparent outline-none"
-          placeholder="홍길동"
         />
       </div>
 
       <div>
         <label className="block text-sm font-medium text-slate-700 mb-1">
-          연락처 (카카오톡 / 전화 / 텔레그램) *
+          연락처 * <span className="text-xs text-slate-400 font-normal">카톡 / 텔레그램 / 전화</span>
         </label>
         <input
           type="text"
@@ -92,7 +91,6 @@ export default function BookingForm() {
             setFormData({ ...formData, contact: e.target.value })
           }
           className="w-full px-4 py-2 rounded-lg border border-slate-300 focus:ring-2 focus:ring-emerald-500 focus:border-transparent outline-none"
-          placeholder="카카오톡 ID 또는 전화번호"
         />
       </div>
 
@@ -117,7 +115,7 @@ export default function BookingForm() {
 
       <div>
         <label className="block text-sm font-medium text-slate-700 mb-1">
-          추가 메시지
+          추가 메시지 <span className="text-xs text-slate-400 font-normal">희망 날짜, 인원수, 요청사항</span>
         </label>
         <textarea
           maxLength={500}
@@ -127,7 +125,6 @@ export default function BookingForm() {
             setFormData({ ...formData, message: e.target.value })
           }
           className="w-full px-4 py-2 rounded-lg border border-slate-300 focus:ring-2 focus:ring-emerald-500 focus:border-transparent outline-none resize-none"
-          placeholder="희망 날짜, 인원수, 기타 요청사항"
         />
       </div>
 
