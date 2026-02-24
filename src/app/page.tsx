@@ -1,15 +1,41 @@
 import Image from "next/image";
 import Link from "next/link";
-import { MapPin, Star, ChevronDown, Phone, MessageCircle, Clock, Flag } from "lucide-react";
+import { MapPin, Star, ChevronDown, Phone, MessageCircle, Clock, Flag, Palmtree, Hotel, Car, Globe } from "lucide-react";
 import MobileMenu from "./components/MobileMenu";
 import ExchangeRate from "./components/ExchangeRate";
 import BookingForm from "./components/BookingForm";
+
+const services = [
+  {
+    icon: Flag,
+    title: "골프 예약",
+    description: "세부 전역 6개 명문 골프장 예약 대행. 그린피, 캐디, 카트 올인원 패키지.",
+    color: "bg-emerald-100 text-emerald-700",
+  },
+  {
+    icon: Hotel,
+    title: "리조트 & 호텔",
+    description: "샹그릴라, 크림슨, 플랜테이션베이 등 세부 인기 리조트 예약 대행.",
+    color: "bg-sky-100 text-sky-700",
+  },
+  {
+    icon: Palmtree,
+    title: "관광 & 액티비티",
+    description: "아일랜드 호핑, 고래상어 투어, 카와산 폭포, 다이빙, 시티투어.",
+    color: "bg-amber-100 text-amber-700",
+  },
+  {
+    icon: Car,
+    title: "교통 & 통역",
+    description: "공항 픽업, 전용 차량, 한국어 통역. 도착부터 출국까지 케어.",
+    color: "bg-rose-100 text-rose-700",
+  },
+];
 
 const golfCourses = [
   {
     name: "Alta Vista Golf & Country Club",
     nameKo: "알타비스타 골프 & CC",
-    location: "Pardo Hills, Cebu City",
     holes: "18홀 / Par 72 / 6,073yd",
     distance: "공항 30~50분",
     type: "산악형",
@@ -22,11 +48,9 @@ const golfCourses = [
   {
     name: "Mactan Island Golf Club",
     nameKo: "막탄 에어베이스 골프",
-    location: "Lapu-Lapu City",
     holes: "18홀 / Par 72 / 6,435yd",
     distance: "공항 5~10분",
     type: "평지형",
-    designer: "",
     features: ["공항에서 가장 가까운 골프장", "도착 당일 라운딩 가능", "산호석 페어웨이"],
     image: "/images/golf-coastal.webp",
     badge: "가성비",
@@ -35,12 +59,11 @@ const golfCourses = [
   {
     name: "Cebu Country Club",
     nameKo: "세부 컨트리 클럽",
-    location: "Banilad, Cebu City",
     holes: "18홀 / Par 72 / 6,677yd",
     distance: "공항 25~30분",
     type: "평지형",
     designer: "1928년 개장",
-    features: ["필리핀 최고 역사의 골프장", "잘 정비된 페어웨이", "인터클럽 대회 정기 개최지"],
+    features: ["필리핀 최고 역사의 골프장", "잘 정비된 페어웨이", "인터클럽 대회 개최지"],
     image: "/images/golf-clubhouse.webp",
     badge: "프라이빗",
     badgeColor: "bg-amber-600 text-white",
@@ -48,20 +71,16 @@ const golfCourses = [
   {
     name: "Club Filipino de Cebu",
     nameKo: "클럽 필리피노 드 세부",
-    location: "Danao City, Cebu",
     holes: "18홀 / Par 71 / 6,128yd",
     distance: "공항 50분",
     type: "구릉형",
     designer: "1935년 개장",
-    features: ["좁은 페어웨이 정확성 코스", "롤링힐스 지형", "세부 북부 드라이브 코스"],
+    features: ["좁은 페어웨이 정확성 코스", "롤링힐스 지형", "세부 북부 드라이브"],
     image: "/images/golf-group.webp",
-    badge: "",
-    badgeColor: "",
   },
   {
     name: "Liloan Golf & Leisure Estate",
     nameKo: "릴로안 골프 & 레저",
-    location: "Liloan, Cebu",
     holes: "18홀 / Par 72 / 7,200yd",
     distance: "공항 25분",
     type: "현대형",
@@ -74,7 +93,6 @@ const golfCourses = [
   {
     name: "Queen's Island Golf & Resort",
     nameKo: "퀸스 아일랜드 골프 리조트",
-    location: "Medellin, Northern Cebu",
     holes: "18홀 / Par 72 / 6,835yd",
     distance: "공항 약 2시간",
     type: "리조트형",
@@ -86,31 +104,49 @@ const golfCourses = [
   },
 ];
 
+const resorts = [
+  { name: "Shangri-La Mactan Resort & Spa", grade: "5성급", area: "막탄", feature: "프라이빗 비치, 스파" },
+  { name: "Crimson Resort & Spa Mactan", grade: "5성급", area: "막탄", feature: "인피니티 풀, 다이빙" },
+  { name: "Plantation Bay Resort & Spa", grade: "5성급", area: "막탄", feature: "라군 풀, 가족 친화" },
+  { name: "Jpark Island Resort & Waterpark", grade: "5성급", area: "막탄", feature: "워터파크, 카지노" },
+  { name: "Movenpick Hotel Mactan", grade: "5성급", area: "막탄", feature: "아일랜드 뷰, 초콜릿 아워" },
+  { name: "Radisson Blu Cebu", grade: "5성급", area: "세부시티", feature: "SM몰 연결, 비즈니스" },
+];
+
+const activities = [
+  { name: "아일랜드 호핑", description: "나루수안, 판다논, 힐루뚱안 섬 투어. 스노클링 포함.", icon: "🏝" },
+  { name: "고래상어 투어", description: "오슬롭 고래상어 스노클링. 세부 남부 당일치기.", icon: "🐋" },
+  { name: "카와산 폭포", description: "캐녀닝 + 폭포 점프. 세부 최고 인기 액티비티.", icon: "🏞" },
+  { name: "다이빙 & 스노클링", description: "모알보알 정어리런, 거북이 포인트. 체험/자격증.", icon: "🤿" },
+  { name: "세부 시티투어", description: "마젤란 십자가, 산페드로 요새, 탑스 전망대.", icon: "🏛" },
+  { name: "보홀 당일투어", description: "초콜릿힐, 안경원숭이, 로복강 크루즈.", icon: "🦎" },
+];
+
 const packages = [
   {
-    title: "시티 코스 패키지",
-    description: "세부 시내 접근성 좋은 3개 명문 코스를 3일간 라운딩. 알타비스타, 에어베이스, 세부CC 조합.",
-    courses: "3박4일 / 54홀 (18홀 x 3일)",
+    title: "골프 패키지",
+    description: "세부 명문 골프장 3~4곳 라운딩 + 호텔 + 공항 픽업 + 전용 차량. 원하는 골프장 조합 가능.",
+    courses: "3박4일 ~ 4박5일",
     badge: "인기",
     badgeColor: "bg-white/90 text-emerald-700",
     image: "/images/golf-highland.webp",
-    includes: ["그린피", "카트", "캐디", "호텔 3박 (조식)", "골프장 왕복 차량"],
+    includes: ["그린피", "카트/캐디", "호텔 숙박", "공항 픽업", "전용 차량"],
   },
   {
-    title: "풀코스 패키지",
-    description: "시내 코스 + 북부 코스까지 4일 라운딩. 다양한 코스 경험과 여유로운 일정.",
-    courses: "4박5일 / 72홀 (18홀 x 4일)",
+    title: "골프 + 관광 패키지",
+    description: "골프 라운딩과 세부 관광을 함께. 아일랜드 호핑, 시티투어 등 액티비티 포함.",
+    courses: "4박5일 ~ 5박6일",
     image: "/images/golf-coastal.webp",
-    includes: ["그린피", "카트", "캐디", "호텔 4박 (조식)", "공항 픽업", "전용 차량"],
+    includes: ["골프 2~3회", "액티비티 2회", "리조트 숙박", "전용 차량", "한국어 가이드"],
   },
   {
-    title: "리조트 패키지",
-    description: "퀸스 아일랜드 리조트에서 숙박과 라운딩을 동시에. 태평양 뷰와 함께하는 프리미엄 골프.",
-    courses: "3박4일 / 54홀 (리조트 내)",
+    title: "리조트 풀패키지",
+    description: "골프 + 리조트 + 관광 올인원. 세부의 모든 것을 한번에 즐기는 프리미엄 패키지.",
+    courses: "5박6일 ~",
     badge: "프리미엄",
     badgeColor: "bg-amber-500 text-white",
     image: "/images/golf-clubhouse.webp",
-    includes: ["리조트 숙박", "그린피 포함", "공항 픽업", "전용 차량", "석식 포함"],
+    includes: ["골프 3회+", "5성급 리조트", "액티비티", "전 일정 차량", "통역 동행"],
   },
 ];
 
@@ -119,81 +155,81 @@ const testimonials = [
     name: "김정호",
     location: "서울",
     rating: 5,
-    text: "알타비스타에서의 라운딩은 정말 최고였습니다. 해발 150m에서 내려다보는 경치가 환상적이고, 캐디도 친절해요. 다음에도 꼭 올 겁니다.",
+    text: "알타비스타 라운딩 + 아일랜드 호핑 + 리조트까지 전부 한번에 해결됐습니다. 한국어 가이드가 있어서 정말 편했어요.",
   },
   {
     name: "박성민",
     location: "부산",
     rating: 5,
-    text: "3박4일 시티 코스 패키지로 다녀왔는데, 픽업부터 라운딩까지 모든 게 완벽하게 준비되어 있었습니다. 한국어 상담이 가능해서 편했어요.",
+    text: "골프 패키지로 왔다가 카와산 폭포까지 추가했는데 인생 여행이었습니다. 픽업부터 모든 게 완벽했어요.",
   },
   {
     name: "이준혁",
     location: "대구",
     rating: 5,
-    text: "에어베이스 골프장이 공항에서 5분 거리라 도착 당일 바로 라운딩했습니다. 퀸스 아일랜드 리조트 패키지도 강력 추천합니다.",
+    text: "가족 여행으로 리조트 풀패키지 이용했습니다. 아내는 스파, 저는 골프, 아이들은 워터파크. 모두 만족!",
   },
 ];
 
 const faqs = [
   {
-    q: "어떤 골프장을 이용할 수 있나요?",
-    a: "알타비스타, 막탄 에어베이스, 세부 컨트리클럽, 클럽필리피노, 릴로안, 퀸스 아일랜드 등 세부 주요 골프장 6곳을 모두 이용하실 수 있습니다. 원하시는 골프장 조합으로 맞춤 패키지 구성이 가능합니다.",
+    q: "어떤 서비스를 제공하나요?",
+    a: "골프장 예약, 리조트/호텔 예약, 관광 액티비티 예약, 공항 픽업, 전용 차량, 한국어 통역까지 세부 여행에 필요한 모든 것을 대행합니다. 원하시는 조합으로 맞춤 패키지 구성이 가능합니다.",
   },
   {
-    q: "캐디팁은 얼마를 주나요?",
-    a: "캐디팁은 1인당 300~500페소가 일반적입니다. 기사팁은 팀당 300~500페소입니다. 팁은 패키지 가격에 포함되지 않습니다.",
+    q: "골프장은 어디를 이용할 수 있나요?",
+    a: "알타비스타, 막탄 에어베이스, 세부 컨트리클럽, 클럽필리피노, 릴로안, 퀸스 아일랜드 등 세부 전역 6개 골프장을 모두 예약해 드립니다.",
   },
   {
-    q: "세부 골프 여행 최적 시기는 언제인가요?",
-    a: "11월부터 5월까지가 건기로 골프하기 가장 좋습니다. 특히 1~3월은 날씨가 쾌적하고 비가 거의 없어 인기가 많습니다.",
+    q: "리조트 예약도 대행해 주나요?",
+    a: "네, 샹그릴라, 크림슨, 플랜테이션베이, 제이파크, 무벤픽, 래디슨블루 등 세부 주요 리조트 예약을 대행합니다. 골프 패키지와 묶으면 더 좋은 조건으로 안내 가능합니다.",
+  },
+  {
+    q: "세부 여행 최적 시기는 언제인가요?",
+    a: "11월부터 5월까지가 건기로 여행하기 가장 좋습니다. 특히 1~3월은 날씨가 쾌적하고 비가 거의 없어 인기가 많습니다.",
   },
   {
     q: "예약은 얼마나 전에 해야 하나요?",
     a: "최소 2주 전 예약을 권장합니다. 성수기(12~3월)에는 한 달 전 예약이 안전합니다. 카카오톡이나 텔레그램으로 실시간 상담 가능합니다.",
   },
   {
-    q: "패키지에 포함되는 항목은 무엇인가요?",
-    a: "기본 패키지 기준 그린피, 카트피, 캐디피, 호텔 숙박(조식 포함), 호텔-골프장 왕복 차량이 포함됩니다. 항공권, 캐디팁, 기사팁, 여행자보험은 불포함입니다.",
-  },
-  {
-    q: "도착 당일 라운딩이 가능한가요?",
-    a: "네, 막탄 에어베이스 골프장은 공항에서 차량 5~10분 거리라 도착 당일 라운딩이 가능합니다. 사전 예약 시 공항 픽업 후 바로 골프장으로 이동합니다.",
+    q: "한국어 통역/가이드가 가능한가요?",
+    a: "네, 현지 한국인 스태프가 상주하고 있으며, 필요 시 전 일정 한국어 가이드 동행이 가능합니다. 공항 도착부터 출국까지 케어합니다.",
   },
 ];
 
 export default function Home() {
   return (
     <div className="min-h-screen flex flex-col font-sans text-slate-800 bg-slate-50">
-      {/* Header / Nav */}
+      {/* Header */}
       <header className="sticky top-0 z-50 bg-white/80 backdrop-blur-md border-b border-slate-200">
         <div className="container mx-auto px-4 h-16 flex items-center justify-between">
           <Link href="/" className="text-2xl font-bold text-emerald-700 flex items-center gap-2">
-            <span>&#9971;</span>
-            <span>세부골프투어</span>
+            <Globe className="w-7 h-7" />
+            <span>세부가이드</span>
           </Link>
           <nav aria-label="Main navigation" className="hidden md:flex gap-8">
+            <Link href="#services" className="text-sm font-medium hover:text-emerald-600 transition-colors">서비스</Link>
             <Link href="#courses" className="text-sm font-medium hover:text-emerald-600 transition-colors">골프장</Link>
-            <Link href="#packages" className="text-sm font-medium hover:text-emerald-600 transition-colors">패키지</Link>
-            <Link href="#about" className="text-sm font-medium hover:text-emerald-600 transition-colors">소개</Link>
-            <Link href="#reviews" className="text-sm font-medium hover:text-emerald-600 transition-colors">후기</Link>
+            <Link href="#resorts" className="text-sm font-medium hover:text-emerald-600 transition-colors">리조트</Link>
+            <Link href="#activities" className="text-sm font-medium hover:text-emerald-600 transition-colors">액티비티</Link>
             <Link href="#faq" className="text-sm font-medium hover:text-emerald-600 transition-colors">FAQ</Link>
           </nav>
           <Link href="#cta" className="hidden md:inline-block bg-emerald-600 hover:bg-emerald-700 text-white px-5 py-2 rounded-full text-sm font-semibold transition-all shadow-md hover:shadow-lg">
-            예약 문의
+            무료 상담
           </Link>
           <MobileMenu />
         </div>
       </header>
 
       <main className="flex-grow">
-        {/* Hero Section */}
+        {/* Hero */}
         <section className="relative h-[80vh] flex items-center justify-center overflow-hidden">
           <div className="absolute inset-0 z-0">
             <div className="w-full h-full bg-gradient-to-br from-emerald-900 to-slate-900">
               <Image
                 src="/images/hero-golf.webp"
-                alt="세부 골프장 전경"
+                alt="세부 리조트 전경"
                 fill
                 className="object-cover opacity-60 mix-blend-overlay"
                 priority
@@ -203,27 +239,27 @@ export default function Home() {
 
           <div className="container mx-auto px-4 relative z-10 text-center text-white">
             <span className="inline-block py-1 px-3 rounded-full bg-white/20 backdrop-blur-sm border border-white/30 text-sm font-medium mb-6">
-              세부 No.1 골프 투어
+              세부 No.1 통합 가이드
             </span>
             <h1 className="text-4xl md:text-7xl font-extrabold mb-6 tracking-tight leading-tight drop-shadow-lg">
-              세부 골프장 6곳<br />
-              <span className="text-emerald-300">한번에 즐기세요</span>
+              세부의 모든 것<br />
+              <span className="text-emerald-300">한번에 해결</span>
             </h1>
             <p className="text-xl md:text-2xl text-slate-100 max-w-2xl mx-auto mb-10 drop-shadow-md">
-              알타비스타부터 퀸스 아일랜드까지 — 세부 전체 골프장 맞춤 패키지
+              골프, 리조트, 관광, 교통까지 — 세부 여행 토탈 솔루션
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <Link href="#courses" className="bg-emerald-500 hover:bg-emerald-600 text-white px-8 py-4 rounded-full text-lg font-bold transition-all shadow-xl hover:shadow-2xl hover:-translate-y-1 text-center">
-                골프장 보기
+              <Link href="#services" className="bg-emerald-500 hover:bg-emerald-600 text-white px-8 py-4 rounded-full text-lg font-bold transition-all shadow-xl hover:shadow-2xl hover:-translate-y-1 text-center">
+                서비스 보기
               </Link>
               <Link href="#cta" className="bg-white/10 hover:bg-white/20 backdrop-blur-md text-white border border-white/50 px-8 py-4 rounded-full text-lg font-bold transition-all hover:-translate-y-1 text-center">
-                상담 문의
+                무료 상담
               </Link>
             </div>
           </div>
         </section>
 
-        {/* Stats Section */}
+        {/* Stats */}
         <section className="py-10 bg-white shadow-sm relative z-20 -mt-10 container mx-auto rounded-xl max-w-5xl">
           <div className="grid grid-cols-2 md:grid-cols-4 gap-8 text-center divide-x divide-slate-100">
             <div>
@@ -231,12 +267,12 @@ export default function Home() {
               <p className="text-slate-500 text-sm mt-1">제휴 골프장</p>
             </div>
             <div>
-              <p className="text-4xl font-bold text-emerald-600">3,000+</p>
-              <p className="text-slate-500 text-sm mt-1">라운딩 실적</p>
+              <p className="text-4xl font-bold text-emerald-600">10+</p>
+              <p className="text-slate-500 text-sm mt-1">제휴 리조트</p>
             </div>
             <div>
-              <p className="text-4xl font-bold text-emerald-600">4.9</p>
-              <p className="text-slate-500 text-sm mt-1">고객 만족도</p>
+              <p className="text-4xl font-bold text-emerald-600">15+</p>
+              <p className="text-slate-500 text-sm mt-1">액티비티</p>
             </div>
             <div>
               <p className="text-4xl font-bold text-emerald-600">24/7</p>
@@ -245,20 +281,45 @@ export default function Home() {
           </div>
         </section>
 
+        {/* Services */}
+        <section id="services" className="py-24">
+          <div className="container mx-auto px-4">
+            <div className="text-center mb-16">
+              <h2 className="text-emerald-600 font-semibold tracking-wide uppercase text-sm mb-3">Services</h2>
+              <h3 className="text-4xl font-bold text-slate-900 mb-4">통합 서비스</h3>
+              <p className="text-slate-600 max-w-2xl mx-auto">
+                세부 여행에 필요한 모든 것을 대행합니다. 골프, 리조트, 관광, 교통까지 원스톱.
+              </p>
+            </div>
+
+            <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6 max-w-5xl mx-auto">
+              {services.map((s) => (
+                <div key={s.title} className="bg-white rounded-2xl p-8 shadow-lg border border-slate-100 hover:shadow-xl transition-shadow text-center">
+                  <div className={`inline-flex p-4 rounded-2xl mb-5 ${s.color}`}>
+                    <s.icon className="w-8 h-8" />
+                  </div>
+                  <h4 className="text-lg font-bold mb-2">{s.title}</h4>
+                  <p className="text-slate-500 text-sm leading-relaxed">{s.description}</p>
+                </div>
+              ))}
+            </div>
+          </div>
+        </section>
+
         {/* Golf Courses */}
-        <section id="courses" className="py-24">
+        <section id="courses" className="py-24 bg-white">
           <div className="container mx-auto px-4">
             <div className="text-center mb-16">
               <h2 className="text-emerald-600 font-semibold tracking-wide uppercase text-sm mb-3">Golf Courses</h2>
               <h3 className="text-4xl font-bold text-slate-900 mb-4">세부 골프장</h3>
               <p className="text-slate-600 max-w-2xl mx-auto">
-                세부 전역의 명문 골프장 6곳. 산악, 평지, 리조트형까지 다양한 코스를 경험하세요.
+                세부 전역 6개 명문 골프장. 예약부터 캐디, 카트, 차량까지 전부 대행합니다.
               </p>
             </div>
 
             <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
               {golfCourses.map((course) => (
-                <div key={course.name} className="group bg-white rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-300 border border-slate-100">
+                <div key={course.name} className="group bg-slate-50 rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-300 border border-slate-100">
                   <div className="relative h-52 overflow-hidden">
                     <Image
                       src={course.image}
@@ -312,26 +373,87 @@ export default function Home() {
           </div>
         </section>
 
-        {/* Golf Packages */}
-        <section id="packages" className="py-24 bg-white">
+        {/* Resorts */}
+        <section id="resorts" className="py-24 bg-slate-50">
           <div className="container mx-auto px-4">
             <div className="text-center mb-16">
-              <h2 className="text-emerald-600 font-semibold tracking-wide uppercase text-sm mb-3">Packages</h2>
-              <h3 className="text-4xl font-bold text-slate-900 mb-4">투어 패키지</h3>
+              <h2 className="text-emerald-600 font-semibold tracking-wide uppercase text-sm mb-3">Resorts & Hotels</h2>
+              <h3 className="text-4xl font-bold text-slate-900 mb-4">리조트 & 호텔</h3>
               <p className="text-slate-600 max-w-2xl mx-auto">
-                원하시는 골프장 조합으로 맞춤 패키지 구성 가능. 그린피부터 숙소, 차량까지 올인원.
+                세부 최고의 리조트와 호텔을 예약 대행합니다. 골프 패키지와 묶으면 특가 안내.
+              </p>
+            </div>
+
+            <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6 max-w-5xl mx-auto">
+              {resorts.map((r) => (
+                <div key={r.name} className="bg-white rounded-2xl p-6 shadow-lg border border-slate-100 hover:shadow-xl transition-shadow">
+                  <div className="flex items-start justify-between mb-3">
+                    <h4 className="font-bold text-slate-900 text-sm leading-tight">{r.name}</h4>
+                    <span className="text-xs bg-emerald-50 text-emerald-700 px-2 py-0.5 rounded-full whitespace-nowrap ml-2">{r.grade}</span>
+                  </div>
+                  <p className="text-xs text-slate-400 mb-2">{r.area}</p>
+                  <p className="text-sm text-slate-600">{r.feature}</p>
+                </div>
+              ))}
+            </div>
+
+            <div className="text-center mt-10">
+              <Link href="#cta" className="inline-block bg-emerald-600 hover:bg-emerald-700 text-white px-8 py-3 rounded-full font-semibold transition-colors shadow-md">
+                리조트 예약 문의
+              </Link>
+            </div>
+          </div>
+        </section>
+
+        {/* Activities */}
+        <section id="activities" className="py-24 bg-white">
+          <div className="container mx-auto px-4">
+            <div className="text-center mb-16">
+              <h2 className="text-emerald-600 font-semibold tracking-wide uppercase text-sm mb-3">Activities</h2>
+              <h3 className="text-4xl font-bold text-slate-900 mb-4">관광 & 액티비티</h3>
+              <p className="text-slate-600 max-w-2xl mx-auto">
+                골프 외에도 세부에서 즐길 수 있는 다양한 액티비티를 예약해 드립니다.
+              </p>
+            </div>
+
+            <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6 max-w-5xl mx-auto">
+              {activities.map((a) => (
+                <div key={a.name} className="bg-slate-50 rounded-2xl p-6 shadow-lg border border-slate-100 hover:shadow-xl transition-shadow">
+                  <span className="text-3xl mb-3 block">{a.icon}</span>
+                  <h4 className="font-bold text-slate-900 mb-2">{a.name}</h4>
+                  <p className="text-sm text-slate-600 leading-relaxed">{a.description}</p>
+                </div>
+              ))}
+            </div>
+
+            <div className="text-center mt-10">
+              <Link href="#cta" className="inline-block bg-emerald-600 hover:bg-emerald-700 text-white px-8 py-3 rounded-full font-semibold transition-colors shadow-md">
+                액티비티 문의
+              </Link>
+            </div>
+          </div>
+        </section>
+
+        {/* Packages */}
+        <section id="packages" className="py-24 bg-emerald-900 text-white">
+          <div className="container mx-auto px-4">
+            <div className="text-center mb-16">
+              <h2 className="text-emerald-300 font-semibold tracking-wide uppercase text-sm mb-3">Packages</h2>
+              <h3 className="text-4xl font-bold mb-4">맞춤 패키지</h3>
+              <p className="text-emerald-100 max-w-2xl mx-auto">
+                골프, 리조트, 관광을 원하는 대로 조합. 예산과 일정에 맞춘 맞춤 패키지.
               </p>
             </div>
 
             <div className="grid md:grid-cols-3 gap-8">
               {packages.map((pkg) => (
-                <div key={pkg.title} className="group bg-slate-50 rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-300 border border-slate-100">
-                  <div className="relative h-64 overflow-hidden">
+                <div key={pkg.title} className="group bg-white/10 backdrop-blur-sm rounded-2xl overflow-hidden border border-white/20 hover:bg-white/15 transition-all">
+                  <div className="relative h-56 overflow-hidden">
                     <Image
                       src={pkg.image}
                       alt={pkg.title}
                       fill
-                      className="object-cover group-hover:scale-110 transition-transform duration-500"
+                      className="object-cover group-hover:scale-110 transition-transform duration-500 opacity-80"
                     />
                     {pkg.badge && (
                       <div className={`absolute top-4 right-4 backdrop-blur px-3 py-1 rounded-full text-xs font-bold shadow-sm ${pkg.badgeColor}`}>
@@ -340,71 +462,23 @@ export default function Home() {
                     )}
                   </div>
                   <div className="p-8">
-                    <p className="text-emerald-600 text-sm font-semibold mb-2">{pkg.courses}</p>
-                    <h4 className="text-xl font-bold mb-2 group-hover:text-emerald-600 transition-colors">{pkg.title}</h4>
-                    <p className="text-slate-500 text-sm mb-4 line-clamp-2">{pkg.description}</p>
-                    <div className="border-t border-slate-200 pt-4">
-                      <p className="text-xs text-slate-400 mb-2">포함사항</p>
+                    <p className="text-emerald-300 text-sm font-semibold mb-2">{pkg.courses}</p>
+                    <h4 className="text-xl font-bold mb-2">{pkg.title}</h4>
+                    <p className="text-emerald-100/80 text-sm mb-4 line-clamp-2">{pkg.description}</p>
+                    <div className="border-t border-white/20 pt-4">
+                      <p className="text-xs text-emerald-300/60 mb-2">포함사항</p>
                       <div className="flex flex-wrap gap-1.5">
                         {pkg.includes.map((item) => (
-                          <span key={item} className="text-xs bg-emerald-50 text-emerald-700 px-2 py-1 rounded-full">{item}</span>
+                          <span key={item} className="text-xs bg-white/10 text-white px-2 py-1 rounded-full">{item}</span>
                         ))}
                       </div>
                     </div>
-                    <Link href="#cta" className="mt-6 block text-center bg-emerald-600 hover:bg-emerald-700 text-white py-3 rounded-xl font-semibold transition-colors">
+                    <Link href="#cta" className="mt-6 block text-center bg-emerald-500 hover:bg-emerald-400 text-white py-3 rounded-xl font-semibold transition-colors">
                       문의하기
                     </Link>
                   </div>
                 </div>
               ))}
-            </div>
-          </div>
-        </section>
-
-        {/* About / Why Choose Us */}
-        <section id="about" className="py-24 bg-emerald-900 text-white relative overflow-hidden">
-          <div className="container mx-auto px-4 relative z-10">
-            <div className="grid md:grid-cols-2 gap-16 items-center">
-              <div>
-                <h2 className="text-emerald-300 font-semibold tracking-wide uppercase text-sm mb-3">Why Choose Us</h2>
-                <h3 className="text-4xl font-bold mb-6">왜 저희를<br />선택하세요?</h3>
-                <p className="text-emerald-100 mb-8 text-lg leading-relaxed">
-                  세부 전역 6개 골프장과 제휴. 공항 픽업부터 골프장 이동, 숙소까지 모든 일정을 관리합니다. 현지 경험이 풍부한 한국인 스태프가 직접 케어합니다.
-                </p>
-                <ul className="space-y-4">
-                  {[
-                    "세부 전체 6개 골프장 제휴",
-                    "한국인 현지 스태프 상주",
-                    "공항 픽업 & 골프장 전용 차량",
-                    "원하는 골프장 조합 맞춤 패키지"
-                  ].map((item, i) => (
-                    <li key={i} className="flex items-center gap-3">
-                      <div className="bg-emerald-500/20 p-1 rounded-full">
-                        <MapPin className="w-5 h-5 text-emerald-300" />
-                      </div>
-                      <span className="font-medium">{item}</span>
-                    </li>
-                  ))}
-                </ul>
-              </div>
-              <div className="relative">
-                <div className="grid grid-cols-2 gap-4">
-                  <Image
-                    src="/images/golf-group.webp"
-                    alt="골프 라운딩"
-                    width={400}
-                    height={500}
-                    className="rounded-2xl shadow-2xl transform translate-y-8 object-cover"
-                  />
-                  <Image
-                    src="/images/golf-clubhouse.webp"
-                    alt="골프 클럽하우스"
-                    width={400}
-                    height={500}
-                    className="rounded-2xl shadow-2xl transform -translate-y-8 object-cover"
-                  />
-                </div>
-              </div>
             </div>
           </div>
         </section>
@@ -415,9 +489,6 @@ export default function Home() {
             <div className="text-center mb-16">
               <h2 className="text-emerald-600 font-semibold tracking-wide uppercase text-sm mb-3">Reviews</h2>
               <h3 className="text-4xl font-bold text-slate-900 mb-4">고객 후기</h3>
-              <p className="text-slate-600 max-w-2xl mx-auto">
-                세부 골프 투어를 다녀오신 분들의 생생한 후기입니다.
-              </p>
             </div>
 
             <div className="grid md:grid-cols-3 gap-8 max-w-6xl mx-auto">
@@ -445,9 +516,6 @@ export default function Home() {
             <div className="text-center mb-16">
               <h2 className="text-emerald-600 font-semibold tracking-wide uppercase text-sm mb-3">FAQ</h2>
               <h3 className="text-4xl font-bold text-slate-900 mb-4">자주 묻는 질문</h3>
-              <p className="text-slate-600 max-w-2xl mx-auto">
-                세부 골프 여행 전 궁금한 점을 확인하세요.
-              </p>
             </div>
 
             <div className="max-w-3xl mx-auto space-y-4">
@@ -495,21 +563,21 @@ export default function Home() {
           </div>
         </section>
 
-        {/* CTA Section */}
+        {/* CTA */}
         <section id="cta" className="py-24 bg-slate-50">
           <div className="container mx-auto px-4">
             <div className="grid md:grid-cols-2 gap-12 items-start max-w-5xl mx-auto">
               <div>
                 <h2 className="text-3xl font-bold text-slate-900 mb-4">
-                  세부 골프 여행,<br />지금 문의하세요
+                  세부 여행,<br />지금 문의하세요
                 </h2>
                 <p className="text-slate-600 mb-8">
-                  원하시는 골프장, 날짜, 인원을 알려주시면 최적의 패키지를 안내해 드립니다.
+                  골프, 리조트, 관광 — 원하시는 조합을 알려주시면 최적의 패키지를 안내합니다.
                 </p>
                 <ExchangeRate />
               </div>
               <div className="bg-white rounded-2xl p-8 shadow-lg border border-slate-100">
-                <h3 className="text-xl font-bold text-slate-900 mb-6">예약 문의</h3>
+                <h3 className="text-xl font-bold text-slate-900 mb-6">무료 상담</h3>
                 <BookingForm />
               </div>
             </div>
@@ -523,11 +591,11 @@ export default function Home() {
           <div className="grid md:grid-cols-4 gap-12 mb-12">
             <div>
               <Link href="/" className="text-2xl font-bold text-white flex items-center gap-2 mb-6">
-                <span className="text-emerald-500">&#9971;</span>
-                <span>세부골프투어</span>
+                <Globe className="w-6 h-6 text-emerald-500" />
+                <span>세부가이드</span>
               </Link>
               <p className="text-sm leading-relaxed">
-                세부 현지 한국인 운영 골프 투어 전문. 세부 전역 6개 명문 골프장 맞춤 패키지.
+                세부 현지 한국인 운영. 골프, 리조트, 관광, 교통 — 세부 여행 토탈 솔루션.
               </p>
             </div>
             <div>
@@ -542,27 +610,27 @@ export default function Home() {
               </ul>
             </div>
             <div>
-              <h4 className="text-white font-bold mb-6">안내</h4>
+              <h4 className="text-white font-bold mb-6">서비스</h4>
               <ul className="space-y-3 text-sm">
-                <li><Link href="#courses" className="hover:text-emerald-500 transition-colors">골프장 소개</Link></li>
-                <li><Link href="#packages" className="hover:text-emerald-500 transition-colors">투어 패키지</Link></li>
+                <li><Link href="#courses" className="hover:text-emerald-500 transition-colors">골프 예약</Link></li>
+                <li><Link href="#resorts" className="hover:text-emerald-500 transition-colors">리조트 예약</Link></li>
+                <li><Link href="#activities" className="hover:text-emerald-500 transition-colors">관광 액티비티</Link></li>
+                <li><Link href="#packages" className="hover:text-emerald-500 transition-colors">맞춤 패키지</Link></li>
                 <li><Link href="#faq" className="hover:text-emerald-500 transition-colors">자주 묻는 질문</Link></li>
-                <li><Link href="#reviews" className="hover:text-emerald-500 transition-colors">고객 후기</Link></li>
-                <li><Link href="#cta" className="hover:text-emerald-500 transition-colors">예약 문의</Link></li>
               </ul>
             </div>
             <div>
               <h4 className="text-white font-bold mb-6">연락처</h4>
               <ul className="space-y-3 text-sm">
-                <li>카카오톡: 세부골프투어</li>
-                <li>텔레그램: @cebu_golf</li>
+                <li>카카오톡: 세부가이드</li>
+                <li>텔레그램: @cebu_guide</li>
                 <li>+63 912 345 6789</li>
                 <li>Cebu City, Philippines</li>
               </ul>
             </div>
           </div>
           <div className="border-t border-slate-800 pt-8 text-center text-xs">
-            &copy; {new Date().getFullYear()} 세부골프투어. All rights reserved.
+            &copy; {new Date().getFullYear()} 세부가이드. All rights reserved.
           </div>
         </div>
       </footer>

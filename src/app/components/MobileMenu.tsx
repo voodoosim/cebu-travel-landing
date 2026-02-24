@@ -4,10 +4,10 @@ import { useState } from "react";
 import Link from "next/link";
 
 const navLinks = [
+  { href: "#services", label: "서비스" },
   { href: "#courses", label: "골프장" },
-  { href: "#packages", label: "패키지" },
-  { href: "#about", label: "소개" },
-  { href: "#reviews", label: "후기" },
+  { href: "#resorts", label: "리조트" },
+  { href: "#activities", label: "액티비티" },
   { href: "#faq", label: "FAQ" },
 ];
 
@@ -48,7 +48,7 @@ export default function MobileMenu() {
               onClick={() => setOpen(false)}
               className="mt-2 bg-emerald-600 text-white text-center px-4 py-3 rounded-full text-sm font-semibold"
             >
-              예약 문의
+              무료 상담
             </Link>
           </nav>
         </div>

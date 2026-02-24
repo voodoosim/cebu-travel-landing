@@ -17,23 +17,23 @@ export const metadata: Metadata = {
   metadataBase: new URL('https://cebu.sasori.dev'),
 
   title: {
-    default: "세부 골프 투어 | 6개 골프장 맞춤 패키지 | 알타비스타, 에어베이스, 세부CC, 릴로안, 퀸스아일랜드",
-    template: "%s | 세부골프투어"
+    default: "세부가이드 | 골프, 리조트, 관광 통합 가이드 | 세부 여행 토탈 솔루션",
+    template: "%s | 세부가이드"
   },
 
-  description: "세부 현지 한국인 운영 골프 투어 전문. 알타비스타, 에어베이스, 세부CC, 클럽필리피노, 릴로안, 퀸스 아일랜드 등 세부 전역 6개 골프장 맞춤 패키지. 공항 픽업, 전용 차량, 한국어 상담.",
+  description: "세부 현지 한국인 운영 통합 가이드. 골프장 6곳 예약, 리조트 예약, 아일랜드호핑, 고래상어투어, 공항 픽업, 전용 차량, 한국어 통역. 세부 여행 원스톱 솔루션.",
 
   keywords: [
-    "세부 골프", "세부 골프 투어", "세부 골프장", "세부 골프 패키지",
-    "세부 골프 3박4일", "세부 골프 54홀", "알타비스타 골프", "에어베이스 골프",
-    "세부 컨트리클럽", "클럽필리피노 세부", "릴로안 골프", "퀸스아일랜드 골프",
-    "세부 골프 여행", "필리핀 세부 골프", "막탄 골프", "세부 골프 리조트",
-    "Cebu golf tour", "Cebu golf package", "Cebu golf courses"
+    "세부 여행", "세부 가이드", "세부 골프", "세부 골프 투어", "세부 골프장",
+    "세부 리조트", "세부 호텔", "세부 관광", "세부 액티비티",
+    "세부 아일랜드호핑", "세부 고래상어", "세부 카와산폭포", "세부 다이빙",
+    "알타비스타 골프", "막탄 골프", "세부 공항 픽업", "세부 한국어 가이드",
+    "Cebu guide", "Cebu golf", "Cebu travel", "Cebu tour package"
   ],
 
-  authors: [{ name: "세부골프투어" }],
-  creator: "세부골프투어",
-  publisher: "세부골프투어",
+  authors: [{ name: "세부가이드" }],
+  creator: "세부가이드",
+  publisher: "세부가이드",
 
   robots: {
     index: true,
@@ -47,11 +47,11 @@ export const metadata: Metadata = {
   },
 
   openGraph: {
-    title: "세부 골프 투어 | 6개 골프장 맞춤 패키지",
-    description: "세부 현지 한국인 운영 골프 투어. 알타비스타, 에어베이스, 세부CC, 릴로안, 퀸스 아일랜드 등 6개 골프장 맞춤 패키지.",
+    title: "세부가이드 | 골프, 리조트, 관광 통합 가이드",
+    description: "세부 현지 한국인 운영. 골프, 리조트, 관광, 교통까지 세부 여행 토탈 솔루션.",
     type: "website",
     locale: "ko_KR",
-    siteName: "세부골프투어",
+    siteName: "세부가이드",
     url: "https://cebu.sasori.dev",
     images: [
       {
@@ -65,8 +65,8 @@ export const metadata: Metadata = {
 
   twitter: {
     card: 'summary_large_image',
-    title: "세부 골프 투어 | 6개 골프장 맞춤 패키지",
-    description: "세부 현지 한국인 운영 골프 투어. 알타비스타, 에어베이스, 세부CC, 릴로안, 퀸스 아일랜드.",
+    title: "세부가이드 | 골프, 리조트, 관광 통합 가이드",
+    description: "세부 현지 한국인 운영. 골프, 리조트, 관광, 교통까지 세부 여행 토탈 솔루션.",
     images: ['/images/hero-golf.webp'],
   },
 

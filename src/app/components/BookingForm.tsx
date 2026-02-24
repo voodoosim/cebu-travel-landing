@@ -3,10 +3,11 @@
 import { useState, FormEvent } from "react";
 
 const TOUR_OPTIONS = [
-  "시티 코스 패키지 - 3박4일 54홀",
-  "풀코스 패키지 - 4박5일 72홀",
-  "리조트 패키지 - 3박4일 (퀸스 아일랜드)",
-  "맞춤 패키지 (골프장 직접 선택)",
+  "골프 패키지",
+  "골프 + 관광 패키지",
+  "리조트 풀패키지",
+  "관광/액티비티만",
+  "맞춤 패키지 (직접 상담)",
 ];
 
 export default function BookingForm() {
