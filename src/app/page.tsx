@@ -111,6 +111,9 @@ const resorts = [
   { name: "Jpark Island Resort & Waterpark", grade: "5성급", area: "막탄", feature: "워터파크, 카지노" },
   { name: "Movenpick Hotel Mactan", grade: "5성급", area: "막탄", feature: "아일랜드 뷰, 초콜릿 아워" },
   { name: "Radisson Blu Cebu", grade: "5성급", area: "세부시티", feature: "SM몰 연결, 비즈니스" },
+  { name: "Seda Ayala Center Cebu", grade: "4성급", area: "세부시티", feature: "아얄라몰 직결, 루프탑 풀" },
+  { name: "Bai Hotel Cebu", grade: "4성급", area: "만다웨", feature: "세부 최대 규모, 인피니티 풀" },
+  { name: "Bluewater Maribago", grade: "4성급", area: "막탄", feature: "프라이빗 비치, 가족 리조트" },
 ];
 
 const activities = [

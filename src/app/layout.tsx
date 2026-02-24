@@ -58,7 +58,7 @@ export const metadata: Metadata = {
         url: '/images/hero-golf.webp',
         width: 1536,
         height: 864,
-        alt: "세부 골프장 전경",
+        alt: "세부 여행 가이드 - 골프, 리조트, 관광",
       },
     ],
   },
