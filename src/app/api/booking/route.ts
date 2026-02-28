@@ -1,4 +1,7 @@
 import { NextResponse } from 'next/server';
+import { auth } from '@/auth';
+import { prisma } from '@/lib/prisma';
+import type { ServiceType } from '@prisma/client';
 
 const TOUR_OPTIONS = [
   '골프 패키지',
@@ -7,6 +10,14 @@ const TOUR_OPTIONS = [
   '관광/액티비티만',
   '맞춤 패키지 (직접 상담)',
 ];
+
+const TOUR_TO_SERVICE: Record<string, ServiceType> = {
+  '골프 패키지': 'GOLF',
+  '골프 + 관광 패키지': 'PACKAGE',
+  '리조트 풀패키지': 'RESORT',
+  '관광/액티비티만': 'ACTIVITY',
+  '맞춤 패키지 (직접 상담)': 'CUSTOM',
+};
 
 export async function POST(request: Request) {
   try {
@@ -26,11 +37,41 @@ export async function POST(request: Request) {
       return NextResponse.json({ error: 'Invalid message' }, { status: 400 });
     }
 
-    // TODO: 실제 알림 연동 (텔레그램, 이메일 등)
-    console.log('[booking]', { name, contact, tour, message: message || '' });
+    const session = await auth();
+    const serviceType = TOUR_TO_SERVICE[tour] ?? 'CUSTOM';
+    const inquiryMessage = [
+      `[${tour}]`,
+      `이름: ${name}`,
+      `연락처: ${contact}`,
+      message ? `메시지: ${message}` : '',
+    ].filter(Boolean).join('\n');
+
+    if (session?.user?.id) {
+      const booking = await prisma.booking.create({
+        data: {
+          userId: session.user.id,
+          serviceType,
+          status: 'INQUIRY',
+          message: inquiryMessage,
+        },
+      });
+      console.log('[booking] DB saved:', booking.id);
+    } else {
+      // 비로그인 사용자: DB 저장 불가 (userId 필수)
+      // 구조화된 로그로 기록 — 향후 Telegram 알림 연동 지점
+      console.log('[booking] anonymous inquiry:', JSON.stringify({
+        name,
+        contact,
+        tour,
+        serviceType,
+        message: message || '',
+        timestamp: new Date().toISOString(),
+      }));
+    }
 
     return NextResponse.json({ success: true });
-  } catch {
-    return NextResponse.json({ error: 'Invalid request' }, { status: 400 });
+  } catch (error) {
+    console.error('[booking] error:', error);
+    return NextResponse.json({ error: 'Internal server error' }, { status: 500 });
   }
 }
