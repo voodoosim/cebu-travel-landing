@@ -47,7 +47,7 @@ export default async function ResortDetailPage({ params }: Props) {
       <main className="max-w-4xl mx-auto px-6 py-12">
         <Link href="/resort/" className="inline-flex items-center gap-1.5 text-xs tracking-[0.15em] text-gold-300/40 hover:text-gold-300/70 mb-8 transition-colors">
           <ArrowLeft className="w-3.5 h-3.5" />
-          리조트 목록
+          RESORTS
         </Link>
 
         <div className="border border-gold-500/15 p-8 sm:p-10">
@@ -64,14 +64,14 @@ export default async function ResortDetailPage({ params }: Props) {
 
           {resort.feature && (
             <div className="mb-8">
-              <h2 className="text-xs tracking-[0.2em] text-gold-400 mb-3">특징</h2>
+              <h2 className="text-xs tracking-[0.2em] text-gold-400 mb-3 uppercase">Highlight</h2>
               <p className="text-sm text-gold-200/50 leading-relaxed">{resort.feature}</p>
             </div>
           )}
 
           {resort.features.length > 0 && (
             <div className="mb-8 pt-8 border-t border-gold-500/10">
-              <h2 className="text-xs tracking-[0.2em] text-gold-400 mb-4">시설</h2>
+              <h2 className="text-xs tracking-[0.2em] text-gold-400 mb-4 uppercase">Facilities</h2>
               <ul className="space-y-2.5">
                 {resort.features.map((f) => (
                   <li key={f} className="text-sm text-gold-200/50 flex items-start gap-2.5">
@@ -85,7 +85,7 @@ export default async function ResortDetailPage({ params }: Props) {
 
           {resort.description && (
             <div className="mb-8 pt-8 border-t border-gold-500/10">
-              <h2 className="text-xs tracking-[0.2em] text-gold-400 mb-4">상세정보</h2>
+              <h2 className="text-xs tracking-[0.2em] text-gold-400 mb-4 uppercase">Details</h2>
               <p className="text-sm text-gold-200/50 leading-relaxed whitespace-pre-line">{resort.description}</p>
             </div>
           )}
@@ -94,7 +94,7 @@ export default async function ResortDetailPage({ params }: Props) {
             href="/#cta"
             className="inline-block bg-gold-500 hover:bg-gold-400 text-navy-900 px-10 py-3.5 text-xs font-semibold tracking-[0.2em] transition-colors"
           >
-            문의하기
+            INQUIRE NOW
           </Link>
         </div>
       </main>

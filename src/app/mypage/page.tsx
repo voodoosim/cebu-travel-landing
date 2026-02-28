@@ -80,7 +80,7 @@ export default async function MyPage() {
         {/* 예약 내역 */}
         <div>
           <h2 className="text-xs font-medium tracking-[0.2em] text-gold-400 mb-5 uppercase">
-            예약 내역
+            Reservations
           </h2>
 
           {bookings.length === 0 ? (
@@ -90,7 +90,7 @@ export default async function MyPage() {
                 href="/#booking"
                 className="inline-block border border-gold-500 text-gold-400 px-8 py-3 text-xs font-medium tracking-[0.2em] hover:bg-gold-500 hover:text-navy-900 transition-all"
               >
-                문의하기
+                INQUIRE NOW
               </Link>
             </div>
           ) : (
@@ -157,7 +157,7 @@ export default async function MyPage() {
             href="/#booking"
             className="inline-block bg-gold-500 hover:bg-gold-400 text-navy-900 px-10 py-3.5 text-xs font-semibold tracking-[0.2em] transition-colors"
           >
-            새 문의하기
+            NEW INQUIRY
           </Link>
         </div>
       </div>

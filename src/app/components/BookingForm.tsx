@@ -66,7 +66,7 @@ export default function BookingForm() {
     <form onSubmit={handleSubmit} className="space-y-5">
       <div>
         <label className="block text-xs font-medium tracking-[0.15em] text-gold-300/80 mb-2 uppercase">
-          이름
+          Name
         </label>
         <input
           type="text"
@@ -81,7 +81,7 @@ export default function BookingForm() {
 
       <div>
         <label className="block text-xs font-medium tracking-[0.15em] text-gold-300/80 mb-2 uppercase">
-          연락처
+          Contact
         </label>
         <input
           type="text"
@@ -98,7 +98,7 @@ export default function BookingForm() {
 
       <div>
         <label className="block text-xs font-medium tracking-[0.15em] text-gold-300/80 mb-2 uppercase">
-          패키지
+          Package
         </label>
         <select
           required
@@ -117,7 +117,7 @@ export default function BookingForm() {
 
       <div>
         <label className="block text-xs font-medium tracking-[0.15em] text-gold-300/80 mb-2 uppercase">
-          요청사항
+          Message
         </label>
         <textarea
           maxLength={500}
@@ -142,7 +142,7 @@ export default function BookingForm() {
         disabled={status === "loading"}
         className="w-full bg-gold-500 hover:bg-gold-400 text-navy-900 py-3.5 text-xs font-semibold tracking-[0.2em] uppercase transition-colors disabled:opacity-50"
       >
-        {status === "loading" ? "전송 중..." : "문의 보내기"}
+        {status === "loading" ? "SENDING..." : "SUBMIT INQUIRY"}
       </button>
     </form>
   );

@@ -48,7 +48,7 @@ export default function MobileMenu() {
               onClick={() => setOpen(false)}
               className="mt-4 border border-gold-500 text-gold-400 text-center px-4 py-3 text-xs font-medium tracking-[0.2em] hover:bg-gold-500 hover:text-navy-900 transition-all"
             >
-              문의하기
+              INQUIRE NOW
             </Link>
           </nav>
         </div>
