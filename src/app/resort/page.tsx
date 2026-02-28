@@ -17,10 +17,10 @@ export default function ResortListPage() {
             CEBUGUIDE
           </Link>
           <nav className="flex items-center gap-8 text-xs tracking-[0.2em]">
-            <Link href="/golf/" className="text-gold-300/40 hover:text-gold-300/70 transition-colors">GOLF</Link>
-            <Link href="/resort/" className="text-gold-400">RESORTS</Link>
-            <Link href="/activity/" className="text-gold-300/40 hover:text-gold-300/70 transition-colors">ACTIVITIES</Link>
-            <Link href="/" className="text-gold-300/40 hover:text-gold-300/70 transition-colors">HOME</Link>
+            <Link href="/golf/" className="text-gold-300/40 hover:text-gold-300/70 transition-colors">골프</Link>
+            <Link href="/resort/" className="text-gold-400">리조트</Link>
+            <Link href="/activity/" className="text-gold-300/40 hover:text-gold-300/70 transition-colors">액티비티</Link>
+            <Link href="/" className="text-gold-300/40 hover:text-gold-300/70 transition-colors">홈</Link>
           </nav>
         </div>
       </header>

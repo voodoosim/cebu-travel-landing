@@ -194,16 +194,16 @@ export default function Home() {
             </span>
           </Link>
           <nav aria-label="Main navigation" className="hidden md:flex gap-10">
-            <Link href="/golf/" className="text-[13px] tracking-widest uppercase text-navy-700 hover:text-gold-500 transition-colors">Golf</Link>
-            <Link href="/resort/" className="text-[13px] tracking-widest uppercase text-navy-700 hover:text-gold-500 transition-colors">Resort</Link>
-            <Link href="/activity/" className="text-[13px] tracking-widest uppercase text-navy-700 hover:text-gold-500 transition-colors">Activity</Link>
-            <Link href="#packages" className="text-[13px] tracking-widest uppercase text-navy-700 hover:text-gold-500 transition-colors">Package</Link>
-            <Link href="#faq" className="text-[13px] tracking-widest uppercase text-navy-700 hover:text-gold-500 transition-colors">FAQ</Link>
+            <Link href="/golf/" className="text-[13px] tracking-widest text-navy-700 hover:text-gold-500 transition-colors">골프</Link>
+            <Link href="/resort/" className="text-[13px] tracking-widest text-navy-700 hover:text-gold-500 transition-colors">리조트</Link>
+            <Link href="/activity/" className="text-[13px] tracking-widest text-navy-700 hover:text-gold-500 transition-colors">액티비티</Link>
+            <Link href="#packages" className="text-[13px] tracking-widest text-navy-700 hover:text-gold-500 transition-colors">패키지</Link>
+            <Link href="#faq" className="text-[13px] tracking-widest text-navy-700 hover:text-gold-500 transition-colors">FAQ</Link>
           </nav>
           <div className="hidden md:flex items-center gap-5">
-            <Link href="/login" className="text-[13px] tracking-wider text-navy-600 hover:text-gold-500 transition-colors">Sign In</Link>
-            <Link href="#cta" className="bg-navy-900 hover:bg-navy-800 text-white px-6 py-2.5 text-[13px] tracking-wider uppercase transition-all">
-              Contact
+            <Link href="/login" className="text-[13px] tracking-wider text-navy-600 hover:text-gold-500 transition-colors">로그인</Link>
+            <Link href="#cta" className="bg-navy-900 hover:bg-navy-800 text-white px-6 py-2.5 text-[13px] tracking-wider transition-all">
+              문의하기
             </Link>
           </div>
           <MobileMenu />
@@ -226,20 +226,20 @@ export default function Home() {
 
           <div className="relative z-10 text-center text-white max-w-4xl mx-auto px-6">
             <div className="line-gold mx-auto mb-8" />
-            <p className="text-gold-300 text-sm tracking-[0.3em] uppercase mb-6">Cebu Premium Travel Guide</p>
+            <p className="text-gold-300 text-sm tracking-[0.3em] uppercase mb-6">세부 프리미엄 여행 가이드</p>
             <h1 className="font-[family-name:var(--font-serif)] text-5xl md:text-7xl lg:text-8xl font-medium mb-8 leading-[1.1] tracking-tight">
-              The Finest<br />
-              <span className="text-gold-gradient">Cebu Experience</span>
+              최고의<br />
+              <span className="text-gold-gradient">세부 경험</span>
             </h1>
             <p className="text-lg md:text-xl text-white/70 max-w-xl mx-auto mb-12 leading-relaxed">
               골프, 리조트, 관광, 교통<br className="sm:hidden" /> 세부 여행의 모든 것을 한번에
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <Link href="#services" className="border border-white/30 hover:bg-white hover:text-navy-900 text-white px-10 py-4 text-[13px] tracking-widest uppercase transition-all duration-300">
-                Explore
+              <Link href="#services" className="border border-white/30 hover:bg-white hover:text-navy-900 text-white px-10 py-4 text-[13px] tracking-widest transition-all duration-300">
+                둘러보기
               </Link>
-              <Link href="#cta" className="bg-gold-500 hover:bg-gold-400 text-navy-900 px-10 py-4 text-[13px] tracking-widest uppercase font-medium transition-all duration-300">
-                Contact Us
+              <Link href="#cta" className="bg-gold-500 hover:bg-gold-400 text-navy-900 px-10 py-4 text-[13px] tracking-widest font-medium transition-all duration-300">
+                문의하기
               </Link>
             </div>
           </div>
@@ -255,19 +255,19 @@ export default function Home() {
             <div className="grid grid-cols-2 md:grid-cols-4 gap-12 text-center">
               <div>
                 <p className="font-[family-name:var(--font-serif)] text-4xl text-gold-400">6</p>
-                <p className="text-white/50 text-xs tracking-widest uppercase mt-2">Golf Courses</p>
+                <p className="text-white/50 text-xs tracking-widest mt-2">골프장</p>
               </div>
               <div>
                 <p className="font-[family-name:var(--font-serif)] text-4xl text-gold-400">10+</p>
-                <p className="text-white/50 text-xs tracking-widest uppercase mt-2">Premium Resorts</p>
+                <p className="text-white/50 text-xs tracking-widest mt-2">프리미엄 리조트</p>
               </div>
               <div>
                 <p className="font-[family-name:var(--font-serif)] text-4xl text-gold-400">15+</p>
-                <p className="text-white/50 text-xs tracking-widest uppercase mt-2">Activities</p>
+                <p className="text-white/50 text-xs tracking-widest mt-2">액티비티</p>
               </div>
               <div>
                 <p className="font-[family-name:var(--font-serif)] text-4xl text-gold-400">24/7</p>
-                <p className="text-white/50 text-xs tracking-widest uppercase mt-2">Korean Support</p>
+                <p className="text-white/50 text-xs tracking-widest mt-2">한국어 지원</p>
               </div>
             </div>
           </div>
@@ -277,7 +277,7 @@ export default function Home() {
         <section id="services" className="py-32 bg-ivory">
           <div className="max-w-6xl mx-auto px-6">
             <div className="text-center mb-20">
-              <p className="text-gold-500 text-xs tracking-[0.3em] uppercase mb-4">Our Services</p>
+              <p className="text-gold-500 text-xs tracking-[0.3em] mb-4">서비스 안내</p>
               <h2 className="font-[family-name:var(--font-serif)] text-4xl md:text-5xl text-navy-900 mb-4">통합 서비스</h2>
               <div className="line-gold mx-auto mt-6 mb-6" />
               <p className="text-navy-600/60 max-w-lg mx-auto">
@@ -302,7 +302,7 @@ export default function Home() {
         <section id="courses" className="py-32 bg-white">
           <div className="max-w-7xl mx-auto px-6">
             <div className="text-center mb-20">
-              <p className="text-gold-500 text-xs tracking-[0.3em] uppercase mb-4">Golf Courses</p>
+              <p className="text-gold-500 text-xs tracking-[0.3em] mb-4">골프장</p>
               <h2 className="font-[family-name:var(--font-serif)] text-4xl md:text-5xl text-navy-900 mb-4">세부 골프장</h2>
               <div className="line-gold mx-auto mt-6 mb-6" />
               <p className="text-navy-600/60 max-w-lg mx-auto">
@@ -362,7 +362,7 @@ export default function Home() {
         <section id="resorts" className="py-32 bg-navy-900 text-white">
           <div className="max-w-6xl mx-auto px-6">
             <div className="text-center mb-20">
-              <p className="text-gold-400 text-xs tracking-[0.3em] uppercase mb-4">Resorts & Hotels</p>
+              <p className="text-gold-400 text-xs tracking-[0.3em] mb-4">리조트 & 호텔</p>
               <h2 className="font-[family-name:var(--font-serif)] text-4xl md:text-5xl mb-4">리조트 & 호텔</h2>
               <div className="line-gold mx-auto mt-6 mb-6" />
               <p className="text-white/40 max-w-lg mx-auto">
@@ -396,7 +396,7 @@ export default function Home() {
         <section id="activities" className="py-32 bg-ivory">
           <div className="max-w-5xl mx-auto px-6">
             <div className="text-center mb-20">
-              <p className="text-gold-500 text-xs tracking-[0.3em] uppercase mb-4">Activities</p>
+              <p className="text-gold-500 text-xs tracking-[0.3em] mb-4">액티비티</p>
               <h2 className="font-[family-name:var(--font-serif)] text-4xl md:text-5xl text-navy-900 mb-4">관광 & 액티비티</h2>
               <div className="line-gold mx-auto mt-6 mb-6" />
             </div>
@@ -422,7 +422,7 @@ export default function Home() {
         <section id="packages" className="py-32 bg-white">
           <div className="max-w-7xl mx-auto px-6">
             <div className="text-center mb-20">
-              <p className="text-gold-500 text-xs tracking-[0.3em] uppercase mb-4">Packages</p>
+              <p className="text-gold-500 text-xs tracking-[0.3em] mb-4">패키지</p>
               <h2 className="font-[family-name:var(--font-serif)] text-4xl md:text-5xl text-navy-900 mb-4">맞춤 패키지</h2>
               <div className="line-gold mx-auto mt-6 mb-6" />
               <p className="text-navy-600/60 max-w-lg mx-auto">
@@ -469,7 +469,7 @@ export default function Home() {
         <section id="reviews" className="py-32 bg-ivory">
           <div className="max-w-5xl mx-auto px-6">
             <div className="text-center mb-20">
-              <p className="text-gold-500 text-xs tracking-[0.3em] uppercase mb-4">Testimonials</p>
+              <p className="text-gold-500 text-xs tracking-[0.3em] mb-4">고객 후기</p>
               <h2 className="font-[family-name:var(--font-serif)] text-4xl md:text-5xl text-navy-900 mb-4">고객 후기</h2>
               <div className="line-gold mx-auto mt-6" />
             </div>
@@ -534,7 +534,7 @@ export default function Home() {
               </a>
               <a href="tel:+639123456789" className="bg-navy-900 hover:bg-navy-800 text-white p-8 transition-colors text-center">
                 <Phone className="w-6 h-6 mx-auto mb-3 text-gold-400" />
-                <p className="text-sm font-medium mb-1">Phone</p>
+                <p className="text-sm font-medium mb-1">전화</p>
                 <p className="text-white/30 text-xs">+63 912 345 6789</p>
               </a>
             </div>
@@ -546,7 +546,7 @@ export default function Home() {
           <div className="max-w-5xl mx-auto px-6">
             <div className="grid md:grid-cols-2 gap-16 items-start">
               <div>
-                <p className="text-gold-500 text-xs tracking-[0.3em] uppercase mb-4">Get in Touch</p>
+                <p className="text-gold-500 text-xs tracking-[0.3em] mb-4">문의하기</p>
                 <h2 className="font-[family-name:var(--font-serif)] text-3xl md:text-4xl text-navy-900 mb-6 leading-tight">
                   세부 여행,<br />지금 문의하세요
                 </h2>
@@ -577,7 +577,7 @@ export default function Home() {
               </p>
             </div>
             <div>
-              <h4 className="text-white/60 text-[11px] tracking-[0.2em] uppercase mb-6">Golf Courses</h4>
+              <h4 className="text-white/60 text-[11px] tracking-[0.2em] mb-6">골프장</h4>
               <ul className="space-y-3 text-sm">
                 <li>Alta Vista Golf & CC</li>
                 <li>Mactan Airbase Golf</li>
@@ -588,7 +588,7 @@ export default function Home() {
               </ul>
             </div>
             <div>
-              <h4 className="text-white/60 text-[11px] tracking-[0.2em] uppercase mb-6">Services</h4>
+              <h4 className="text-white/60 text-[11px] tracking-[0.2em] mb-6">서비스</h4>
               <ul className="space-y-3 text-sm">
                 <li><Link href="/golf/" className="hover:text-gold-400 transition-colors">골프 예약</Link></li>
                 <li><Link href="/resort/" className="hover:text-gold-400 transition-colors">리조트 예약</Link></li>
@@ -597,7 +597,7 @@ export default function Home() {
               </ul>
             </div>
             <div>
-              <h4 className="text-white/60 text-[11px] tracking-[0.2em] uppercase mb-6">Contact</h4>
+              <h4 className="text-white/60 text-[11px] tracking-[0.2em] mb-6">연락처</h4>
               <ul className="space-y-3 text-sm">
                 <li>KakaoTalk: 세부가이드</li>
                 <li>Telegram: @cebu_guide</li>

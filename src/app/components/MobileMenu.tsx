@@ -4,10 +4,10 @@ import { useState } from "react";
 import Link from "next/link";
 
 const navLinks = [
-  { href: "#services", label: "SERVICES" },
-  { href: "#courses", label: "GOLF" },
-  { href: "#resorts", label: "RESORTS" },
-  { href: "#activities", label: "ACTIVITIES" },
+  { href: "#services", label: "서비스" },
+  { href: "#courses", label: "골프" },
+  { href: "#resorts", label: "리조트" },
+  { href: "#activities", label: "액티비티" },
   { href: "#faq", label: "FAQ" },
 ];
 
@@ -48,7 +48,7 @@ export default function MobileMenu() {
               onClick={() => setOpen(false)}
               className="mt-4 border border-gold-500 text-gold-400 text-center px-4 py-3 text-xs font-medium tracking-[0.2em] hover:bg-gold-500 hover:text-navy-900 transition-all"
             >
-              INQUIRE NOW
+              문의하기
             </Link>
           </nav>
         </div>

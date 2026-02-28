@@ -8,7 +8,7 @@ export default function SignOutButton() {
       onClick={() => signOut({ callbackUrl: "/" })}
       className="text-xs tracking-[0.15em] text-gold-300/50 hover:text-red-400 transition-colors"
     >
-      LOGOUT
+      로그아웃
     </button>
   );
 }

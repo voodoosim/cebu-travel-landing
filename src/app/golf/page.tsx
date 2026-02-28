@@ -19,10 +19,10 @@ export default function GolfListPage() {
             CEBUGUIDE
           </Link>
           <nav className="flex items-center gap-8 text-xs tracking-[0.2em]">
-            <Link href="/golf/" className="text-gold-400">GOLF</Link>
-            <Link href="/resort/" className="text-gold-300/40 hover:text-gold-300/70 transition-colors">RESORTS</Link>
-            <Link href="/activity/" className="text-gold-300/40 hover:text-gold-300/70 transition-colors">ACTIVITIES</Link>
-            <Link href="/" className="text-gold-300/40 hover:text-gold-300/70 transition-colors">HOME</Link>
+            <Link href="/golf/" className="text-gold-400">골프</Link>
+            <Link href="/resort/" className="text-gold-300/40 hover:text-gold-300/70 transition-colors">리조트</Link>
+            <Link href="/activity/" className="text-gold-300/40 hover:text-gold-300/70 transition-colors">액티비티</Link>
+            <Link href="/" className="text-gold-300/40 hover:text-gold-300/70 transition-colors">홈</Link>
           </nav>
         </div>
       </header>

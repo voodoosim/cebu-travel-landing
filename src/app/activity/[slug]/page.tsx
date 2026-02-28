@@ -37,9 +37,9 @@ export default async function ActivityDetailPage({ params }: Props) {
             CEBUGUIDE
           </Link>
           <nav className="flex items-center gap-8 text-xs tracking-[0.2em]">
-            <Link href="/golf/" className="text-gold-300/40 hover:text-gold-300/70 transition-colors">GOLF</Link>
-            <Link href="/resort/" className="text-gold-300/40 hover:text-gold-300/70 transition-colors">RESORTS</Link>
-            <Link href="/activity/" className="text-gold-300/70 hover:text-gold-400 transition-colors">ACTIVITIES</Link>
+            <Link href="/golf/" className="text-gold-300/40 hover:text-gold-300/70 transition-colors">골프</Link>
+            <Link href="/resort/" className="text-gold-300/40 hover:text-gold-300/70 transition-colors">리조트</Link>
+            <Link href="/activity/" className="text-gold-300/70 hover:text-gold-400 transition-colors">액티비티</Link>
           </nav>
         </div>
       </header>
@@ -47,7 +47,7 @@ export default async function ActivityDetailPage({ params }: Props) {
       <main className="max-w-4xl mx-auto px-6 py-12">
         <Link href="/activity/" className="inline-flex items-center gap-1.5 text-xs tracking-[0.15em] text-gold-300/40 hover:text-gold-300/70 mb-8 transition-colors">
           <ArrowLeft className="w-3.5 h-3.5" />
-          ACTIVITIES
+          액티비티 목록
         </Link>
 
         <div className="border border-gold-500/15 p-8 sm:p-10">
@@ -67,7 +67,7 @@ export default async function ActivityDetailPage({ params }: Props) {
 
           {activity.features.length > 0 && (
             <div className="mb-8 pt-8 border-t border-gold-500/10">
-              <h2 className="text-xs tracking-[0.2em] text-gold-400 mb-4 uppercase">Included</h2>
+              <h2 className="text-xs tracking-[0.2em] text-gold-400 mb-4">포함 사항</h2>
               <ul className="space-y-2.5">
                 {activity.features.map((f) => (
                   <li key={f} className="text-sm text-gold-200/50 flex items-start gap-2.5">
@@ -83,7 +83,7 @@ export default async function ActivityDetailPage({ params }: Props) {
             href="/#cta"
             className="inline-block bg-gold-500 hover:bg-gold-400 text-navy-900 px-10 py-3.5 text-xs font-semibold tracking-[0.2em] transition-colors"
           >
-            INQUIRE NOW
+            문의하기
           </Link>
         </div>
       </main>

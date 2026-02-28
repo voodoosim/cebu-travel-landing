@@ -42,7 +42,7 @@ export default function LoginPage() {
 
         <p className="text-center mt-8">
           <Link href="/" className="text-xs text-gold-300/40 tracking-[0.15em] hover:text-gold-300/60 transition-colors">
-            BACK TO HOME
+            홈으로 돌아가기
           </Link>
         </p>
       </div>
