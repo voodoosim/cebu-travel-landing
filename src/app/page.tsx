@@ -7,6 +7,8 @@ import BookingForm from "./components/BookingForm";
 import UserMenu from "./components/layout/UserMenu";
 import { prisma } from "@/lib/db";
 
+export const dynamic = 'force-dynamic';
+
 const services = [
   {
     icon: Flag,
