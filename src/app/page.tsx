@@ -1,7 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import { Star, ChevronDown, Phone, MessageCircle, ArrowRight } from "lucide-react";
-import MobileMenu from "./components/MobileMenu";
+import SiteHeader from "./components/SiteHeader";
 import ExchangeRate from "./components/ExchangeRate";
 import BookingForm from "./components/BookingForm";
 
@@ -56,30 +56,7 @@ const testimonials = [
 export default function Home() {
   return (
     <div className="min-h-screen flex flex-col bg-ivory text-navy-900">
-      {/* Header */}
-      <header className="sticky top-0 z-50 bg-white/90 backdrop-blur-lg border-b border-gold-200/50">
-        <div className="max-w-7xl mx-auto px-6 h-18 flex items-center justify-between">
-          <Link href="/" className="flex items-center gap-2">
-            <span className="text-xl font-[family-name:var(--font-serif)] font-semibold tracking-wide text-navy-900">
-              CEBU<span className="text-gold-500">GUIDE</span>
-            </span>
-          </Link>
-          <nav aria-label="Main navigation" className="hidden md:flex gap-10">
-            <Link href="/golf/" className="text-[13px] tracking-widest text-navy-700 hover:text-gold-500 transition-colors">골프</Link>
-            <Link href="/resort/" className="text-[13px] tracking-widest text-navy-700 hover:text-gold-500 transition-colors">리조트</Link>
-            <Link href="/activity/" className="text-[13px] tracking-widest text-navy-700 hover:text-gold-500 transition-colors">액티비티</Link>
-            <Link href="/package/" className="text-[13px] tracking-widest text-navy-700 hover:text-gold-500 transition-colors">패키지</Link>
-            <Link href="/faq/" className="text-[13px] tracking-widest text-navy-700 hover:text-gold-500 transition-colors">FAQ</Link>
-          </nav>
-          <div className="hidden md:flex items-center gap-5">
-            <Link href="/login" className="text-[13px] tracking-wider text-navy-600 hover:text-gold-500 transition-colors">Sign In</Link>
-            <Link href="#cta" className="bg-navy-900 hover:bg-navy-800 text-white px-6 py-2.5 text-[13px] tracking-wider uppercase transition-all">
-              Contact
-            </Link>
-          </div>
-          <MobileMenu />
-        </div>
-      </header>
+      <SiteHeader />
 
       <main className="flex-grow">
         {/* Hero */}

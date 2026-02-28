@@ -27,7 +27,7 @@ export async function POST(request: Request) {
     if (!name || typeof name !== 'string' || name.length > 100) {
       return NextResponse.json({ error: 'Invalid name' }, { status: 400 });
     }
-    if (!contact || typeof contact !== 'string' || contact.length > 100) {
+    if (!contact || typeof contact !== 'string' || contact.length < 3 || contact.length > 100) {
       return NextResponse.json({ error: 'Invalid contact' }, { status: 400 });
     }
     if (!tour || !TOUR_OPTIONS.includes(tour)) {
@@ -46,28 +46,18 @@ export async function POST(request: Request) {
       message ? `메시지: ${message}` : '',
     ].filter(Boolean).join('\n');
 
-    if (session?.user?.id) {
-      const booking = await prisma.booking.create({
-        data: {
-          userId: session.user.id,
-          serviceType,
-          status: 'INQUIRY',
-          message: inquiryMessage,
-        },
-      });
-      console.log('[booking] DB saved:', booking.id);
-    } else {
-      // 비로그인 사용자: DB 저장 불가 (userId 필수)
-      // 구조화된 로그로 기록 — 향후 Telegram 알림 연동 지점
-      console.log('[booking] anonymous inquiry:', JSON.stringify({
-        name,
-        contact,
-        tour,
+    const booking = await prisma.booking.create({
+      data: {
+        userId: session?.user?.id ?? null,
         serviceType,
-        message: message || '',
-        timestamp: new Date().toISOString(),
-      }));
-    }
+        status: 'INQUIRY',
+        message: inquiryMessage,
+        guestName: name,
+        guestContact: contact,
+      },
+    });
+
+    console.log('[booking] saved:', booking.id, session?.user?.id ? 'user' : 'anonymous');
 
     return NextResponse.json({ success: true });
   } catch (error) {

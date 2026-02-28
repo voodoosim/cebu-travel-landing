@@ -32,6 +32,12 @@ export default function SiteHeader({ active }: { active?: ActivePage }) {
             </Link>
           ))}
         </nav>
+        <div className="hidden md:flex items-center gap-5">
+          <Link href="/login" className="text-[13px] tracking-wider text-navy-600 hover:text-gold-500 transition-colors">Sign In</Link>
+          <Link href="/#cta" className="bg-navy-900 hover:bg-navy-800 text-white px-6 py-2.5 text-[13px] tracking-wider uppercase transition-all">
+            Contact
+          </Link>
+        </div>
         <MobileMenu />
       </div>
     </header>

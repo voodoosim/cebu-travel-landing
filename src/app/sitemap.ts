@@ -23,7 +23,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
   }));
 
   return [
-    { url: `${BASE}`, changeFrequency: 'weekly', priority: 1.0 },
+    { url: `${BASE}/`, changeFrequency: 'weekly', priority: 1.0 },
     { url: `${BASE}/golf/`, changeFrequency: 'weekly', priority: 0.9 },
     { url: `${BASE}/resort/`, changeFrequency: 'weekly', priority: 0.9 },
     { url: `${BASE}/activity/`, changeFrequency: 'weekly', priority: 0.9 },

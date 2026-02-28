@@ -31,7 +31,7 @@ const SERVICE_LABEL: Record<string, string> = {
 
 export default async function MyPage() {
   const session = await auth();
-  if (!session?.user) redirect("/login");
+  if (!session?.user?.id) redirect("/login");
 
   const bookings = await prisma.booking.findMany({
     where: { userId: session.user.id },

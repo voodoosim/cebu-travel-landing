@@ -44,6 +44,13 @@ export default function MobileMenu() {
               </Link>
             ))}
             <Link
+              href="/login"
+              onClick={() => setOpen(false)}
+              className="px-2 py-3.5 text-xs font-medium tracking-[0.2em] text-navy-600 hover:text-gold-500 transition-colors"
+            >
+              Sign In
+            </Link>
+            <Link
               href="/#cta"
               onClick={() => setOpen(false)}
               className="mt-4 bg-navy-900 text-white text-center px-4 py-3 text-xs font-medium tracking-[0.2em] hover:bg-navy-800 transition-colors"

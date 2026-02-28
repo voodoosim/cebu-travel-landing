@@ -88,6 +88,7 @@ export default function BookingForm() {
           id="booking-contact"
           type="text"
           required
+          minLength={3}
           maxLength={100}
           placeholder="카톡 / 텔레그램 / 전화"
           value={formData.contact}

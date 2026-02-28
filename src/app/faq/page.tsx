@@ -26,9 +26,10 @@ const faqs = [
 
 export default function FaqPage() {
   return (
-    <div className="min-h-screen bg-ivory">
+    <>
       <FAQSchema />
-      <SiteHeader active="faq" />
+      <div className="min-h-screen bg-ivory">
+        <SiteHeader active="faq" />
 
       <main className="max-w-3xl mx-auto px-6 py-20">
         <div className="text-center mb-20">
@@ -41,8 +42,8 @@ export default function FaqPage() {
         </div>
 
         <div className="border-t border-navy-900/10">
-          {faqs.map((faq, i) => (
-            <details key={i} className="group border-b border-navy-900/10">
+          {faqs.map((faq) => (
+            <details key={faq.q} className="group border-b border-navy-900/10">
               <summary className="flex items-center justify-between cursor-pointer py-6 text-left text-navy-900 hover:text-gold-500 transition-colors text-[15px]">
                 {faq.q}
                 <ChevronDown className="w-4 h-4 text-navy-600/30 group-open:rotate-180 transition-transform flex-shrink-0 ml-6" />
@@ -64,6 +65,7 @@ export default function FaqPage() {
           </Link>
         </div>
       </main>
-    </div>
+      </div>
+    </>
   );
 }
