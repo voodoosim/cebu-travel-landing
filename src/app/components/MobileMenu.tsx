@@ -8,7 +8,7 @@ const navLinks = [
   { href: "/resort/", label: "리조트" },
   { href: "/activity/", label: "액티비티" },
   { href: "/package/", label: "패키지" },
-  { href: "#faq", label: "FAQ" },
+  { href: "/faq/", label: "FAQ" },
 ];
 
 export default function MobileMenu() {
