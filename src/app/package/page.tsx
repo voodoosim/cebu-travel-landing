@@ -1,9 +1,16 @@
 import Link from 'next/link';
 import Image from 'next/image';
+import type { Metadata } from 'next';
 
-export const metadata = {
+export const metadata: Metadata = {
   title: '세부 맞춤 패키지',
   description: '골프, 리조트, 관광을 원하는 대로 조합하는 세부 맞춤 패키지.',
+  alternates: { canonical: 'https://cebu.sasori.dev/package/' },
+  openGraph: {
+    title: '세부 맞춤 패키지',
+    description: '골프, 리조트, 관광을 원하는 대로 조합하는 세부 맞춤 패키지.',
+    url: 'https://cebu.sasori.dev/package/',
+  },
 };
 
 const packages = [

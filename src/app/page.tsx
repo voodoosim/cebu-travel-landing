@@ -87,7 +87,7 @@ export default function Home() {
           <div className="absolute inset-0">
             <Image
               src="/images/hero-golf.webp"
-              alt="세부 리조트 전경"
+              alt="세부 골프장 전경"
               fill
               className="object-cover"
               priority

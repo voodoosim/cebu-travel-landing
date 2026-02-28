@@ -1,9 +1,16 @@
 import Link from 'next/link';
+import type { Metadata } from 'next';
 import products from '@/data/products.json';
 
-export const metadata = {
+export const metadata: Metadata = {
   title: '세부 관광 & 액티비티',
   description: '골프 외에도 세부에서 즐길 수 있는 다양한 액티비티를 예약해 드립니다.',
+  alternates: { canonical: 'https://cebu.sasori.dev/activity/' },
+  openGraph: {
+    title: '세부 관광 & 액티비티',
+    description: '골프 외에도 세부에서 즐길 수 있는 다양한 액티비티를 예약해 드립니다.',
+    url: 'https://cebu.sasori.dev/activity/',
+  },
 };
 
 const activities = products.activities;

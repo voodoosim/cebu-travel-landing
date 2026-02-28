@@ -1,11 +1,18 @@
 import Link from 'next/link';
 import Image from 'next/image';
 import { Flag, Clock, MapPin } from 'lucide-react';
+import type { Metadata } from 'next';
 import products from '@/data/products.json';
 
-export const metadata = {
+export const metadata: Metadata = {
   title: '세부 골프장',
   description: '세부 전역 6개 명문 골프장. 예약부터 캐디, 카트, 차량까지 전부 대행합니다.',
+  alternates: { canonical: 'https://cebu.sasori.dev/golf/' },
+  openGraph: {
+    title: '세부 골프장',
+    description: '세부 전역 6개 명문 골프장. 예약부터 캐디, 카트, 차량까지 전부 대행합니다.',
+    url: 'https://cebu.sasori.dev/golf/',
+  },
 };
 
 const courses = products.golf;

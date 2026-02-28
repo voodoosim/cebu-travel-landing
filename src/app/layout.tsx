@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import { Inter, Playfair_Display } from "next/font/google";
 import "./globals.css";
-import { LocalBusinessSchema, TourProductsSchema, FAQSchema } from "./components/StructuredData";
+import { LocalBusinessSchema, TourProductsSchema } from "./components/StructuredData";
 import { Providers } from "./providers";
 
 const inter = Inter({
@@ -89,7 +89,6 @@ export default function RootLayout({
       <head>
         <LocalBusinessSchema />
         <TourProductsSchema />
-        <FAQSchema />
       </head>
       <body
         className={`${inter.variable} ${playfair.variable} antialiased font-[family-name:var(--font-inter)]`}

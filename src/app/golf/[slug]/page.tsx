@@ -19,9 +19,20 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { slug } = await params;
   const course = courses.find((c) => c.slug === slug);
   if (!course) return { title: 'Not Found' };
+  const descParts = [`${course.nameKo} (${course.name})`, `${course.holes}홀 Par ${course.par}`];
+  if (course.distance) descParts.push(course.distance);
+  descParts.push('세부 골프장 예약 대행');
+  const desc = descParts.join('. ') + '.';
   return {
     title: course.nameKo,
-    description: `${course.nameKo} (${course.name}) - ${course.holes}홀, Par ${course.par}. ${course.distance || ''}`,
+    description: desc,
+    alternates: { canonical: `https://cebu.sasori.dev/golf/${slug}/` },
+    openGraph: {
+      title: course.nameKo,
+      description: desc,
+      url: `https://cebu.sasori.dev/golf/${slug}/`,
+      images: [{ url: course.image, alt: course.nameKo }],
+    },
   };
 }
 

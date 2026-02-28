@@ -18,9 +18,16 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { slug } = await params;
   const activity = activities.find((a) => a.slug === slug);
   if (!activity) return { title: 'Not Found' };
+  const desc = activity.description || `세부 ${activity.name} 예약`;
   return {
     title: activity.name,
-    description: activity.description || `세부 ${activity.name} 예약`,
+    description: desc,
+    alternates: { canonical: `https://cebu.sasori.dev/activity/${slug}/` },
+    openGraph: {
+      title: activity.name,
+      description: desc,
+      url: `https://cebu.sasori.dev/activity/${slug}/`,
+    },
   };
 }
 

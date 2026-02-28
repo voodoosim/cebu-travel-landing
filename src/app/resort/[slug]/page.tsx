@@ -18,9 +18,20 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { slug } = await params;
   const resort = resorts.find((r) => r.slug === slug);
   if (!resort) return { title: 'Not Found' };
+  const descParts = [resort.name];
+  if (resort.grade) descParts.push(resort.grade);
+  if (resort.area) descParts.push(resort.area);
+  if (resort.feature) descParts.push(resort.feature);
+  const desc = descParts.join(' - ') + '. 세부 리조트 예약 대행.';
   return {
     title: `${resort.name} - ${resort.grade || '리조트'}`,
-    description: `${resort.name} - ${resort.area || '세부'}. ${resort.feature || ''}`,
+    description: desc,
+    alternates: { canonical: `https://cebu.sasori.dev/resort/${slug}/` },
+    openGraph: {
+      title: `${resort.name} - ${resort.grade || '리조트'}`,
+      description: desc,
+      url: `https://cebu.sasori.dev/resort/${slug}/`,
+    },
   };
 }
 
