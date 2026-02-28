@@ -8,5 +8,7 @@ const FALLBACK_RATES = {
 
 export async function GET() {
   // TODO: 외부 환율 API 연동 시 여기서 fetch
-  return NextResponse.json(FALLBACK_RATES);
+  return NextResponse.json(FALLBACK_RATES, {
+    headers: { 'Cache-Control': 'public, max-age=3600, s-maxage=3600' },
+  });
 }

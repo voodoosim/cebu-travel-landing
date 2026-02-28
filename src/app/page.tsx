@@ -89,6 +89,7 @@ export default function Home() {
               src="/images/hero-golf.webp"
               alt="세부 골프장 전경"
               fill
+              sizes="100vw"
               className="object-cover"
               priority
             />

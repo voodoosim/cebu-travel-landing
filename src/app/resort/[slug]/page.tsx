@@ -3,7 +3,7 @@ import Link from 'next/link';
 import { ArrowLeft } from 'lucide-react';
 import type { Metadata } from 'next';
 import products from '@/data/products.json';
-import MobileMenu from '../../components/MobileMenu';
+import SiteHeader from '../../components/SiteHeader';
 
 const resorts = products.resorts;
 
@@ -43,21 +43,7 @@ export default async function ResortDetailPage({ params }: Props) {
 
   return (
     <div className="min-h-screen bg-ivory">
-      <header className="sticky top-0 z-50 bg-white/90 backdrop-blur-lg border-b border-gold-200/50">
-        <div className="max-w-7xl mx-auto px-6 h-18 flex items-center justify-between">
-          <Link href="/" className="text-xl font-[family-name:var(--font-serif)] font-semibold tracking-wide text-navy-900">
-            CEBU<span className="text-gold-500">GUIDE</span>
-          </Link>
-          <nav aria-label="Main navigation" className="hidden md:flex items-center gap-10 text-[13px] tracking-widest">
-            <Link href="/golf/" className="text-navy-700 hover:text-gold-500 transition-colors">골프</Link>
-            <Link href="/resort/" className="text-gold-500 font-medium">리조트</Link>
-            <Link href="/activity/" className="text-navy-700 hover:text-gold-500 transition-colors">액티비티</Link>
-            <Link href="/package/" className="text-navy-700 hover:text-gold-500 transition-colors">패키지</Link>
-            <Link href="/faq/" className="text-navy-700 hover:text-gold-500 transition-colors">FAQ</Link>
-          </nav>
-          <MobileMenu />
-        </div>
-      </header>
+      <SiteHeader active="resort" />
 
       <main className="max-w-4xl mx-auto px-6 py-12">
         <Link href="/resort/" className="inline-flex items-center gap-1.5 text-xs tracking-[0.15em] text-navy-600/40 hover:text-gold-500 mb-8 transition-colors">

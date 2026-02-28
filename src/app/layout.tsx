@@ -2,17 +2,18 @@ import type { Metadata } from "next";
 import { Inter, Playfair_Display } from "next/font/google";
 import "./globals.css";
 import { LocalBusinessSchema, TourProductsSchema } from "./components/StructuredData";
-import { Providers } from "./providers";
 
 const inter = Inter({
   variable: "--font-inter",
   subsets: ["latin"],
+  display: "swap",
 });
 
 const playfair = Playfair_Display({
   variable: "--font-serif",
   subsets: ["latin"],
   weight: ["400", "500", "600", "700"],
+  display: "optional",
 });
 
 export const metadata: Metadata = {
@@ -93,7 +94,7 @@ export default function RootLayout({
       <body
         className={`${inter.variable} ${playfair.variable} antialiased font-[family-name:var(--font-inter)]`}
       >
-        <Providers>{children}</Providers>
+        {children}
       </body>
     </html>
   );
