@@ -5,6 +5,7 @@ import MobileMenu from "./components/MobileMenu";
 import ExchangeRate from "./components/ExchangeRate";
 import BookingForm from "./components/BookingForm";
 import UserMenu from "./components/layout/UserMenu";
+import { prisma } from "@/lib/db";
 
 const services = [
   {
@@ -33,98 +34,6 @@ const services = [
   },
 ];
 
-const golfCourses = [
-  {
-    name: "Alta Vista Golf & Country Club",
-    nameKo: "알타비스타 골프 & CC",
-    holes: "18홀 / Par 72 / 6,073yd",
-    distance: "공항 30~50분",
-    type: "산악형",
-    designer: "Gary Player 설계",
-    features: ["해발 150m 고지대", "세부 해협 파노라마 뷰", "도전적인 업다운 코스"],
-    image: "/images/golf-highland.webp",
-    badge: "명문",
-    badgeColor: "bg-emerald-600 text-white",
-  },
-  {
-    name: "Mactan Island Golf Club",
-    nameKo: "막탄 에어베이스 골프",
-    holes: "18홀 / Par 72 / 6,435yd",
-    distance: "공항 5~10분",
-    type: "평지형",
-    features: ["공항에서 가장 가까운 골프장", "도착 당일 라운딩 가능", "산호석 페어웨이"],
-    image: "/images/golf-coastal.webp",
-    badge: "가성비",
-    badgeColor: "bg-sky-500 text-white",
-  },
-  {
-    name: "Cebu Country Club",
-    nameKo: "세부 컨트리 클럽",
-    holes: "18홀 / Par 72 / 6,677yd",
-    distance: "공항 25~30분",
-    type: "평지형",
-    designer: "1928년 개장",
-    features: ["필리핀 최고 역사의 골프장", "잘 정비된 페어웨이", "인터클럽 대회 개최지"],
-    image: "/images/golf-clubhouse.webp",
-    badge: "프라이빗",
-    badgeColor: "bg-amber-600 text-white",
-  },
-  {
-    name: "Club Filipino de Cebu",
-    nameKo: "클럽 필리피노 드 세부",
-    holes: "18홀 / Par 71 / 6,128yd",
-    distance: "공항 50분",
-    type: "구릉형",
-    designer: "1935년 개장",
-    features: ["좁은 페어웨이 정확성 코스", "롤링힐스 지형", "세부 북부 드라이브"],
-    image: "/images/golf-group.webp",
-  },
-  {
-    name: "Liloan Golf & Leisure Estate",
-    nameKo: "릴로안 골프 & 레저",
-    holes: "18홀 / Par 72 / 7,200yd",
-    distance: "공항 25분",
-    type: "현대형",
-    designer: "2017년 개장",
-    features: ["세부 최장 7,200야드", "65헥타르 대규모 부지", "골프 아카데미 운영"],
-    image: "/images/golf-highland.webp",
-    badge: "최장 코스",
-    badgeColor: "bg-violet-600 text-white",
-  },
-  {
-    name: "Queen's Island Golf & Resort",
-    nameKo: "퀸스 아일랜드 골프 리조트",
-    holes: "18홀 / Par 72 / 6,835yd",
-    distance: "공항 약 2시간",
-    type: "리조트형",
-    designer: "Paspalum 잔디",
-    features: ["48실 리조트 숙박", "태평양 오션 뷰", "숙박+골프 올인원"],
-    image: "/images/golf-coastal.webp",
-    badge: "리조트",
-    badgeColor: "bg-rose-500 text-white",
-  },
-];
-
-const resorts = [
-  { name: "Shangri-La Mactan Resort & Spa", grade: "5성급", area: "막탄", feature: "프라이빗 비치, 스파" },
-  { name: "Crimson Resort & Spa Mactan", grade: "5성급", area: "막탄", feature: "인피니티 풀, 다이빙" },
-  { name: "Plantation Bay Resort & Spa", grade: "5성급", area: "막탄", feature: "라군 풀, 가족 친화" },
-  { name: "Jpark Island Resort & Waterpark", grade: "5성급", area: "막탄", feature: "워터파크, 카지노" },
-  { name: "Movenpick Hotel Mactan", grade: "5성급", area: "막탄", feature: "아일랜드 뷰, 초콜릿 아워" },
-  { name: "Radisson Blu Cebu", grade: "5성급", area: "세부시티", feature: "SM몰 연결, 비즈니스" },
-  { name: "Seda Ayala Center Cebu", grade: "4성급", area: "세부시티", feature: "아얄라몰 직결, 루프탑 풀" },
-  { name: "Bai Hotel Cebu", grade: "4성급", area: "만다웨", feature: "세부 최대 규모, 인피니티 풀" },
-  { name: "Bluewater Maribago", grade: "4성급", area: "막탄", feature: "프라이빗 비치, 가족 리조트" },
-];
-
-const activities = [
-  { name: "아일랜드 호핑", description: "나루수안, 판다논, 힐루뚱안 섬 투어. 스노클링 포함.", icon: "🏝" },
-  { name: "고래상어 투어", description: "오슬롭 고래상어 스노클링. 세부 남부 당일치기.", icon: "🐋" },
-  { name: "카와산 폭포", description: "캐녀닝 + 폭포 점프. 세부 최고 인기 액티비티.", icon: "🏞" },
-  { name: "다이빙 & 스노클링", description: "모알보알 정어리런, 거북이 포인트. 체험/자격증.", icon: "🤿" },
-  { name: "세부 시티투어", description: "마젤란 십자가, 산페드로 요새, 탑스 전망대.", icon: "🏛" },
-  { name: "보홀 당일투어", description: "초콜릿힐, 안경원숭이, 로복강 크루즈.", icon: "🦎" },
-];
 
 const packages = [
   {
@@ -202,7 +111,13 @@ const faqs = [
   },
 ];
 
-export default function Home() {
+export default async function Home() {
+  const [golfCourses, resorts, activities] = await Promise.all([
+    prisma.golfCourse.findMany({ where: { isPublished: true }, orderBy: { sortOrder: 'asc' } }),
+    prisma.resort.findMany({ where: { isPublished: true }, orderBy: { sortOrder: 'asc' } }),
+    prisma.activity.findMany({ where: { isPublished: true }, orderBy: { sortOrder: 'asc' } }),
+  ]);
+
   return (
     <div className="min-h-screen flex flex-col font-sans text-slate-800 bg-slate-50">
       {/* Header */}
@@ -270,15 +185,15 @@ export default function Home() {
         <section className="py-10 bg-white shadow-sm relative z-20 -mt-10 container mx-auto rounded-xl max-w-5xl">
           <div className="grid grid-cols-2 md:grid-cols-4 gap-8 text-center divide-x divide-slate-100">
             <div>
-              <p className="text-4xl font-bold text-emerald-600">6</p>
+              <p className="text-4xl font-bold text-emerald-600">{golfCourses.length}</p>
               <p className="text-slate-500 text-sm mt-1">제휴 골프장</p>
             </div>
             <div>
-              <p className="text-4xl font-bold text-emerald-600">10+</p>
+              <p className="text-4xl font-bold text-emerald-600">{resorts.length}</p>
               <p className="text-slate-500 text-sm mt-1">제휴 리조트</p>
             </div>
             <div>
-              <p className="text-4xl font-bold text-emerald-600">15+</p>
+              <p className="text-4xl font-bold text-emerald-600">{activities.length}+</p>
               <p className="text-slate-500 text-sm mt-1">액티비티</p>
             </div>
             <div>
@@ -325,57 +240,67 @@ export default function Home() {
             </div>
 
             <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-              {golfCourses.map((course) => (
-                <div key={course.name} className="group bg-slate-50 rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-300 border border-slate-100">
-                  <div className="relative h-52 overflow-hidden">
-                    <Image
-                      src={course.image}
-                      alt={course.nameKo}
-                      fill
-                      className="object-cover group-hover:scale-110 transition-transform duration-500"
-                    />
-                    {course.badge && (
-                      <div className={`absolute top-3 right-3 backdrop-blur px-3 py-1 rounded-full text-xs font-bold shadow-sm ${course.badgeColor}`}>
-                        {course.badge}
+              {golfCourses.map((course) => {
+                const images = (course.images as string[]) || [];
+                const features = (course.features as string[]) || [];
+                const image = images[0] || '/images/golf-highland.webp';
+                const holesStr = `${course.holes}홀 / Par ${course.par}${course.yards ? ` / ${course.yards.toLocaleString()}yd` : ''}`;
+                return (
+                  <div key={course.id} className="group bg-slate-50 rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-300 border border-slate-100">
+                    <div className="relative h-52 overflow-hidden">
+                      <Image
+                        src={image}
+                        alt={course.nameKo}
+                        fill
+                        className="object-cover group-hover:scale-110 transition-transform duration-500"
+                      />
+                      {course.badge && (
+                        <div className={`absolute top-3 right-3 backdrop-blur px-3 py-1 rounded-full text-xs font-bold shadow-sm ${course.badgeColor}`}>
+                          {course.badge}
+                        </div>
+                      )}
+                      <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/60 to-transparent p-4">
+                        <p className="text-white font-bold text-lg">{course.nameKo}</p>
+                        <p className="text-white/80 text-xs">{course.name}</p>
                       </div>
-                    )}
-                    <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/60 to-transparent p-4">
-                      <p className="text-white font-bold text-lg">{course.nameKo}</p>
-                      <p className="text-white/80 text-xs">{course.name}</p>
+                    </div>
+                    <div className="p-6">
+                      <div className="flex flex-wrap gap-3 text-xs text-slate-500 mb-4">
+                        <span className="flex items-center gap-1">
+                          <Flag className="w-3.5 h-3.5" />
+                          {holesStr}
+                        </span>
+                        {course.distance && (
+                          <span className="flex items-center gap-1">
+                            <Clock className="w-3.5 h-3.5" />
+                            {course.distance}
+                          </span>
+                        )}
+                        {course.courseType && (
+                          <span className="flex items-center gap-1">
+                            <MapPin className="w-3.5 h-3.5" />
+                            {course.courseType}
+                          </span>
+                        )}
+                      </div>
+                      {course.designer && (
+                        <p className="text-emerald-600 text-sm font-medium mb-3">{course.designer}</p>
+                      )}
+                      <ul className="space-y-1.5 mb-5">
+                        {features.map((f) => (
+                          <li key={f} className="text-sm text-slate-600 flex items-start gap-2">
+                            <span className="text-emerald-500 mt-0.5">-</span>
+                            {f}
+                          </li>
+                        ))}
+                      </ul>
+                      <Link href={`/golf/${course.slug}`} className="block text-center bg-emerald-600 hover:bg-emerald-700 text-white py-2.5 rounded-xl text-sm font-semibold transition-colors">
+                        자세히 보기
+                      </Link>
                     </div>
                   </div>
-                  <div className="p-6">
-                    <div className="flex flex-wrap gap-3 text-xs text-slate-500 mb-4">
-                      <span className="flex items-center gap-1">
-                        <Flag className="w-3.5 h-3.5" />
-                        {course.holes}
-                      </span>
-                      <span className="flex items-center gap-1">
-                        <Clock className="w-3.5 h-3.5" />
-                        {course.distance}
-                      </span>
-                      <span className="flex items-center gap-1">
-                        <MapPin className="w-3.5 h-3.5" />
-                        {course.type}
-                      </span>
-                    </div>
-                    {course.designer && (
-                      <p className="text-emerald-600 text-sm font-medium mb-3">{course.designer}</p>
-                    )}
-                    <ul className="space-y-1.5 mb-5">
-                      {course.features.map((f) => (
-                        <li key={f} className="text-sm text-slate-600 flex items-start gap-2">
-                          <span className="text-emerald-500 mt-0.5">-</span>
-                          {f}
-                        </li>
-                      ))}
-                    </ul>
-                    <Link href="#cta" className="block text-center bg-emerald-600 hover:bg-emerald-700 text-white py-2.5 rounded-xl text-sm font-semibold transition-colors">
-                      문의하기
-                    </Link>
-                  </div>
-                </div>
-              ))}
+                );
+              })}
             </div>
           </div>
         </section>
@@ -393,14 +318,14 @@ export default function Home() {
 
             <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6 max-w-5xl mx-auto">
               {resorts.map((r) => (
-                <div key={r.name} className="bg-white rounded-2xl p-6 shadow-lg border border-slate-100 hover:shadow-xl transition-shadow">
+                <Link key={r.id} href={`/resort/${r.slug}`} className="bg-white rounded-2xl p-6 shadow-lg border border-slate-100 hover:shadow-xl hover:border-emerald-200 transition-all">
                   <div className="flex items-start justify-between mb-3">
                     <h4 className="font-bold text-slate-900 text-sm leading-tight">{r.name}</h4>
-                    <span className="text-xs bg-emerald-50 text-emerald-700 px-2 py-0.5 rounded-full whitespace-nowrap ml-2">{r.grade}</span>
+                    {r.grade && <span className="text-xs bg-emerald-50 text-emerald-700 px-2 py-0.5 rounded-full whitespace-nowrap ml-2">{r.grade}</span>}
                   </div>
-                  <p className="text-xs text-slate-400 mb-2">{r.area}</p>
-                  <p className="text-sm text-slate-600">{r.feature}</p>
-                </div>
+                  {r.area && <p className="text-xs text-slate-400 mb-2">{r.area}</p>}
+                  {r.feature && <p className="text-sm text-slate-600">{r.feature}</p>}
+                </Link>
               ))}
             </div>
 
@@ -425,11 +350,11 @@ export default function Home() {
 
             <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6 max-w-5xl mx-auto">
               {activities.map((a) => (
-                <div key={a.name} className="bg-slate-50 rounded-2xl p-6 shadow-lg border border-slate-100 hover:shadow-xl transition-shadow">
-                  <span className="text-3xl mb-3 block">{a.icon}</span>
+                <Link key={a.id} href={`/activity/${a.slug}`} className="bg-slate-50 rounded-2xl p-6 shadow-lg border border-slate-100 hover:shadow-xl hover:border-emerald-200 transition-all">
+                  {a.icon && <span className="text-3xl mb-3 block">{a.icon}</span>}
                   <h4 className="font-bold text-slate-900 mb-2">{a.name}</h4>
-                  <p className="text-sm text-slate-600 leading-relaxed">{a.description}</p>
-                </div>
+                  {a.description && <p className="text-sm text-slate-600 leading-relaxed">{a.description}</p>}
+                </Link>
               ))}
             </div>
 
