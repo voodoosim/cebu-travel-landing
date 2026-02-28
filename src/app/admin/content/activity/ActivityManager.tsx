@@ -241,7 +241,7 @@ export default function ActivityManager({ activities }: Props) {
                 <textarea
                   name="images"
                   rows={3}
-                  defaultValue={activity?.images?.join('\n') || ''}
+                  defaultValue={(activity?.images as string[] | null)?.join('\n') || ''}
                   className="w-full border border-slate-200 rounded-lg px-3 py-2 text-sm font-mono focus:outline-none focus:ring-2 focus:ring-emerald-500"
                 />
               </div>

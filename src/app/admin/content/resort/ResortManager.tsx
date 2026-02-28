@@ -240,7 +240,7 @@ export default function ResortManager({ resorts }: Props) {
                 <textarea
                   name="images"
                   rows={3}
-                  defaultValue={resort?.images?.join('\n') || ''}
+                  defaultValue={(resort?.images as string[] | null)?.join('\n') || ''}
                   className="w-full border border-slate-200 rounded-lg px-3 py-2 text-sm font-mono focus:outline-none focus:ring-2 focus:ring-emerald-500"
                 />
               </div>

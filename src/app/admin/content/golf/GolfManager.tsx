@@ -271,7 +271,7 @@ export default function GolfManager({ courses }: Props) {
                 <textarea
                   name="features"
                   rows={4}
-                  defaultValue={course?.features?.join('\n') || ''}
+                  defaultValue={(course?.features as string[] | null)?.join('\n') || ''}
                   className="w-full border border-slate-200 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-emerald-500"
                 />
               </div>
@@ -283,7 +283,7 @@ export default function GolfManager({ courses }: Props) {
                 <textarea
                   name="images"
                   rows={3}
-                  defaultValue={course?.images?.join('\n') || ''}
+                  defaultValue={(course?.images as string[] | null)?.join('\n') || ''}
                   className="w-full border border-slate-200 rounded-lg px-3 py-2 text-sm font-mono focus:outline-none focus:ring-2 focus:ring-emerald-500"
                 />
               </div>
