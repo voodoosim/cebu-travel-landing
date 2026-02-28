@@ -1,10 +1,20 @@
 import { prisma } from '@/lib/db';
 import { notFound } from 'next/navigation';
 import Link from 'next/link';
+import Image from 'next/image';
 import { ArrowLeft } from 'lucide-react';
 import type { Metadata } from 'next';
 import Header from '@/app/components/layout/Header';
 import Footer from '@/app/components/layout/Footer';
+
+const activityImages: Record<string, string> = {
+  'island-hopping': 'https://images.pexels.com/photos/1007657/pexels-photo-1007657.jpeg?auto=compress&cs=tinysrgb&w=1200',
+  'whale-shark':    'https://images.pexels.com/photos/7001499/pexels-photo-7001499.jpeg?auto=compress&cs=tinysrgb&w=1200',
+  'kawasan-falls':  'https://images.pexels.com/photos/2437299/pexels-photo-2437299.jpeg?auto=compress&cs=tinysrgb&w=1200',
+  'diving':         'https://images.pexels.com/photos/68767/pexels-photo-68767.jpeg?auto=compress&cs=tinysrgb&w=1200',
+  'city-tour':      'https://images.pexels.com/photos/1388030/pexels-photo-1388030.jpeg?auto=compress&cs=tinysrgb&w=1200',
+  'bohol-tour':     'https://images.pexels.com/photos/32156797/pexels-photo-32156797.jpeg?auto=compress&cs=tinysrgb&w=1200',
+};
 
 interface Props {
   params: Promise<{ slug: string }>;
@@ -26,6 +36,8 @@ export default async function ActivityDetailPage({ params }: Props) {
   if (!activity || !activity.isPublished) notFound();
 
   const features = (activity.features as string[]) || [];
+  const dbImages = (activity.images as string[]) || [];
+  const heroImage = dbImages[0] || activityImages[slug] || activityImages['island-hopping'];
 
   return (
     <div className="min-h-screen bg-slate-50">
@@ -37,8 +49,21 @@ export default async function ActivityDetailPage({ params }: Props) {
           액티비티 목록
         </Link>
 
-        <div className="bg-white rounded-2xl p-8 shadow-lg border border-slate-100">
-          {activity.icon && <span className="text-5xl mb-4 block">{activity.icon}</span>}
+        <div className="bg-white rounded-2xl overflow-hidden shadow-lg border border-slate-100">
+          <div className="relative h-72 w-full">
+            <Image
+              src={heroImage}
+              alt={activity.name}
+              fill
+              className="object-cover"
+              priority
+            />
+            {activity.icon && (
+              <span className="absolute bottom-4 left-4 text-4xl drop-shadow-lg">{activity.icon}</span>
+            )}
+          </div>
+
+          <div className="p-8">
           <h1 className="text-3xl font-bold text-slate-900 mb-2">{activity.name}</h1>
           {activity.nameKo && <p className="text-slate-500 mb-6">{activity.nameKo}</p>}
 
@@ -77,6 +102,7 @@ export default async function ActivityDetailPage({ params }: Props) {
           >
             예약 문의
           </Link>
+          </div>
         </div>
       </main>
       <Footer />

@@ -1,10 +1,25 @@
 import { prisma } from '@/lib/db';
 import { notFound } from 'next/navigation';
 import Link from 'next/link';
+import Image from 'next/image';
 import { ArrowLeft } from 'lucide-react';
 import type { Metadata } from 'next';
 import Header from '@/app/components/layout/Header';
 import Footer from '@/app/components/layout/Footer';
+
+const DEFAULT_RESORT_IMAGE = 'https://images.pexels.com/photos/6437583/pexels-photo-6437583.jpeg?auto=compress&cs=tinysrgb&w=1200';
+
+const resortImages: Record<string, string> = {
+  'shangri-la':    'https://images.pexels.com/photos/6437583/pexels-photo-6437583.jpeg?auto=compress&cs=tinysrgb&w=1200',
+  'crimson':       'https://images.pexels.com/photos/24807132/pexels-photo-24807132.jpeg?auto=compress&cs=tinysrgb&w=1200',
+  'plantation-bay':'https://images.pexels.com/photos/30037427/pexels-photo-30037427.jpeg?auto=compress&cs=tinysrgb&w=1200',
+  'jpark':         'https://images.pexels.com/photos/18129533/pexels-photo-18129533.jpeg?auto=compress&cs=tinysrgb&w=1200',
+  'movenpick':     'https://images.pexels.com/photos/6437583/pexels-photo-6437583.jpeg?auto=compress&cs=tinysrgb&w=1200',
+  'radisson-blu':  'https://images.pexels.com/photos/24807132/pexels-photo-24807132.jpeg?auto=compress&cs=tinysrgb&w=1200',
+  'seda-ayala':    'https://images.pexels.com/photos/30037427/pexels-photo-30037427.jpeg?auto=compress&cs=tinysrgb&w=1200',
+  'bai-hotel':     'https://images.pexels.com/photos/18129533/pexels-photo-18129533.jpeg?auto=compress&cs=tinysrgb&w=1200',
+  'bluewater':     'https://images.pexels.com/photos/6437583/pexels-photo-6437583.jpeg?auto=compress&cs=tinysrgb&w=1200',
+};
 
 interface Props {
   params: Promise<{ slug: string }>;
@@ -26,6 +41,8 @@ export default async function ResortDetailPage({ params }: Props) {
   if (!resort || !resort.isPublished) notFound();
 
   const features = (resort.features as string[]) || [];
+  const dbImages = (resort.images as string[]) || [];
+  const heroImage = dbImages[0] || resortImages[slug] || DEFAULT_RESORT_IMAGE;
 
   return (
     <div className="min-h-screen bg-slate-50">
@@ -37,7 +54,23 @@ export default async function ResortDetailPage({ params }: Props) {
           리조트 목록
         </Link>
 
-        <div className="bg-white rounded-2xl p-8 shadow-lg border border-slate-100">
+        <div className="bg-white rounded-2xl overflow-hidden shadow-lg border border-slate-100">
+          <div className="relative h-72 w-full">
+            <Image
+              src={heroImage}
+              alt={resort.name}
+              fill
+              className="object-cover"
+              priority
+            />
+            {resort.grade && (
+              <span className="absolute top-4 right-4 bg-black/50 backdrop-blur-sm text-white text-sm px-3 py-1 rounded-full font-medium">
+                {resort.grade}
+              </span>
+            )}
+          </div>
+
+          <div className="p-8">
           <div className="flex items-start justify-between mb-2">
             <h1 className="text-3xl font-bold text-slate-900">{resort.name}</h1>
             {resort.grade && (
@@ -83,6 +116,7 @@ export default async function ResortDetailPage({ params }: Props) {
           >
             예약 문의
           </Link>
+          </div>
         </div>
       </main>
       <Footer />
