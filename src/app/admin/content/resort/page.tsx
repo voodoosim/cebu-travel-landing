@@ -3,7 +3,7 @@ import { redirect } from 'next/navigation';
 import { prisma } from '@/lib/db';
 import Header from '@/app/components/layout/Header';
 import Footer from '@/app/components/layout/Footer';
-import Link from 'next/link';
+import AdminNav from '../../components/AdminNav';
 import ResortManager from './ResortManager';
 
 export const dynamic = 'force-dynamic';
@@ -18,12 +18,8 @@ export default async function ResortAdminPage() {
   return (
     <div className="min-h-screen bg-slate-50">
       <Header />
-      <main className="container mx-auto px-4 py-12 max-w-5xl">
-        <div className="mb-6">
-          <Link href="/admin" className="text-sm text-slate-500 hover:text-emerald-600">
-            &larr; 어드민
-          </Link>
-        </div>
+      <AdminNav />
+      <main className="container mx-auto px-4 py-8 max-w-5xl">
         <ResortManager resorts={resorts} />
       </main>
       <Footer />
