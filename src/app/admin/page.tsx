@@ -51,6 +51,33 @@ export default async function AdminPage() {
       <main className="container mx-auto px-4 py-12 max-w-6xl">
         <h1 className="text-2xl font-bold text-slate-900 mb-8">관리자 대시보드</h1>
 
+        <div className="bg-white rounded-2xl p-8 shadow border border-slate-100 mb-8">
+          <h2 className="text-lg font-bold text-slate-900 mb-4">콘텐츠 관리</h2>
+          <div className="grid grid-cols-3 gap-4">
+            <Link
+              href="/admin/content/golf"
+              className="flex flex-col items-center justify-center gap-2 bg-emerald-50 hover:bg-emerald-100 text-emerald-700 font-medium rounded-xl py-5 px-4 text-sm transition-colors border border-emerald-100"
+            >
+              <span className="text-2xl">⛳</span>
+              골프장 관리
+            </Link>
+            <Link
+              href="/admin/content/resort"
+              className="flex flex-col items-center justify-center gap-2 bg-emerald-50 hover:bg-emerald-100 text-emerald-700 font-medium rounded-xl py-5 px-4 text-sm transition-colors border border-emerald-100"
+            >
+              <span className="text-2xl">🏨</span>
+              리조트 관리
+            </Link>
+            <Link
+              href="/admin/content/activity"
+              className="flex flex-col items-center justify-center gap-2 bg-emerald-50 hover:bg-emerald-100 text-emerald-700 font-medium rounded-xl py-5 px-4 text-sm transition-colors border border-emerald-100"
+            >
+              <span className="text-2xl">🤿</span>
+              액티비티 관리
+            </Link>
+          </div>
+        </div>
+
         <div className="grid sm:grid-cols-3 gap-6 mb-8">
           <div className="bg-white rounded-2xl p-6 shadow border border-slate-100">
             <p className="text-sm text-slate-500">총 예약</p>
