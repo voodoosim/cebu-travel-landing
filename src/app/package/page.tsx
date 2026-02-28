@@ -34,35 +34,35 @@ const packages = [
 
 export default function PackageListPage() {
   return (
-    <div className="min-h-screen bg-navy-900">
-      <header className="border-b border-gold-500/10">
-        <div className="max-w-6xl mx-auto px-6 h-16 flex items-center justify-between">
-          <Link href="/" className="text-lg font-[family-name:var(--font-serif)] text-ivory tracking-[0.15em]">
-            CEBUGUIDE
+    <div className="min-h-screen bg-ivory">
+      <header className="sticky top-0 z-50 bg-white/90 backdrop-blur-lg border-b border-gold-200/50">
+        <div className="max-w-7xl mx-auto px-6 h-18 flex items-center justify-between">
+          <Link href="/" className="text-xl font-[family-name:var(--font-serif)] font-semibold tracking-wide text-navy-900">
+            CEBU<span className="text-gold-500">GUIDE</span>
           </Link>
-          <nav className="flex items-center gap-8 text-xs tracking-[0.2em]">
-            <Link href="/golf/" className="text-gold-300/40 hover:text-gold-300/70 transition-colors">골프</Link>
-            <Link href="/resort/" className="text-gold-300/40 hover:text-gold-300/70 transition-colors">리조트</Link>
-            <Link href="/activity/" className="text-gold-300/40 hover:text-gold-300/70 transition-colors">액티비티</Link>
-            <Link href="/package/" className="text-gold-400">패키지</Link>
-            <Link href="/" className="text-gold-300/40 hover:text-gold-300/70 transition-colors">홈</Link>
+          <nav className="flex items-center gap-10 text-[13px] tracking-widest">
+            <Link href="/golf/" className="text-navy-700 hover:text-gold-500 transition-colors">골프</Link>
+            <Link href="/resort/" className="text-navy-700 hover:text-gold-500 transition-colors">리조트</Link>
+            <Link href="/activity/" className="text-navy-700 hover:text-gold-500 transition-colors">액티비티</Link>
+            <Link href="/package/" className="text-gold-500 font-medium">패키지</Link>
+            <Link href="/faq/" className="text-navy-700 hover:text-gold-500 transition-colors">FAQ</Link>
           </nav>
         </div>
       </header>
 
-      <main className="max-w-6xl mx-auto px-6 py-16">
-        <div className="text-center mb-16">
-          <p className="text-xs tracking-[0.3em] text-gold-500 uppercase mb-4">Packages</p>
-          <h1 className="text-4xl font-[family-name:var(--font-serif)] text-ivory mb-4">맞춤 패키지</h1>
+      <main className="max-w-6xl mx-auto px-6 py-20">
+        <div className="text-center mb-20">
+          <p className="text-gold-500 text-xs tracking-[0.3em] uppercase mb-4">Packages</p>
+          <h1 className="text-4xl md:text-5xl font-[family-name:var(--font-serif)] text-navy-900 mb-4">맞춤 패키지</h1>
           <div className="line-gold mx-auto mb-6" />
-          <p className="text-gold-200/50 max-w-xl mx-auto text-sm leading-relaxed">
+          <p className="text-navy-600/60 max-w-xl mx-auto text-sm leading-relaxed">
             골프, 리조트, 관광을 원하는 대로 조합. 일정과 예산에 맞춰 최적의 패키지를 안내합니다.
           </p>
         </div>
 
-        <div className="grid md:grid-cols-3 gap-[1px] bg-gold-500/10 max-w-5xl mx-auto">
+        <div className="grid md:grid-cols-3 gap-8 max-w-5xl mx-auto">
           {packages.map((pkg) => (
-            <div key={pkg.title} className="bg-navy-900 overflow-hidden group">
+            <div key={pkg.title} className="bg-white border border-navy-900/5 overflow-hidden group hover:shadow-lg transition-shadow duration-300">
               <div className="relative h-56 overflow-hidden">
                 <Image
                   src={pkg.image}
@@ -70,25 +70,25 @@ export default function PackageListPage() {
                   fill
                   className="object-cover group-hover:scale-105 transition-transform duration-700"
                 />
-                <div className="absolute inset-0 bg-gradient-to-t from-navy-900 via-navy-900/30 to-transparent" />
+                <div className="absolute inset-0 bg-navy-900/30" />
                 {pkg.badge && (
                   <div className="absolute top-4 left-4 bg-gold-500 text-navy-900 px-3 py-1 text-[10px] font-semibold tracking-[0.15em] uppercase">
                     {pkg.badge}
                   </div>
                 )}
                 <div className="absolute bottom-4 left-5">
-                  <p className="text-gold-300/60 text-xs tracking-wider">{pkg.courses}</p>
+                  <p className="text-white/70 text-xs tracking-wider">{pkg.courses}</p>
                 </div>
               </div>
 
               <div className="p-6">
-                <h3 className="font-[family-name:var(--font-serif)] text-lg text-ivory mb-2">{pkg.title}</h3>
-                <p className="text-gold-200/40 text-sm leading-relaxed mb-5">{pkg.description}</p>
-                <div className="border-t border-gold-500/10 pt-4">
-                  <p className="text-[10px] tracking-[0.15em] text-gold-400 mb-3 uppercase">Includes</p>
+                <h3 className="font-[family-name:var(--font-serif)] text-lg text-navy-900 mb-2">{pkg.title}</h3>
+                <p className="text-navy-600/50 text-sm leading-relaxed mb-5">{pkg.description}</p>
+                <div className="border-t border-navy-900/10 pt-4">
+                  <p className="text-[10px] tracking-[0.15em] text-gold-500 mb-3 uppercase">Includes</p>
                   <div className="flex flex-wrap gap-2">
                     {pkg.includes.map((item) => (
-                      <span key={item} className="text-[11px] text-gold-300/40 border border-gold-500/15 px-2.5 py-1 tracking-wider">
+                      <span key={item} className="text-[11px] text-navy-600/40 border border-navy-900/10 px-2.5 py-1 tracking-wider">
                         {item}
                       </span>
                     ))}
@@ -102,7 +102,7 @@ export default function PackageListPage() {
         <div className="text-center mt-16">
           <Link
             href="/#cta"
-            className="inline-block bg-gold-500 hover:bg-gold-400 text-navy-900 px-10 py-3.5 text-xs font-semibold tracking-[0.2em] uppercase transition-colors"
+            className="inline-block bg-navy-900 hover:bg-navy-800 text-white px-10 py-3.5 text-xs font-semibold tracking-[0.2em] uppercase transition-colors"
           >
             INQUIRE NOW
           </Link>

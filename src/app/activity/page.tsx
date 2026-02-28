@@ -10,46 +10,47 @@ const activities = products.activities;
 
 export default function ActivityListPage() {
   return (
-    <div className="min-h-screen bg-navy-900">
-      <header className="border-b border-gold-500/10">
-        <div className="max-w-6xl mx-auto px-6 h-16 flex items-center justify-between">
-          <Link href="/" className="text-lg font-[family-name:var(--font-serif)] text-ivory tracking-[0.15em]">
-            CEBUGUIDE
+    <div className="min-h-screen bg-ivory">
+      <header className="sticky top-0 z-50 bg-white/90 backdrop-blur-lg border-b border-gold-200/50">
+        <div className="max-w-7xl mx-auto px-6 h-18 flex items-center justify-between">
+          <Link href="/" className="text-xl font-[family-name:var(--font-serif)] font-semibold tracking-wide text-navy-900">
+            CEBU<span className="text-gold-500">GUIDE</span>
           </Link>
-          <nav className="flex items-center gap-8 text-xs tracking-[0.2em]">
-            <Link href="/golf/" className="text-gold-300/40 hover:text-gold-300/70 transition-colors">골프</Link>
-            <Link href="/resort/" className="text-gold-300/40 hover:text-gold-300/70 transition-colors">리조트</Link>
-            <Link href="/activity/" className="text-gold-400">액티비티</Link>
-            <Link href="/" className="text-gold-300/40 hover:text-gold-300/70 transition-colors">홈</Link>
+          <nav className="flex items-center gap-10 text-[13px] tracking-widest">
+            <Link href="/golf/" className="text-navy-700 hover:text-gold-500 transition-colors">골프</Link>
+            <Link href="/resort/" className="text-navy-700 hover:text-gold-500 transition-colors">리조트</Link>
+            <Link href="/activity/" className="text-gold-500 font-medium">액티비티</Link>
+            <Link href="/package/" className="text-navy-700 hover:text-gold-500 transition-colors">패키지</Link>
+            <Link href="/faq/" className="text-navy-700 hover:text-gold-500 transition-colors">FAQ</Link>
           </nav>
         </div>
       </header>
 
-      <main className="max-w-6xl mx-auto px-6 py-16">
-        <div className="text-center mb-16">
-          <p className="text-xs tracking-[0.3em] text-gold-500 mb-4">EXPERIENCES</p>
-          <h1 className="text-4xl font-[family-name:var(--font-serif)] text-ivory mb-4">관광 & 액티비티</h1>
+      <main className="max-w-6xl mx-auto px-6 py-20">
+        <div className="text-center mb-20">
+          <p className="text-gold-500 text-xs tracking-[0.3em] uppercase mb-4">Experiences</p>
+          <h1 className="text-4xl md:text-5xl font-[family-name:var(--font-serif)] text-navy-900 mb-4">관광 & 액티비티</h1>
           <div className="line-gold mx-auto mb-6" />
-          <p className="text-gold-200/50 max-w-xl mx-auto text-sm leading-relaxed">
+          <p className="text-navy-600/60 max-w-xl mx-auto text-sm leading-relaxed">
             골프 외에도 세부에서 즐길 수 있는 다양한 액티비티를 예약해 드립니다.
           </p>
         </div>
 
-        <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-[1px] bg-gold-500/10 max-w-5xl mx-auto">
+        <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-px bg-navy-900/10 max-w-5xl mx-auto">
           {activities.map((a) => (
             <Link
               key={a.id}
               href={`/activity/${a.slug}/`}
-              className="bg-navy-900 p-6 group hover:bg-navy-800/50 transition-colors"
+              className="bg-white p-6 group hover:bg-ivory transition-colors"
             >
-              <h3 className="font-[family-name:var(--font-serif)] text-ivory mb-2 group-hover:text-gold-300 transition-colors">
+              <h3 className="font-[family-name:var(--font-serif)] text-navy-900 mb-2 group-hover:text-gold-500 transition-colors">
                 {a.name}
               </h3>
               {a.duration && (
                 <p className="text-[10px] tracking-[0.15em] text-gold-500 font-medium mb-3 uppercase">{a.duration}</p>
               )}
               {a.description && (
-                <p className="text-xs text-gold-200/40 leading-relaxed line-clamp-2">{a.description}</p>
+                <p className="text-xs text-navy-600/50 leading-relaxed line-clamp-2">{a.description}</p>
               )}
             </Link>
           ))}

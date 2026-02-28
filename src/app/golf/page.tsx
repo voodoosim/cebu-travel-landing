@@ -12,37 +12,38 @@ const courses = products.golf;
 
 export default function GolfListPage() {
   return (
-    <div className="min-h-screen bg-navy-900">
-      <header className="border-b border-gold-500/10">
-        <div className="max-w-6xl mx-auto px-6 h-16 flex items-center justify-between">
-          <Link href="/" className="text-lg font-[family-name:var(--font-serif)] text-ivory tracking-[0.15em]">
-            CEBUGUIDE
+    <div className="min-h-screen bg-ivory">
+      <header className="sticky top-0 z-50 bg-white/90 backdrop-blur-lg border-b border-gold-200/50">
+        <div className="max-w-7xl mx-auto px-6 h-18 flex items-center justify-between">
+          <Link href="/" className="text-xl font-[family-name:var(--font-serif)] font-semibold tracking-wide text-navy-900">
+            CEBU<span className="text-gold-500">GUIDE</span>
           </Link>
-          <nav className="flex items-center gap-8 text-xs tracking-[0.2em]">
-            <Link href="/golf/" className="text-gold-400">골프</Link>
-            <Link href="/resort/" className="text-gold-300/40 hover:text-gold-300/70 transition-colors">리조트</Link>
-            <Link href="/activity/" className="text-gold-300/40 hover:text-gold-300/70 transition-colors">액티비티</Link>
-            <Link href="/" className="text-gold-300/40 hover:text-gold-300/70 transition-colors">홈</Link>
+          <nav className="flex items-center gap-10 text-[13px] tracking-widest">
+            <Link href="/golf/" className="text-gold-500 font-medium">골프</Link>
+            <Link href="/resort/" className="text-navy-700 hover:text-gold-500 transition-colors">리조트</Link>
+            <Link href="/activity/" className="text-navy-700 hover:text-gold-500 transition-colors">액티비티</Link>
+            <Link href="/package/" className="text-navy-700 hover:text-gold-500 transition-colors">패키지</Link>
+            <Link href="/faq/" className="text-navy-700 hover:text-gold-500 transition-colors">FAQ</Link>
           </nav>
         </div>
       </header>
 
-      <main className="max-w-6xl mx-auto px-6 py-16">
-        <div className="text-center mb-16">
-          <p className="text-xs tracking-[0.3em] text-gold-500 mb-4">GOLF COURSES</p>
-          <h1 className="text-4xl font-[family-name:var(--font-serif)] text-ivory mb-4">세부 골프장</h1>
+      <main className="max-w-6xl mx-auto px-6 py-20">
+        <div className="text-center mb-20">
+          <p className="text-gold-500 text-xs tracking-[0.3em] uppercase mb-4">Golf Courses</p>
+          <h1 className="text-4xl md:text-5xl font-[family-name:var(--font-serif)] text-navy-900 mb-4">세부 골프장</h1>
           <div className="line-gold mx-auto mb-6" />
-          <p className="text-gold-200/50 max-w-xl mx-auto text-sm leading-relaxed">
+          <p className="text-navy-600/60 max-w-xl mx-auto text-sm leading-relaxed">
             세부 전역 {courses.length}개 명문 골프장. 예약부터 캐디, 카트, 차량까지 전부 대행합니다.
           </p>
         </div>
 
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-[1px] bg-gold-500/10">
+        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
           {courses.map((course) => (
             <Link
               key={course.id}
               href={`/golf/${course.slug}/`}
-              className="group bg-navy-900 overflow-hidden"
+              className="group bg-white border border-navy-900/5 overflow-hidden hover:shadow-lg transition-shadow duration-300"
             >
               <div className="relative h-56 overflow-hidden">
                 <Image
@@ -51,40 +52,38 @@ export default function GolfListPage() {
                   fill
                   className="object-cover group-hover:scale-105 transition-transform duration-700"
                 />
-                <div className="absolute inset-0 bg-gradient-to-t from-navy-900 via-navy-900/20 to-transparent" />
+                <div className="absolute inset-0 bg-navy-900/20 group-hover:bg-navy-900/10 transition-colors" />
                 {course.badge && (
-                  <div className="absolute top-4 right-4 bg-gold-500 text-navy-900 px-3 py-1 text-[10px] font-semibold tracking-[0.15em] uppercase">
+                  <div className="absolute top-4 right-4 bg-navy-900/80 backdrop-blur-sm text-gold-300 px-3 py-1 text-[10px] font-semibold tracking-[0.15em] uppercase">
                     {course.badge}
                   </div>
                 )}
-                <div className="absolute bottom-0 left-0 right-0 p-5">
-                  <p className="text-ivory font-[family-name:var(--font-serif)] text-lg">{course.nameKo}</p>
-                  <p className="text-gold-300/50 text-xs mt-0.5">{course.name}</p>
-                </div>
               </div>
               <div className="p-5">
-                <div className="flex flex-wrap gap-3 text-[11px] text-gold-300/50 mb-4">
+                <h3 className="font-[family-name:var(--font-serif)] text-lg text-navy-900 mb-1">{course.nameKo}</h3>
+                <p className="text-navy-600/40 text-xs mb-3">{course.name}</p>
+                <div className="flex flex-wrap gap-3 text-[11px] text-navy-600/50 mb-3">
                   <span className="flex items-center gap-1.5">
-                    <Flag className="w-3 h-3 text-gold-500/50" />
+                    <Flag className="w-3 h-3" />
                     {course.holes}H / Par {course.par} / {course.yards.toLocaleString()}yd
                   </span>
                   {course.distance && (
                     <span className="flex items-center gap-1.5">
-                      <Clock className="w-3 h-3 text-gold-500/50" />
+                      <Clock className="w-3 h-3" />
                       {course.distance}
                     </span>
                   )}
                   {course.courseType && (
                     <span className="flex items-center gap-1.5">
-                      <MapPin className="w-3 h-3 text-gold-500/50" />
+                      <MapPin className="w-3 h-3" />
                       {course.courseType}
                     </span>
                   )}
                 </div>
                 <ul className="space-y-1.5">
                   {course.features.slice(0, 3).map((f) => (
-                    <li key={f} className="text-xs text-gold-200/40 flex items-start gap-2">
-                      <span className="text-gold-500/40 mt-0.5">-</span>
+                    <li key={f} className="text-xs text-navy-600/50 flex items-start gap-2">
+                      <span className="text-gold-400 mt-0.5">-</span>
                       {f}
                     </li>
                   ))}

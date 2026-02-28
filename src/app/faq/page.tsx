@@ -17,40 +17,40 @@ const faqs = [
 
 export default function FaqPage() {
   return (
-    <div className="min-h-screen bg-navy-900">
-      <header className="border-b border-gold-500/10">
-        <div className="max-w-6xl mx-auto px-6 h-16 flex items-center justify-between">
-          <Link href="/" className="text-lg font-[family-name:var(--font-serif)] text-ivory tracking-[0.15em]">
-            CEBUGUIDE
+    <div className="min-h-screen bg-ivory">
+      <header className="sticky top-0 z-50 bg-white/90 backdrop-blur-lg border-b border-gold-200/50">
+        <div className="max-w-7xl mx-auto px-6 h-18 flex items-center justify-between">
+          <Link href="/" className="text-xl font-[family-name:var(--font-serif)] font-semibold tracking-wide text-navy-900">
+            CEBU<span className="text-gold-500">GUIDE</span>
           </Link>
-          <nav className="flex items-center gap-8 text-xs tracking-[0.2em]">
-            <Link href="/golf/" className="text-gold-300/40 hover:text-gold-300/70 transition-colors">골프</Link>
-            <Link href="/resort/" className="text-gold-300/40 hover:text-gold-300/70 transition-colors">리조트</Link>
-            <Link href="/activity/" className="text-gold-300/40 hover:text-gold-300/70 transition-colors">액티비티</Link>
-            <Link href="/package/" className="text-gold-300/40 hover:text-gold-300/70 transition-colors">패키지</Link>
-            <Link href="/" className="text-gold-300/40 hover:text-gold-300/70 transition-colors">홈</Link>
+          <nav className="flex items-center gap-10 text-[13px] tracking-widest">
+            <Link href="/golf/" className="text-navy-700 hover:text-gold-500 transition-colors">골프</Link>
+            <Link href="/resort/" className="text-navy-700 hover:text-gold-500 transition-colors">리조트</Link>
+            <Link href="/activity/" className="text-navy-700 hover:text-gold-500 transition-colors">액티비티</Link>
+            <Link href="/package/" className="text-navy-700 hover:text-gold-500 transition-colors">패키지</Link>
+            <Link href="/faq/" className="text-gold-500 font-medium">FAQ</Link>
           </nav>
         </div>
       </header>
 
-      <main className="max-w-3xl mx-auto px-6 py-16">
-        <div className="text-center mb-16">
-          <p className="text-xs tracking-[0.3em] text-gold-500 uppercase mb-4">FAQ</p>
-          <h1 className="text-4xl font-[family-name:var(--font-serif)] text-ivory mb-4">자주 묻는 질문</h1>
+      <main className="max-w-3xl mx-auto px-6 py-20">
+        <div className="text-center mb-20">
+          <p className="text-gold-500 text-xs tracking-[0.3em] uppercase mb-4">FAQ</p>
+          <h1 className="text-4xl md:text-5xl font-[family-name:var(--font-serif)] text-navy-900 mb-4">자주 묻는 질문</h1>
           <div className="line-gold mx-auto mb-6" />
-          <p className="text-gold-200/50 max-w-xl mx-auto text-sm leading-relaxed">
+          <p className="text-navy-600/60 max-w-xl mx-auto text-sm leading-relaxed">
             궁금한 점이 있으시면 아래를 확인해 주세요.
           </p>
         </div>
 
-        <div className="border-t border-gold-500/10">
+        <div className="border-t border-navy-900/10">
           {faqs.map((faq, i) => (
-            <details key={i} className="group border-b border-gold-500/10">
-              <summary className="flex items-center justify-between cursor-pointer py-6 text-left text-ivory hover:text-gold-400 transition-colors text-[15px]">
+            <details key={i} className="group border-b border-navy-900/10">
+              <summary className="flex items-center justify-between cursor-pointer py-6 text-left text-navy-900 hover:text-gold-500 transition-colors text-[15px]">
                 {faq.q}
-                <ChevronDown className="w-4 h-4 text-gold-500/30 group-open:rotate-180 transition-transform flex-shrink-0 ml-6" />
+                <ChevronDown className="w-4 h-4 text-navy-600/30 group-open:rotate-180 transition-transform flex-shrink-0 ml-6" />
               </summary>
-              <div className="pb-6 text-gold-200/50 text-sm leading-relaxed">
+              <div className="pb-6 text-navy-600/60 text-sm leading-relaxed">
                 {faq.a}
               </div>
             </details>
@@ -58,10 +58,10 @@ export default function FaqPage() {
         </div>
 
         <div className="text-center mt-16">
-          <p className="text-gold-200/40 text-sm mb-6">찾는 답변이 없으신가요?</p>
+          <p className="text-navy-600/40 text-sm mb-6">찾는 답변이 없으신가요?</p>
           <Link
             href="/#cta"
-            className="inline-block bg-gold-500 hover:bg-gold-400 text-navy-900 px-10 py-3.5 text-xs font-semibold tracking-[0.2em] uppercase transition-colors"
+            className="inline-block bg-navy-900 hover:bg-navy-800 text-white px-10 py-3.5 text-xs font-semibold tracking-[0.2em] uppercase transition-colors"
           >
             INQUIRE NOW
           </Link>
