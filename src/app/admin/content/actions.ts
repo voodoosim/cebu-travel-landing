@@ -2,8 +2,8 @@
 
 import { auth } from '@/lib/auth';
 import { prisma } from '@/lib/db';
-import { redirect } from 'next/navigation';
 import { revalidatePath } from 'next/cache';
+import { redirect } from 'next/navigation';
 
 function parseLines(value: FormDataEntryValue | null): string[] {
   if (!value || typeof value !== 'string') return [];
@@ -65,15 +65,57 @@ export async function upsertGolfCourse(formData: FormData) {
 
   revalidatePath('/admin/content/golf');
   revalidatePath('/golf');
-  redirect('/admin/content/golf');
 }
 
-export async function deleteGolfCourse(formData: FormData) {
+export async function deleteGolfCourse(id: string) {
   const session = await auth();
   if (session?.user.role !== 'ADMIN') redirect('/');
 
-  const id = formData.get('id') as string;
   await prisma.golfCourse.delete({ where: { id } });
+
+  revalidatePath('/admin/content/golf');
+  revalidatePath('/golf');
+}
+
+export async function moveGolfCourseUp(id: string) {
+  const session = await auth();
+  if (session?.user.role !== 'ADMIN') redirect('/');
+
+  const current = await prisma.golfCourse.findUnique({ where: { id } });
+  if (!current) return;
+
+  const prev = await prisma.golfCourse.findFirst({
+    where: { sortOrder: { lt: current.sortOrder } },
+    orderBy: { sortOrder: 'desc' },
+  });
+  if (!prev) return;
+
+  await prisma.$transaction([
+    prisma.golfCourse.update({ where: { id: current.id }, data: { sortOrder: prev.sortOrder } }),
+    prisma.golfCourse.update({ where: { id: prev.id }, data: { sortOrder: current.sortOrder } }),
+  ]);
+
+  revalidatePath('/admin/content/golf');
+  revalidatePath('/golf');
+}
+
+export async function moveGolfCourseDown(id: string) {
+  const session = await auth();
+  if (session?.user.role !== 'ADMIN') redirect('/');
+
+  const current = await prisma.golfCourse.findUnique({ where: { id } });
+  if (!current) return;
+
+  const next = await prisma.golfCourse.findFirst({
+    where: { sortOrder: { gt: current.sortOrder } },
+    orderBy: { sortOrder: 'asc' },
+  });
+  if (!next) return;
+
+  await prisma.$transaction([
+    prisma.golfCourse.update({ where: { id: current.id }, data: { sortOrder: next.sortOrder } }),
+    prisma.golfCourse.update({ where: { id: next.id }, data: { sortOrder: current.sortOrder } }),
+  ]);
 
   revalidatePath('/admin/content/golf');
   revalidatePath('/golf');
@@ -118,15 +160,57 @@ export async function upsertResort(formData: FormData) {
 
   revalidatePath('/admin/content/resort');
   revalidatePath('/resort');
-  redirect('/admin/content/resort');
 }
 
-export async function deleteResort(formData: FormData) {
+export async function deleteResort(id: string) {
   const session = await auth();
   if (session?.user.role !== 'ADMIN') redirect('/');
 
-  const id = formData.get('id') as string;
   await prisma.resort.delete({ where: { id } });
+
+  revalidatePath('/admin/content/resort');
+  revalidatePath('/resort');
+}
+
+export async function moveResortUp(id: string) {
+  const session = await auth();
+  if (session?.user.role !== 'ADMIN') redirect('/');
+
+  const current = await prisma.resort.findUnique({ where: { id } });
+  if (!current) return;
+
+  const prev = await prisma.resort.findFirst({
+    where: { sortOrder: { lt: current.sortOrder } },
+    orderBy: { sortOrder: 'desc' },
+  });
+  if (!prev) return;
+
+  await prisma.$transaction([
+    prisma.resort.update({ where: { id: current.id }, data: { sortOrder: prev.sortOrder } }),
+    prisma.resort.update({ where: { id: prev.id }, data: { sortOrder: current.sortOrder } }),
+  ]);
+
+  revalidatePath('/admin/content/resort');
+  revalidatePath('/resort');
+}
+
+export async function moveResortDown(id: string) {
+  const session = await auth();
+  if (session?.user.role !== 'ADMIN') redirect('/');
+
+  const current = await prisma.resort.findUnique({ where: { id } });
+  if (!current) return;
+
+  const next = await prisma.resort.findFirst({
+    where: { sortOrder: { gt: current.sortOrder } },
+    orderBy: { sortOrder: 'asc' },
+  });
+  if (!next) return;
+
+  await prisma.$transaction([
+    prisma.resort.update({ where: { id: current.id }, data: { sortOrder: next.sortOrder } }),
+    prisma.resort.update({ where: { id: next.id }, data: { sortOrder: current.sortOrder } }),
+  ]);
 
   revalidatePath('/admin/content/resort');
   revalidatePath('/resort');
@@ -173,15 +257,57 @@ export async function upsertActivity(formData: FormData) {
 
   revalidatePath('/admin/content/activity');
   revalidatePath('/activity');
-  redirect('/admin/content/activity');
 }
 
-export async function deleteActivity(formData: FormData) {
+export async function deleteActivity(id: string) {
   const session = await auth();
   if (session?.user.role !== 'ADMIN') redirect('/');
 
-  const id = formData.get('id') as string;
   await prisma.activity.delete({ where: { id } });
+
+  revalidatePath('/admin/content/activity');
+  revalidatePath('/activity');
+}
+
+export async function moveActivityUp(id: string) {
+  const session = await auth();
+  if (session?.user.role !== 'ADMIN') redirect('/');
+
+  const current = await prisma.activity.findUnique({ where: { id } });
+  if (!current) return;
+
+  const prev = await prisma.activity.findFirst({
+    where: { sortOrder: { lt: current.sortOrder } },
+    orderBy: { sortOrder: 'desc' },
+  });
+  if (!prev) return;
+
+  await prisma.$transaction([
+    prisma.activity.update({ where: { id: current.id }, data: { sortOrder: prev.sortOrder } }),
+    prisma.activity.update({ where: { id: prev.id }, data: { sortOrder: current.sortOrder } }),
+  ]);
+
+  revalidatePath('/admin/content/activity');
+  revalidatePath('/activity');
+}
+
+export async function moveActivityDown(id: string) {
+  const session = await auth();
+  if (session?.user.role !== 'ADMIN') redirect('/');
+
+  const current = await prisma.activity.findUnique({ where: { id } });
+  if (!current) return;
+
+  const next = await prisma.activity.findFirst({
+    where: { sortOrder: { gt: current.sortOrder } },
+    orderBy: { sortOrder: 'asc' },
+  });
+  if (!next) return;
+
+  await prisma.$transaction([
+    prisma.activity.update({ where: { id: current.id }, data: { sortOrder: next.sortOrder } }),
+    prisma.activity.update({ where: { id: next.id }, data: { sortOrder: current.sortOrder } }),
+  ]);
 
   revalidatePath('/admin/content/activity');
   revalidatePath('/activity');
