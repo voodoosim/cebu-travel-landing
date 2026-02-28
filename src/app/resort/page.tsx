@@ -1,6 +1,7 @@
 import Link from 'next/link';
 import type { Metadata } from 'next';
 import products from '@/data/products.json';
+import MobileMenu from '../components/MobileMenu';
 
 export const metadata: Metadata = {
   title: '세부 리조트 & 호텔',
@@ -23,13 +24,14 @@ export default function ResortListPage() {
           <Link href="/" className="text-xl font-[family-name:var(--font-serif)] font-semibold tracking-wide text-navy-900">
             CEBU<span className="text-gold-500">GUIDE</span>
           </Link>
-          <nav className="flex items-center gap-10 text-[13px] tracking-widest">
+          <nav aria-label="Main navigation" className="hidden md:flex items-center gap-10 text-[13px] tracking-widest">
             <Link href="/golf/" className="text-navy-700 hover:text-gold-500 transition-colors">골프</Link>
             <Link href="/resort/" className="text-gold-500 font-medium">리조트</Link>
             <Link href="/activity/" className="text-navy-700 hover:text-gold-500 transition-colors">액티비티</Link>
             <Link href="/package/" className="text-navy-700 hover:text-gold-500 transition-colors">패키지</Link>
             <Link href="/faq/" className="text-navy-700 hover:text-gold-500 transition-colors">FAQ</Link>
           </nav>
+          <MobileMenu />
         </div>
       </header>
 

@@ -18,7 +18,7 @@ export default function MobileMenu() {
     <div className="md:hidden">
       <button
         onClick={() => setOpen(!open)}
-        className="p-2 text-gold-300"
+        className="p-2 text-navy-700"
         aria-label="Toggle menu"
       >
         <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -31,22 +31,22 @@ export default function MobileMenu() {
       </button>
 
       {open && (
-        <div className="absolute top-full left-0 right-0 bg-navy-900/98 backdrop-blur-sm border-b border-gold-500/20 z-50">
-          <nav className="flex flex-col px-6 py-4">
+        <div className="absolute top-full left-0 right-0 bg-white/98 backdrop-blur-sm border-b border-navy-900/10 z-50">
+          <nav aria-label="Mobile navigation" className="flex flex-col px-6 py-4">
             {navLinks.map((link) => (
               <Link
                 key={link.href}
                 href={link.href}
                 onClick={() => setOpen(false)}
-                className="px-2 py-3.5 text-xs font-medium tracking-[0.2em] text-gold-200/70 hover:text-gold-300 border-b border-gold-500/10 last:border-b-0 transition-colors"
+                className="px-2 py-3.5 text-xs font-medium tracking-[0.2em] text-navy-700 hover:text-gold-500 border-b border-navy-900/5 last:border-b-0 transition-colors"
               >
                 {link.label}
               </Link>
             ))}
             <Link
-              href="#cta"
+              href="/#cta"
               onClick={() => setOpen(false)}
-              className="mt-4 border border-gold-500 text-gold-400 text-center px-4 py-3 text-xs font-medium tracking-[0.2em] hover:bg-gold-500 hover:text-navy-900 transition-all"
+              className="mt-4 bg-navy-900 text-white text-center px-4 py-3 text-xs font-medium tracking-[0.2em] hover:bg-navy-800 transition-colors"
             >
               INQUIRE NOW
             </Link>

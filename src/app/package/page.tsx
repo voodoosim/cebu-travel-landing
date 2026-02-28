@@ -1,6 +1,7 @@
 import Link from 'next/link';
 import Image from 'next/image';
 import type { Metadata } from 'next';
+import MobileMenu from '../components/MobileMenu';
 
 export const metadata: Metadata = {
   title: '세부 맞춤 패키지',
@@ -47,13 +48,14 @@ export default function PackageListPage() {
           <Link href="/" className="text-xl font-[family-name:var(--font-serif)] font-semibold tracking-wide text-navy-900">
             CEBU<span className="text-gold-500">GUIDE</span>
           </Link>
-          <nav className="flex items-center gap-10 text-[13px] tracking-widest">
+          <nav aria-label="Main navigation" className="hidden md:flex items-center gap-10 text-[13px] tracking-widest">
             <Link href="/golf/" className="text-navy-700 hover:text-gold-500 transition-colors">골프</Link>
             <Link href="/resort/" className="text-navy-700 hover:text-gold-500 transition-colors">리조트</Link>
             <Link href="/activity/" className="text-navy-700 hover:text-gold-500 transition-colors">액티비티</Link>
             <Link href="/package/" className="text-gold-500 font-medium">패키지</Link>
             <Link href="/faq/" className="text-navy-700 hover:text-gold-500 transition-colors">FAQ</Link>
           </nav>
+          <MobileMenu />
         </div>
       </header>
 
@@ -75,6 +77,7 @@ export default function PackageListPage() {
                   src={pkg.image}
                   alt={pkg.title}
                   fill
+                  sizes="(min-width: 768px) 33vw, 100vw"
                   className="object-cover group-hover:scale-105 transition-transform duration-700"
                 />
                 <div className="absolute inset-0 bg-navy-900/30" />

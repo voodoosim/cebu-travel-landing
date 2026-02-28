@@ -3,6 +3,7 @@ import Image from 'next/image';
 import { Flag, Clock, MapPin } from 'lucide-react';
 import type { Metadata } from 'next';
 import products from '@/data/products.json';
+import MobileMenu from '../components/MobileMenu';
 
 export const metadata: Metadata = {
   title: '세부 골프장',
@@ -25,13 +26,14 @@ export default function GolfListPage() {
           <Link href="/" className="text-xl font-[family-name:var(--font-serif)] font-semibold tracking-wide text-navy-900">
             CEBU<span className="text-gold-500">GUIDE</span>
           </Link>
-          <nav className="flex items-center gap-10 text-[13px] tracking-widest">
+          <nav aria-label="Main navigation" className="hidden md:flex items-center gap-10 text-[13px] tracking-widest">
             <Link href="/golf/" className="text-gold-500 font-medium">골프</Link>
             <Link href="/resort/" className="text-navy-700 hover:text-gold-500 transition-colors">리조트</Link>
             <Link href="/activity/" className="text-navy-700 hover:text-gold-500 transition-colors">액티비티</Link>
             <Link href="/package/" className="text-navy-700 hover:text-gold-500 transition-colors">패키지</Link>
             <Link href="/faq/" className="text-navy-700 hover:text-gold-500 transition-colors">FAQ</Link>
           </nav>
+          <MobileMenu />
         </div>
       </header>
 
@@ -57,6 +59,7 @@ export default function GolfListPage() {
                   src={course.image}
                   alt={course.nameKo}
                   fill
+                  sizes="(min-width: 1024px) 33vw, (min-width: 768px) 50vw, 100vw"
                   className="object-cover group-hover:scale-105 transition-transform duration-700"
                 />
                 <div className="absolute inset-0 bg-navy-900/20 group-hover:bg-navy-900/10 transition-colors" />

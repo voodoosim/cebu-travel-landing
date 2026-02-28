@@ -87,7 +87,7 @@ export default async function MyPage() {
             <div className="border border-gold-500/15 p-12 text-center">
               <p className="text-gold-200/40 mb-6">예약 내역이 없습니다.</p>
               <Link
-                href="/#booking"
+                href="/#cta"
                 className="inline-block border border-gold-500 text-gold-400 px-8 py-3 text-xs font-medium tracking-[0.2em] hover:bg-gold-500 hover:text-navy-900 transition-all"
               >
                 INQUIRE NOW
@@ -154,7 +154,7 @@ export default async function MyPage() {
         {/* 새 예약 */}
         <div className="text-center pt-4">
           <Link
-            href="/#booking"
+            href="/#cta"
             className="inline-block bg-gold-500 hover:bg-gold-400 text-navy-900 px-10 py-3.5 text-xs font-semibold tracking-[0.2em] transition-colors"
           >
             NEW INQUIRY
