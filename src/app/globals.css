@@ -1,1 +1,43 @@
 @import "tailwindcss";
+
+@theme {
+  --color-navy-900: #0a1628;
+  --color-navy-800: #0f1d32;
+  --color-navy-700: #162540;
+  --color-navy-600: #1e3050;
+  --color-gold-500: #c9a96e;
+  --color-gold-400: #d4b87a;
+  --color-gold-300: #e0ca96;
+  --color-gold-200: #ecdbb3;
+  --color-gold-100: #f5ecd5;
+  --color-gold-50: #faf6ec;
+  --color-ivory: #faf8f5;
+  --font-serif: "Playfair Display", "Georgia", serif;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.text-gold-gradient {
+  background: linear-gradient(135deg, #c9a96e, #e0ca96);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.line-gold {
+  width: 60px;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, #c9a96e, transparent);
+}
+
+.line-gold-wide {
+  height: 1px;
+  background: linear-gradient(90deg, transparent, #c9a96e 30%, #c9a96e 70%, transparent);
+}

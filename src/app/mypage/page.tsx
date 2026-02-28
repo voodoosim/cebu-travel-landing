@@ -1,118 +1,166 @@
-import { auth } from '@/lib/auth';
-import { redirect } from 'next/navigation';
-import { prisma } from '@/lib/db';
-import Link from 'next/link';
-import { Globe } from 'lucide-react';
+import { auth } from "@/auth";
+import { prisma } from "@/lib/prisma";
+import { redirect } from "next/navigation";
+import Image from "next/image";
+import Link from "next/link";
+import SignOutButton from "./SignOutButton";
 
-export const dynamic = 'force-dynamic';
-
-const STATUS_LABELS: Record<string, { label: string; color: string }> = {
-  INQUIRY: { label: '문의 접수', color: 'bg-blue-50 text-blue-700' },
-  QUOTE_SENT: { label: '견적 발송', color: 'bg-amber-50 text-amber-700' },
-  CONFIRMED: { label: '예약 확정', color: 'bg-emerald-50 text-emerald-700' },
-  COMPLETED: { label: '완료', color: 'bg-slate-100 text-slate-600' },
-  CANCELLED: { label: '취소', color: 'bg-red-50 text-red-600' },
+const STATUS_LABEL: Record<string, string> = {
+  INQUIRY: "문의 접수",
+  QUOTE_SENT: "견적 발송",
+  CONFIRMED: "예약 확정",
+  COMPLETED: "완료",
+  CANCELLED: "취소",
 };
 
-const TYPE_LABELS: Record<string, string> = {
-  GOLF: '골프',
-  RESORT: '리조트',
-  ACTIVITY: '액티비티',
-  PACKAGE: '패키지',
-  CUSTOM: '기타',
+const STATUS_COLOR: Record<string, string> = {
+  INQUIRY: "border-gold-500/40 text-gold-400",
+  QUOTE_SENT: "border-blue-400/40 text-blue-300",
+  CONFIRMED: "border-emerald-400/40 text-emerald-300",
+  COMPLETED: "border-gold-300/20 text-gold-300/50",
+  CANCELLED: "border-red-400/40 text-red-300",
+};
+
+const SERVICE_LABEL: Record<string, string> = {
+  GOLF: "골프",
+  RESORT: "리조트",
+  ACTIVITY: "액티비티",
+  PACKAGE: "패키지",
+  CUSTOM: "맞춤 상담",
 };
 
 export default async function MyPage() {
   const session = await auth();
-  if (!session) redirect('/auth/signin');
+  if (!session?.user) redirect("/login");
 
   const bookings = await prisma.booking.findMany({
     where: { userId: session.user.id },
-    orderBy: { createdAt: 'desc' },
     include: {
-      golfCourse: { select: { nameKo: true, slug: true } },
-      resort: { select: { name: true, slug: true } },
-      activity: { select: { name: true, slug: true } },
+      golfCourse: { select: { nameKo: true } },
+      resort: { select: { nameKo: true } },
+      activity: { select: { nameKo: true } },
+      quotes: { orderBy: { createdAt: "desc" }, take: 1 },
     },
+    orderBy: { createdAt: "desc" },
   });
 
   return (
-    <div className="min-h-screen bg-slate-50">
-      <header className="bg-white border-b border-slate-200">
-        <div className="container mx-auto px-4 h-16 flex items-center justify-between">
-          <Link href="/" className="text-xl font-bold text-emerald-700 flex items-center gap-2">
-            <Globe className="w-6 h-6" />
-            <span>세부가이드</span>
+    <div className="min-h-screen bg-navy-900">
+      <header className="border-b border-gold-500/10">
+        <div className="max-w-3xl mx-auto px-6 py-5 flex items-center justify-between">
+          <Link href="/" className="text-lg font-[family-name:var(--font-serif)] text-ivory tracking-[0.15em]">
+            CEBUGUIDE
           </Link>
-          <nav className="flex items-center gap-6 text-sm">
-            <Link href="/mypage" className="font-semibold text-emerald-600">마이페이지</Link>
-            <Link href="/" className="text-slate-500 hover:text-emerald-600">홈</Link>
-          </nav>
+          <SignOutButton />
         </div>
       </header>
 
-      <main className="container mx-auto px-4 py-12 max-w-4xl">
-        <div className="flex items-center gap-4 mb-8">
+      <div className="max-w-3xl mx-auto px-6 py-12 space-y-8">
+        {/* 프로필 */}
+        <div className="border border-gold-500/15 p-6 flex items-center gap-5">
           {session.user.image ? (
-            <img src={session.user.image} alt="" className="w-16 h-16 rounded-full" referrerPolicy="no-referrer" />
+            <Image
+              src={session.user.image}
+              alt="프로필"
+              width={56}
+              height={56}
+              className="rounded-full ring-1 ring-gold-500/20"
+            />
           ) : (
-            <div className="w-16 h-16 rounded-full bg-emerald-100 text-emerald-700 flex items-center justify-center text-2xl font-bold">
-              {session.user.name?.[0] || '?'}
+            <div className="w-14 h-14 rounded-full bg-navy-700 border border-gold-500/20 flex items-center justify-center text-gold-400 font-[family-name:var(--font-serif)] text-xl">
+              {session.user.name?.[0] ?? "U"}
             </div>
           )}
           <div>
-            <h1 className="text-2xl font-bold text-slate-900">{session.user.name}</h1>
-            <p className="text-slate-500 text-sm">{session.user.email}</p>
+            <p className="font-medium text-ivory">{session.user.name}</p>
+            <p className="text-sm text-gold-300/40">{session.user.email}</p>
           </div>
         </div>
 
-        <div className="bg-white rounded-2xl p-8 shadow-lg border border-slate-100">
-          <h2 className="text-lg font-bold text-slate-900 mb-4">예약 내역</h2>
+        {/* 예약 내역 */}
+        <div>
+          <h2 className="text-xs font-medium tracking-[0.2em] text-gold-400 mb-5 uppercase">
+            Reservations
+          </h2>
 
           {bookings.length === 0 ? (
-            <div>
-              <p className="text-slate-500 text-sm mb-4">아직 예약 내역이 없습니다.</p>
+            <div className="border border-gold-500/15 p-12 text-center">
+              <p className="text-gold-200/40 mb-6">예약 내역이 없습니다.</p>
               <Link
-                href="/booking"
-                className="inline-block bg-emerald-600 hover:bg-emerald-700 text-white px-6 py-2.5 rounded-lg text-sm font-semibold transition-colors"
+                href="/#booking"
+                className="inline-block border border-gold-500 text-gold-400 px-8 py-3 text-xs font-medium tracking-[0.2em] hover:bg-gold-500 hover:text-navy-900 transition-all"
               >
-                예약 문의하기
+                INQUIRE NOW
               </Link>
             </div>
           ) : (
-            <div className="space-y-4">
-              {bookings.map((b) => {
-                const status = STATUS_LABELS[b.status] || { label: b.status, color: 'bg-slate-100 text-slate-600' };
-                const serviceName = b.golfCourse?.nameKo || b.resort?.name || b.activity?.name || TYPE_LABELS[b.serviceType] || b.serviceType;
+            <div className="space-y-3">
+              {bookings.map((booking) => {
+                const serviceName =
+                  booking.golfCourse?.nameKo ??
+                  booking.resort?.nameKo ??
+                  booking.activity?.nameKo ??
+                  SERVICE_LABEL[booking.serviceType] ??
+                  booking.serviceType;
+
+                const quote = booking.quotes[0];
 
                 return (
-                  <div key={b.id} className="border border-slate-100 rounded-xl p-5">
-                    <div className="flex items-start justify-between mb-2">
-                      <div>
-                        <span className="text-xs text-slate-400 mr-2">{TYPE_LABELS[b.serviceType] || b.serviceType}</span>
-                        <span className="font-semibold text-slate-900">{serviceName}</span>
+                  <div
+                    key={booking.id}
+                    className="border border-gold-500/15 p-5 hover:border-gold-500/30 transition-colors"
+                  >
+                    <div className="flex items-start justify-between gap-3">
+                      <div className="flex-1">
+                        <div className="flex items-center gap-3 mb-1.5">
+                          <span className="font-medium text-ivory text-sm">
+                            {serviceName}
+                          </span>
+                          <span
+                            className={`text-[10px] px-2.5 py-0.5 border font-medium tracking-wider ${STATUS_COLOR[booking.status]}`}
+                          >
+                            {STATUS_LABEL[booking.status]}
+                          </span>
+                        </div>
+                        <p className="text-xs text-gold-300/30">
+                          {new Date(booking.createdAt).toLocaleDateString(
+                            "ko-KR",
+                            { year: "numeric", month: "long", day: "numeric" }
+                          )}
+                          {booking.guests > 1 && ` · ${booking.guests}명`}
+                          {booking.startDate &&
+                            ` · ${new Date(booking.startDate).toLocaleDateString("ko-KR", { month: "short", day: "numeric" })}`}
+                        </p>
+                        {booking.message && (
+                          <p className="mt-2.5 text-sm text-gold-200/50 line-clamp-2">
+                            {booking.message}
+                          </p>
+                        )}
+                        {quote && (
+                          <p className="mt-2.5 text-sm font-[family-name:var(--font-serif)] text-gold-400">
+                            {quote.totalAmount.toLocaleString("ko-KR")}
+                            {quote.currency === "KRW" ? "원" : ` ${quote.currency}`}
+                          </p>
+                        )}
                       </div>
-                      <span className={`text-xs px-2.5 py-1 rounded-full font-medium ${status.color}`}>
-                        {status.label}
-                      </span>
                     </div>
-                    <div className="flex flex-wrap gap-4 text-xs text-slate-500">
-                      {b.startDate && (
-                        <span>{new Date(b.startDate).toLocaleDateString('ko-KR')}{b.endDate ? ` ~ ${new Date(b.endDate).toLocaleDateString('ko-KR')}` : ''}</span>
-                      )}
-                      <span>{b.guests}명</span>
-                      <span>{new Date(b.createdAt).toLocaleDateString('ko-KR')} 접수</span>
-                    </div>
-                    {b.message && (
-                      <p className="text-sm text-slate-600 mt-2 line-clamp-2">{b.message}</p>
-                    )}
                   </div>
                 );
               })}
             </div>
           )}
         </div>
-      </main>
+
+        {/* 새 예약 */}
+        <div className="text-center pt-4">
+          <Link
+            href="/#booking"
+            className="inline-block bg-gold-500 hover:bg-gold-400 text-navy-900 px-10 py-3.5 text-xs font-semibold tracking-[0.2em] transition-colors"
+          >
+            NEW INQUIRY
+          </Link>
+        </div>
+      </div>
     </div>
   );
 }
