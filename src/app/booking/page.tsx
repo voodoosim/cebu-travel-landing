@@ -2,8 +2,10 @@ import { auth } from '@/lib/auth';
 import { redirect } from 'next/navigation';
 import { prisma } from '@/lib/db';
 import Link from 'next/link';
-import { Globe, ArrowLeft } from 'lucide-react';
+import { ArrowLeft } from 'lucide-react';
 import BookingFormClient from './BookingFormClient';
+import Header from '@/app/components/layout/Header';
+import Footer from '@/app/components/layout/Footer';
 
 export const dynamic = 'force-dynamic';
 
@@ -33,19 +35,7 @@ export default async function BookingPage({ searchParams }: Props) {
 
   return (
     <div className="min-h-screen bg-slate-50">
-      <header className="bg-white border-b border-slate-200">
-        <div className="container mx-auto px-4 h-16 flex items-center justify-between">
-          <Link href="/" className="text-xl font-bold text-emerald-700 flex items-center gap-2">
-            <Globe className="w-6 h-6" />
-            <span>세부가이드</span>
-          </Link>
-          <nav className="flex items-center gap-6 text-sm">
-            <Link href="/golf" className="text-slate-500 hover:text-emerald-600">골프장</Link>
-            <Link href="/resort" className="text-slate-500 hover:text-emerald-600">리조트</Link>
-            <Link href="/activity" className="text-slate-500 hover:text-emerald-600">액티비티</Link>
-          </nav>
-        </div>
-      </header>
+      <Header />
 
       <main className="container mx-auto px-4 py-12 max-w-2xl">
         <Link href="/" className="inline-flex items-center gap-1 text-sm text-slate-500 hover:text-emerald-600 mb-6">
@@ -66,6 +56,7 @@ export default async function BookingPage({ searchParams }: Props) {
           />
         </div>
       </main>
+      <Footer />
     </div>
   );
 }

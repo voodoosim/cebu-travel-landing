@@ -1,7 +1,9 @@
 import { prisma } from '@/lib/db';
 import Link from 'next/link';
 import Image from 'next/image';
-import { Globe, Flag, Clock, MapPin } from 'lucide-react';
+import { Flag, Clock, MapPin } from 'lucide-react';
+import Header from '@/app/components/layout/Header';
+import Footer from '@/app/components/layout/Footer';
 
 export const dynamic = 'force-dynamic';
 
@@ -18,20 +20,7 @@ export default async function GolfListPage() {
 
   return (
     <div className="min-h-screen bg-slate-50">
-      <header className="bg-white border-b border-slate-200">
-        <div className="container mx-auto px-4 h-16 flex items-center justify-between">
-          <Link href="/" className="text-xl font-bold text-emerald-700 flex items-center gap-2">
-            <Globe className="w-6 h-6" />
-            <span>세부가이드</span>
-          </Link>
-          <nav className="flex items-center gap-6 text-sm">
-            <Link href="/golf" className="font-semibold text-emerald-600">골프장</Link>
-            <Link href="/resort" className="text-slate-500 hover:text-emerald-600">리조트</Link>
-            <Link href="/activity" className="text-slate-500 hover:text-emerald-600">액티비티</Link>
-            <Link href="/" className="text-slate-500 hover:text-emerald-600">홈</Link>
-          </nav>
-        </div>
-      </header>
+      <Header />
 
       <main className="container mx-auto px-4 py-12">
         <div className="text-center mb-12">
@@ -103,6 +92,7 @@ export default async function GolfListPage() {
           })}
         </div>
       </main>
+      <Footer />
     </div>
   );
 }

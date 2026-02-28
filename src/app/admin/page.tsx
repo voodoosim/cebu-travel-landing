@@ -2,7 +2,8 @@ import { auth } from '@/lib/auth';
 import { redirect } from 'next/navigation';
 import { prisma } from '@/lib/db';
 import Link from 'next/link';
-import { Globe } from 'lucide-react';
+import Header from '@/app/components/layout/Header';
+import Footer from '@/app/components/layout/Footer';
 
 export const dynamic = 'force-dynamic';
 
@@ -45,19 +46,7 @@ export default async function AdminPage() {
 
   return (
     <div className="min-h-screen bg-slate-50">
-      <header className="bg-white border-b border-slate-200">
-        <div className="container mx-auto px-4 h-16 flex items-center justify-between">
-          <Link href="/admin" className="text-xl font-bold text-emerald-700 flex items-center gap-2">
-            <Globe className="w-6 h-6" />
-            <span>세부가이드 관리자</span>
-          </Link>
-          <nav className="flex items-center gap-6 text-sm">
-            <Link href="/admin" className="font-semibold text-emerald-600">대시보드</Link>
-            <Link href="/admin/bookings" className="text-slate-500 hover:text-emerald-600">예약 관리</Link>
-            <Link href="/" className="text-slate-500 hover:text-emerald-600">사이트</Link>
-          </nav>
-        </div>
-      </header>
+      <Header />
 
       <main className="container mx-auto px-4 py-12 max-w-6xl">
         <h1 className="text-2xl font-bold text-slate-900 mb-8">관리자 대시보드</h1>
@@ -133,6 +122,7 @@ export default async function AdminPage() {
           )}
         </div>
       </main>
+      <Footer />
     </div>
   );
 }
