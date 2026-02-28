@@ -4,10 +4,10 @@ import { useState } from "react";
 import Link from "next/link";
 
 const navLinks = [
-  { href: "#services", label: "서비스" },
-  { href: "#courses", label: "골프" },
-  { href: "#resorts", label: "리조트" },
-  { href: "#activities", label: "액티비티" },
+  { href: "/golf/", label: "골프" },
+  { href: "/resort/", label: "리조트" },
+  { href: "/activity/", label: "액티비티" },
+  { href: "/package/", label: "패키지" },
   { href: "#faq", label: "FAQ" },
 ];
 

@@ -197,7 +197,7 @@ export default function Home() {
             <Link href="/golf/" className="text-[13px] tracking-widest text-navy-700 hover:text-gold-500 transition-colors">골프</Link>
             <Link href="/resort/" className="text-[13px] tracking-widest text-navy-700 hover:text-gold-500 transition-colors">리조트</Link>
             <Link href="/activity/" className="text-[13px] tracking-widest text-navy-700 hover:text-gold-500 transition-colors">액티비티</Link>
-            <Link href="#packages" className="text-[13px] tracking-widest text-navy-700 hover:text-gold-500 transition-colors">패키지</Link>
+            <Link href="/package/" className="text-[13px] tracking-widest text-navy-700 hover:text-gold-500 transition-colors">패키지</Link>
             <Link href="#faq" className="text-[13px] tracking-widest text-navy-700 hover:text-gold-500 transition-colors">FAQ</Link>
           </nav>
           <div className="hidden md:flex items-center gap-5">
