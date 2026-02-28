@@ -34,6 +34,7 @@ const services = [
 
 const golfCourses = [
   {
+    slug: "alta-vista",
     name: "Alta Vista Golf & Country Club",
     nameKo: "알타비스타 골프 & CC",
     holes: "18홀 / Par 72 / 6,073yd",
@@ -45,6 +46,7 @@ const golfCourses = [
     badge: "명문",
   },
   {
+    slug: "mactan-airbase",
     name: "Mactan Island Golf Club",
     nameKo: "막탄 에어베이스 골프",
     holes: "18홀 / Par 72 / 6,435yd",
@@ -55,6 +57,7 @@ const golfCourses = [
     badge: "가성비",
   },
   {
+    slug: "cebu-country-club",
     name: "Cebu Country Club",
     nameKo: "세부 컨트리 클럽",
     holes: "18홀 / Par 72 / 6,677yd",
@@ -66,6 +69,7 @@ const golfCourses = [
     badge: "프라이빗",
   },
   {
+    slug: "club-filipino",
     name: "Club Filipino de Cebu",
     nameKo: "클럽 필리피노 드 세부",
     holes: "18홀 / Par 71 / 6,128yd",
@@ -76,6 +80,7 @@ const golfCourses = [
     image: "/images/golf-group.webp",
   },
   {
+    slug: "liloan",
     name: "Liloan Golf & Leisure Estate",
     nameKo: "릴로안 골프 & 레저",
     holes: "18홀 / Par 72 / 7,200yd",
@@ -87,6 +92,7 @@ const golfCourses = [
     badge: "최장 코스",
   },
   {
+    slug: "queens-island",
     name: "Queen's Island Golf & Resort",
     nameKo: "퀸스 아일랜드 골프 리조트",
     holes: "18홀 / Par 72 / 6,835yd",
@@ -100,24 +106,24 @@ const golfCourses = [
 ];
 
 const resorts = [
-  { name: "Shangri-La Mactan Resort & Spa", grade: "5성급", area: "막탄", feature: "프라이빗 비치, 스파" },
-  { name: "Crimson Resort & Spa Mactan", grade: "5성급", area: "막탄", feature: "인피니티 풀, 다이빙" },
-  { name: "Plantation Bay Resort & Spa", grade: "5성급", area: "막탄", feature: "라군 풀, 가족 친화" },
-  { name: "Jpark Island Resort & Waterpark", grade: "5성급", area: "막탄", feature: "워터파크, 카지노" },
-  { name: "Movenpick Hotel Mactan", grade: "5성급", area: "막탄", feature: "아일랜드 뷰, 초콜릿 아워" },
-  { name: "Radisson Blu Cebu", grade: "5성급", area: "세부시티", feature: "SM몰 연결, 비즈니스" },
-  { name: "Seda Ayala Center Cebu", grade: "4성급", area: "세부시티", feature: "아얄라몰 직결, 루프탑 풀" },
-  { name: "Bai Hotel Cebu", grade: "4성급", area: "만다웨", feature: "세부 최대 규모, 인피니티 풀" },
-  { name: "Bluewater Maribago", grade: "4성급", area: "막탄", feature: "프라이빗 비치, 가족 리조트" },
+  { slug: "shangrila", name: "Shangri-La Mactan Resort & Spa", grade: "5성급", area: "막탄", feature: "프라이빗 비치, 스파" },
+  { slug: "crimson", name: "Crimson Resort & Spa Mactan", grade: "5성급", area: "막탄", feature: "인피니티 풀, 다이빙" },
+  { slug: "plantation-bay", name: "Plantation Bay Resort & Spa", grade: "5성급", area: "막탄", feature: "라군 풀, 가족 친화" },
+  { slug: "jpark", name: "Jpark Island Resort & Waterpark", grade: "5성급", area: "막탄", feature: "워터파크, 카지노" },
+  { slug: "movenpick", name: "Movenpick Hotel Mactan", grade: "5성급", area: "막탄", feature: "아일랜드 뷰, 초콜릿 아워" },
+  { slug: "radisson-blu", name: "Radisson Blu Cebu", grade: "5성급", area: "세부시티", feature: "SM몰 연결, 비즈니스" },
+  { slug: "seda-ayala", name: "Seda Ayala Center Cebu", grade: "4성급", area: "세부시티", feature: "아얄라몰 직결, 루프탑 풀" },
+  { slug: "bai-hotel", name: "Bai Hotel Cebu", grade: "4성급", area: "만다웨", feature: "세부 최대 규모, 인피니티 풀" },
+  { slug: "bluewater", name: "Bluewater Maribago", grade: "4성급", area: "막탄", feature: "프라이빗 비치, 가족 리조트" },
 ];
 
 const activities = [
-  { name: "아일랜드 호핑", description: "나루수안, 판다논, 힐루뚱안 섬 투어. 스노클링 포함." },
-  { name: "고래상어 투어", description: "오슬롭 고래상어 스노클링. 세부 남부 당일치기." },
-  { name: "카와산 폭포", description: "캐녀닝 + 폭포 점프. 세부 최고 인기 액티비티." },
-  { name: "다이빙 & 스노클링", description: "모알보알 정어리런, 거북이 포인트. 체험/자격증." },
-  { name: "세부 시티투어", description: "마젤란 십자가, 산페드로 요새, 탑스 전망대." },
-  { name: "보홀 당일투어", description: "초콜릿힐, 안경원숭이, 로복강 크루즈." },
+  { slug: "island-hopping", name: "아일랜드 호핑", description: "나루수안, 판다논, 힐루뚱안 섬 투어. 스노클링 포함." },
+  { slug: "whale-shark", name: "고래상어 투어", description: "오슬롭 고래상어 스노클링. 세부 남부 당일치기." },
+  { slug: "kawasan-falls", name: "카와산 폭포", description: "캐녀닝 + 폭포 점프. 세부 최고 인기 액티비티." },
+  { slug: "diving", name: "다이빙 & 스노클링", description: "모알보알 정어리런, 거북이 포인트. 체험/자격증." },
+  { slug: "city-tour", name: "세부 시티투어", description: "마젤란 십자가, 산페드로 요새, 탑스 전망대." },
+  { slug: "bohol-tour", name: "보홀 당일투어", description: "초콜릿힐, 안경원숭이, 로복강 크루즈." },
 ];
 
 const packages = [
@@ -306,7 +312,7 @@ export default function Home() {
 
             <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
               {golfCourses.map((course) => (
-                <div key={course.name} className="group cursor-pointer">
+                <Link key={course.slug} href={`/golf/${course.slug}/`} className="group">
                   <div className="relative aspect-[4/3] overflow-hidden mb-5">
                     <Image
                       src={course.image}
@@ -340,7 +346,7 @@ export default function Home() {
                       ))}
                     </ul>
                   </div>
-                </div>
+                </Link>
               ))}
             </div>
 
@@ -366,7 +372,7 @@ export default function Home() {
 
             <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-px bg-white/10">
               {resorts.map((r) => (
-                <div key={r.name} className="bg-navy-900 p-8 hover:bg-navy-800 transition-colors duration-300">
+                <Link key={r.slug} href={`/resort/${r.slug}/`} className="bg-navy-900 p-8 hover:bg-navy-800 transition-colors duration-300 block">
                   <div className="flex items-center gap-2 mb-3">
                     <span className="text-gold-400 text-[11px] tracking-wider">{r.grade}</span>
                     <span className="text-white/20">|</span>
@@ -374,7 +380,7 @@ export default function Home() {
                   </div>
                   <h3 className="font-[family-name:var(--font-serif)] text-base text-white mb-2">{r.name}</h3>
                   <p className="text-white/40 text-sm">{r.feature}</p>
-                </div>
+                </Link>
               ))}
             </div>
 
@@ -397,10 +403,10 @@ export default function Home() {
 
             <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-8">
               {activities.map((a) => (
-                <div key={a.name} className="border-b border-navy-900/10 pb-8">
-                  <h3 className="font-[family-name:var(--font-serif)] text-lg text-navy-900 mb-2">{a.name}</h3>
+                <Link key={a.slug} href={`/activity/${a.slug}/`} className="border-b border-navy-900/10 pb-8 block group">
+                  <h3 className="font-[family-name:var(--font-serif)] text-lg text-navy-900 mb-2 group-hover:text-gold-500 transition-colors">{a.name}</h3>
                   <p className="text-navy-600/50 text-sm leading-relaxed">{a.description}</p>
-                </div>
+                </Link>
               ))}
             </div>
 
