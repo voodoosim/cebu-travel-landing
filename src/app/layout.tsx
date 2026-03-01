@@ -1,19 +1,21 @@
 import type { Metadata } from "next";
-import { Inter, Playfair_Display } from "next/font/google";
+import { Cormorant_Garamond, Manrope } from "next/font/google";
 import "./globals.css";
 import { LocalBusinessSchema, TourProductsSchema } from "./components/StructuredData";
+import FloatingRemote from "./components/FloatingRemote";
 
-const inter = Inter({
+const inter = Manrope({
   variable: "--font-inter",
   subsets: ["latin"],
+  weight: ["400", "500", "600", "700"],
   display: "swap",
 });
 
-const playfair = Playfair_Display({
+const playfair = Cormorant_Garamond({
   variable: "--font-serif",
   subsets: ["latin"],
   weight: ["400", "500", "600", "700"],
-  display: "optional",
+  display: "swap",
 });
 
 export const metadata: Metadata = {
@@ -95,6 +97,7 @@ export default function RootLayout({
         className={`${inter.variable} ${playfair.variable} antialiased font-[family-name:var(--font-inter)]`}
       >
         {children}
+        <FloatingRemote />
       </body>
     </html>
   );

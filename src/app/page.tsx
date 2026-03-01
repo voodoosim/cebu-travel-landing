@@ -50,6 +50,33 @@ const collections = [
   },
 ];
 
+const editorPicks = [
+  {
+    category: "Golf",
+    title: products.golf[1].nameKo,
+    subtitle: products.golf[1].distance,
+    image: products.golf[1].image,
+    href: `/golf/${products.golf[1].slug}/`,
+    tags: products.golf[1].features.slice(0, 3),
+  },
+  {
+    category: "Resort",
+    title: products.resorts[0].nameKo,
+    subtitle: products.resorts[0].feature,
+    image: products.resorts[0].image,
+    href: `/resort/${products.resorts[0].slug}/`,
+    tags: products.resorts[0].features.slice(0, 3),
+  },
+  {
+    category: "Activity",
+    title: products.activities[2].name,
+    subtitle: products.activities[2].duration,
+    image: products.activities[2].image,
+    href: `/activity/${products.activities[2].slug}/`,
+    tags: products.activities[2].features.slice(0, 3),
+  },
+];
+
 const highlights = [
   {
     title: "로컬 한국인 운영",
@@ -94,7 +121,7 @@ export default function Home() {
           <div className="absolute -top-32 -right-32 w-[28rem] h-[28rem] rounded-full bg-gold-100/70 blur-3xl animate-[float-slow_10s_ease-in-out_infinite]" />
           <div className="absolute -bottom-40 -left-32 w-[30rem] h-[30rem] rounded-full bg-navy-900/10 blur-3xl" />
 
-          <div className="relative z-10 max-w-6xl mx-auto px-6 py-16 lg:py-24 grid lg:grid-cols-[1.1fr_0.9fr] gap-12 items-center">
+          <div className="relative z-10 max-w-6xl mx-auto px-6 py-16 lg:py-24 grid lg:grid-cols-[1.05fr_0.95fr] gap-12 items-center">
             <div className="space-y-7 animate-[fade-up_0.8s_ease-out_both]">
               <p className="text-gold-500 text-xs tracking-[0.35em] uppercase">Cebu Premium Travel Guide</p>
               <h1 className="font-[family-name:var(--font-serif)] text-4xl md:text-5xl lg:text-6xl text-navy-900 font-medium leading-[1.1]">
@@ -130,22 +157,42 @@ export default function Home() {
             </div>
 
             <div className="relative">
-              <div className="relative aspect-[4/5] rounded-[36px] overflow-hidden border border-white/70 shadow-2xl">
-                <Image
-                  src="/images/hero-golf.webp"
-                  alt="세부 여행"
-                  fill
-                  sizes="(min-width: 1024px) 42vw, 90vw"
-                  className="object-cover"
-                  priority
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-navy-900/45 via-transparent to-transparent" />
+              <div className="grid grid-cols-2 gap-4">
+                <div className="col-span-2 relative aspect-[16/9] rounded-[30px] overflow-hidden border border-white/70 shadow-xl">
+                  <Image
+                    src="/images/hero-golf.webp"
+                    alt="세부 여행"
+                    fill
+                    sizes="(min-width: 1024px) 46vw, 90vw"
+                    className="object-cover"
+                    priority
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-navy-900/45 via-transparent to-transparent" />
+                </div>
+                <div className="relative aspect-[4/5] rounded-[26px] overflow-hidden border border-white/70 shadow-lg">
+                  <Image
+                    src={products.resorts[1].image}
+                    alt="세부 리조트"
+                    fill
+                    sizes="(min-width: 1024px) 22vw, 45vw"
+                    className="object-cover"
+                  />
+                </div>
+                <div className="relative aspect-[4/5] rounded-[26px] overflow-hidden border border-white/70 shadow-lg">
+                  <Image
+                    src={products.activities[0].image}
+                    alt="세부 액티비티"
+                    fill
+                    sizes="(min-width: 1024px) 22vw, 45vw"
+                    className="object-cover"
+                  />
+                </div>
               </div>
               <div className="absolute -left-6 -bottom-6 bg-white/90 backdrop-blur-md border border-white/70 rounded-2xl px-4 py-3 shadow-lg">
                 <p className="text-xs uppercase tracking-[0.25em] text-gold-500">Local Desk</p>
                 <p className="text-sm font-medium text-navy-900">현지 한국인 운영 상담</p>
               </div>
-              <div className="absolute -right-4 top-10 hidden sm:flex flex-col gap-3">
+              <div className="absolute -right-4 top-8 hidden sm:flex flex-col gap-3">
                 <div className="bg-white/90 backdrop-blur-md border border-white/70 rounded-2xl px-4 py-3 shadow-lg">
                   <p className="text-xs text-navy-600/60">대표 상담 채널</p>
                   <p className="text-sm font-medium">카카오톡 · 텔레그램</p>
@@ -228,6 +275,64 @@ export default function Home() {
         </section>
 
         <section className="py-20 bg-white/70">
+          <div className="max-w-6xl mx-auto px-6">
+            <div className="flex flex-col md:flex-row md:items-end md:justify-between gap-6 mb-10">
+              <div>
+                <p className="text-xs uppercase tracking-[0.35em] text-gold-500 mb-3">Editor&apos;s Picks</p>
+                <h2 className="font-[family-name:var(--font-serif)] text-3xl md:text-4xl text-navy-900">
+                  실시간 인기 코스 & 투어 추천
+                </h2>
+              </div>
+              <Link
+                href="/golf/"
+                className="text-xs uppercase tracking-[0.2em] text-navy-600 hover:text-gold-500 transition-colors inline-flex items-center gap-2"
+              >
+                전체 일정 보기 <ArrowUpRight className="w-4 h-4" />
+              </Link>
+            </div>
+            <div className="grid lg:grid-cols-3 gap-6">
+              {editorPicks.map((pick) => (
+                <Link
+                  key={pick.title}
+                  href={pick.href}
+                  className="group rounded-3xl overflow-hidden border border-white/80 bg-white shadow-sm transition-all hover:-translate-y-1 hover:shadow-xl"
+                >
+                  <div className="relative h-48">
+                    <Image
+                      src={pick.image}
+                      alt={pick.title}
+                      fill
+                      sizes="(min-width: 1024px) 30vw, 90vw"
+                      className="object-cover transition-transform duration-700 group-hover:scale-105"
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-t from-navy-900/60 via-transparent to-transparent" />
+                    <span className="absolute top-4 left-4 text-[10px] uppercase tracking-[0.3em] text-gold-200 bg-navy-900/70 px-3 py-1 rounded-full">
+                      {pick.category}
+                    </span>
+                  </div>
+                  <div className="p-5 space-y-3">
+                    <div>
+                      <h3 className="text-lg font-semibold text-navy-900">{pick.title}</h3>
+                      <p className="text-xs text-navy-600/60 mt-1">{pick.subtitle}</p>
+                    </div>
+                    <div className="flex flex-wrap gap-2">
+                      {pick.tags.map((tag) => (
+                        <span key={tag} className="text-[11px] text-navy-600/70 bg-ivory px-2.5 py-1 rounded-full">
+                          {tag}
+                        </span>
+                      ))}
+                    </div>
+                    <span className="text-[11px] uppercase tracking-[0.2em] text-gold-500 inline-flex items-center gap-2">
+                      자세히 보기 <ArrowUpRight className="w-4 h-4" />
+                    </span>
+                  </div>
+                </Link>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        <section className="py-20">
           <div className="max-w-6xl mx-auto px-6 grid lg:grid-cols-[1.1fr_0.9fr] gap-12 items-start">
             <div className="space-y-6">
               <p className="text-xs uppercase tracking-[0.35em] text-gold-500">Why Cebu Guide</p>
@@ -285,7 +390,7 @@ export default function Home() {
           </div>
         </section>
 
-        <section id="cta" className="py-20">
+        <section id="cta" className="py-20 bg-white/70">
           <div className="max-w-6xl mx-auto px-6">
             <div className="grid lg:grid-cols-[1fr_1.1fr] gap-10 items-start">
               <div className="space-y-6">
