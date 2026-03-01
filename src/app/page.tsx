@@ -112,7 +112,7 @@ const steps = [
 
 export default function Home() {
   return (
-    <div className="min-h-screen flex flex-col bg-ivory text-navy-900">
+    <div className="min-h-screen flex flex-col bg-ivory text-navy-900 page-wash">
       <SiteHeader />
 
       <main className="flex-grow">
@@ -274,7 +274,7 @@ export default function Home() {
           </div>
         </section>
 
-        <section className="py-20 bg-white/70">
+        <section className="py-20 bg-gold-50/80 border-y border-gold-100/60">
           <div className="max-w-6xl mx-auto px-6">
             <div className="flex flex-col md:flex-row md:items-end md:justify-between gap-6 mb-10">
               <div>
@@ -390,7 +390,7 @@ export default function Home() {
           </div>
         </section>
 
-        <section id="cta" className="py-20 bg-white/70">
+        <section id="cta" className="py-20 bg-ivory/90 border-t border-gold-100/70">
           <div className="max-w-6xl mx-auto px-6">
             <div className="grid lg:grid-cols-[1fr_1.1fr] gap-10 items-start">
               <div className="space-y-6">

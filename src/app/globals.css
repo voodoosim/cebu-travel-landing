@@ -23,6 +23,12 @@ body {
   -moz-osx-font-smoothing: grayscale;
 }
 
+.page-wash {
+  background-image:
+    radial-gradient(circle at top, rgba(201, 169, 110, 0.22), transparent 55%),
+    radial-gradient(circle at 20% 80%, rgba(10, 22, 40, 0.08), transparent 45%);
+}
+
 .text-gold-gradient {
   background: linear-gradient(135deg, #c9a96e, #e0ca96);
   -webkit-background-clip: text;
