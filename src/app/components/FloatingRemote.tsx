@@ -67,7 +67,7 @@ export default function FloatingRemote() {
 
   return (
     <div className="fixed right-4 bottom-[calc(1rem+env(safe-area-inset-bottom))] z-40 flex flex-col items-end gap-3">
-      <div className="rounded-2xl border border-navy-900/10 bg-white/90 backdrop-blur-lg shadow-lg px-4 py-3 w-[220px] sm:w-[240px]">
+      <div className="rounded-2xl border border-gold-100/70 bg-ivory/95 backdrop-blur-lg shadow-lg px-4 py-3 w-[220px] sm:w-[240px]">
         <p className="text-[10px] uppercase tracking-[0.3em] text-gold-500">Exchange</p>
         <div className="flex items-baseline justify-between mt-2">
           <div>
@@ -82,7 +82,7 @@ export default function FloatingRemote() {
         <p className="mt-2 text-[10px] text-navy-600/40">{rates.error ? '환율 정보를 불러오지 못했어요.' : updatedLabel}</p>
       </div>
 
-      <div className="rounded-2xl border border-navy-900/10 bg-white/95 backdrop-blur-lg shadow-lg px-4 py-3 w-[220px] sm:w-[240px]">
+      <div className="rounded-2xl border border-gold-100/70 bg-ivory/95 backdrop-blur-lg shadow-lg px-4 py-3 w-[220px] sm:w-[240px]">
         <button
           type="button"
           onClick={() => setExpanded((prev) => !prev)}
@@ -98,7 +98,7 @@ export default function FloatingRemote() {
               href="https://open.kakao.com/o/cebuguide"
               target="_blank"
               rel="noopener noreferrer"
-              className="flex items-center gap-2 rounded-xl border border-navy-900/10 bg-ivory px-3 py-2 text-xs text-navy-900 hover:border-gold-500/40"
+              className="flex items-center gap-2 rounded-xl border border-gold-100/60 bg-gold-50/80 px-3 py-2 text-xs text-navy-900 hover:border-gold-500/40"
             >
               <MessageCircle className="w-4 h-4 text-gold-500" />
               KakaoTalk 연결
@@ -107,14 +107,14 @@ export default function FloatingRemote() {
               href="https://t.me/cebu_guide"
               target="_blank"
               rel="noopener noreferrer"
-              className="flex items-center gap-2 rounded-xl border border-navy-900/10 bg-ivory px-3 py-2 text-xs text-navy-900 hover:border-gold-500/40"
+              className="flex items-center gap-2 rounded-xl border border-gold-100/60 bg-gold-50/80 px-3 py-2 text-xs text-navy-900 hover:border-gold-500/40"
             >
               <MessageCircle className="w-4 h-4 text-gold-500" />
               Telegram 연결
             </a>
             <a
               href="tel:+639175550123"
-              className="flex items-center gap-2 rounded-xl border border-navy-900/10 bg-ivory px-3 py-2 text-xs text-navy-900 hover:border-gold-500/40"
+              className="flex items-center gap-2 rounded-xl border border-gold-100/60 bg-gold-50/80 px-3 py-2 text-xs text-navy-900 hover:border-gold-500/40"
             >
               <Phone className="w-4 h-4 text-gold-500" />
               전화 연결
@@ -126,7 +126,7 @@ export default function FloatingRemote() {
       <button
         type="button"
         onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
-        className={`rounded-full border border-navy-900/10 bg-white/90 backdrop-blur-lg shadow-lg w-11 h-11 flex items-center justify-center text-navy-900 transition-all ${
+        className={`rounded-full border border-gold-100/70 bg-ivory/95 backdrop-blur-lg shadow-lg w-11 h-11 flex items-center justify-center text-navy-900 transition-all ${
           showTop ? 'opacity-100 translate-y-0' : 'opacity-0 pointer-events-none translate-y-2'
         }`}
         aria-label="맨 위로 이동"

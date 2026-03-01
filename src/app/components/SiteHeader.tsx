@@ -4,7 +4,7 @@ import MobileMenu from './MobileMenu';
 
 export default function SiteHeader({ active }: { active?: ActivePage }) {
   return (
-    <header className="sticky top-0 z-50 bg-white/90 backdrop-blur-lg border-b border-gold-200/50">
+    <header className="sticky top-0 z-50 bg-ivory/90 backdrop-blur-lg border-b border-gold-100/70">
       <div className="max-w-7xl mx-auto px-6 h-[72px] flex items-center justify-between">
         <Link href="/" className="text-xl font-[family-name:var(--font-serif)] font-semibold tracking-wide text-navy-900">
           CEBU<span className="text-gold-500">GUIDE</span>

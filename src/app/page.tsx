@@ -148,7 +148,7 @@ export default function Home() {
               </div>
               <div className="grid grid-cols-2 sm:grid-cols-4 gap-4 pt-2">
                 {services.map((service) => (
-                  <div key={service.href} className="rounded-2xl bg-white/80 border border-white/80 px-4 py-3 text-center shadow-sm">
+                  <div key={service.href} className="rounded-2xl bg-ivory/85 border border-gold-100/60 px-4 py-3 text-center shadow-sm">
                     <p className="text-lg font-semibold text-navy-900">{service.desc}</p>
                     <p className="text-[11px] uppercase tracking-[0.2em] text-navy-600/60">{service.label}</p>
                   </div>
@@ -188,12 +188,12 @@ export default function Home() {
                   />
                 </div>
               </div>
-              <div className="absolute -left-6 -bottom-6 bg-white/90 backdrop-blur-md border border-white/70 rounded-2xl px-4 py-3 shadow-lg">
+              <div className="absolute -left-6 -bottom-6 bg-ivory/95 backdrop-blur-md border border-gold-100/70 rounded-2xl px-4 py-3 shadow-lg">
                 <p className="text-xs uppercase tracking-[0.25em] text-gold-500">Local Desk</p>
                 <p className="text-sm font-medium text-navy-900">현지 한국인 운영 상담</p>
               </div>
               <div className="absolute -right-4 top-8 hidden sm:flex flex-col gap-3">
-                <div className="bg-white/90 backdrop-blur-md border border-white/70 rounded-2xl px-4 py-3 shadow-lg">
+                <div className="bg-ivory/95 backdrop-blur-md border border-gold-100/70 rounded-2xl px-4 py-3 shadow-lg">
                   <p className="text-xs text-navy-600/60">대표 상담 채널</p>
                   <p className="text-sm font-medium">카카오톡 · 텔레그램</p>
                 </div>
@@ -212,7 +212,7 @@ export default function Home() {
               <Link
                 key={service.href}
                 href={service.href}
-                className="group rounded-2xl bg-white/90 backdrop-blur border border-white/70 p-5 transition-all hover:-translate-y-1 hover:shadow-xl"
+                className="group rounded-2xl bg-ivory/90 backdrop-blur border border-gold-100/60 p-5 transition-all hover:-translate-y-1 hover:shadow-xl"
               >
                 <div className="w-11 h-11 rounded-full bg-gold-100/80 flex items-center justify-center mb-3">
                   <service.icon className="w-5 h-5 text-gold-500" strokeWidth={1.5} />
@@ -248,7 +248,7 @@ export default function Home() {
                 <Link
                   key={item.title}
                   href={item.href}
-                  className="group relative overflow-hidden rounded-3xl border border-white/60 bg-white/70 shadow-sm"
+                  className="group relative overflow-hidden rounded-3xl border border-gold-100/60 bg-ivory/80 shadow-sm"
                 >
                   <div className="absolute inset-0">
                     <Image
@@ -295,7 +295,7 @@ export default function Home() {
                 <Link
                   key={pick.title}
                   href={pick.href}
-                  className="group rounded-3xl overflow-hidden border border-white/80 bg-white shadow-sm transition-all hover:-translate-y-1 hover:shadow-xl"
+                  className="group rounded-3xl overflow-hidden border border-gold-100/70 bg-ivory/95 shadow-sm transition-all hover:-translate-y-1 hover:shadow-xl"
                 >
                   <div className="relative h-48">
                     <Image
@@ -346,7 +346,7 @@ export default function Home() {
               </p>
               <div className="grid sm:grid-cols-2 gap-5">
                 {highlights.map((item) => (
-                  <div key={item.title} className="rounded-2xl border border-navy-900/10 bg-white/90 p-5">
+                  <div key={item.title} className="rounded-2xl border border-gold-100/60 bg-ivory/90 p-5">
                     <div className="w-10 h-10 rounded-full bg-gold-100/80 flex items-center justify-center mb-3">
                       <item.icon className="w-5 h-5 text-gold-500" strokeWidth={1.5} />
                     </div>
@@ -379,7 +379,7 @@ export default function Home() {
                 </div>
                 <div className="grid grid-cols-2 gap-4 pt-2">
                   {services.map((service) => (
-                    <div key={service.label} className="rounded-2xl border border-white/10 bg-white/5 px-4 py-3">
+                    <div key={service.label} className="rounded-2xl border border-white/10 bg-white/10 px-4 py-3">
                       <p className="text-lg font-semibold">{service.desc}</p>
                       <p className="text-[11px] uppercase tracking-[0.2em] text-white/60">{service.label}</p>
                     </div>
@@ -408,7 +408,7 @@ export default function Home() {
                     href="https://open.kakao.com/o/cebuguide"
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="flex items-center gap-3 rounded-2xl border border-navy-900/10 bg-white/80 p-4 transition-colors hover:border-gold-500/40"
+                    className="flex items-center gap-3 rounded-2xl border border-gold-100/60 bg-ivory/90 p-4 transition-colors hover:border-gold-500/40"
                   >
                     <MessageCircle className="w-5 h-5 text-gold-500" />
                     <div>
@@ -420,7 +420,7 @@ export default function Home() {
                     href="https://t.me/cebu_guide"
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="flex items-center gap-3 rounded-2xl border border-navy-900/10 bg-white/80 p-4 transition-colors hover:border-gold-500/40"
+                    className="flex items-center gap-3 rounded-2xl border border-gold-100/60 bg-ivory/90 p-4 transition-colors hover:border-gold-500/40"
                   >
                     <MessageCircle className="w-5 h-5 text-gold-500" />
                     <div>
@@ -430,7 +430,7 @@ export default function Home() {
                   </a>
                   <a
                     href="tel:+639175550123"
-                    className="flex items-center gap-3 rounded-2xl border border-navy-900/10 bg-white/80 p-4 transition-colors hover:border-gold-500/40"
+                    className="flex items-center gap-3 rounded-2xl border border-gold-100/60 bg-ivory/90 p-4 transition-colors hover:border-gold-500/40"
                   >
                     <Phone className="w-5 h-5 text-gold-500" />
                     <div>
@@ -441,7 +441,7 @@ export default function Home() {
                 </div>
               </div>
 
-              <div className="rounded-3xl border border-navy-900/10 bg-white p-8 shadow-lg">
+              <div className="rounded-3xl border border-gold-100/60 bg-ivory/95 p-8 shadow-lg">
                 <h3 className="font-[family-name:var(--font-serif)] text-2xl mb-4">맞춤 견적 문의</h3>
                 <p className="text-sm text-navy-600/60 mb-6">
                   일정과 희망사항을 남겨주시면, 빠르게 맞춤 제안을 드립니다.

@@ -36,7 +36,7 @@ export default function MobileMenu() {
       </button>
 
       {open && (
-        <div className="absolute top-full left-0 right-0 bg-white/98 backdrop-blur-sm border-b border-navy-900/10 z-50">
+        <div className="absolute top-full left-0 right-0 bg-ivory/96 backdrop-blur-sm border-b border-gold-100/70 z-50">
           <nav aria-label="Mobile navigation" className="flex flex-col px-6 py-4">
             {navLinks.map((link) => (
               <Link
