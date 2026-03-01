@@ -1,35 +1,22 @@
 import Image from "next/image";
 import Link from "next/link";
-import { Star, ChevronDown, Phone, MessageCircle, ArrowRight } from "lucide-react";
+import { Star, Phone, MessageCircle, ArrowRight } from "lucide-react";
 import SiteHeader from "@/app/components/SiteHeader";
 import ExchangeRate from "@/app/components/ExchangeRate";
 import BookingForm from "@/app/components/BookingForm";
+import products from "@/data/products.json";
 
-const services = [
-  {
-    title: "Golf",
-    titleKo: "골프 예약",
-    description: "세부 전역 6개 명문 골프장. 그린피, 캐디, 카트 올인원 패키지.",
-    href: "/golf/",
-  },
-  {
-    title: "Resort",
-    titleKo: "리조트 & 호텔",
-    description: "샹그릴라, 크림슨, 플랜테이션베이 등 5성급 리조트 예약.",
-    href: "/resort/",
-  },
-  {
-    title: "Activity",
-    titleKo: "관광 & 액티비티",
-    description: "아일랜드 호핑, 고래상어, 카와산 폭포, 다이빙, 시티투어.",
-    href: "/activity/",
-  },
-  {
-    title: "Package",
-    titleKo: "맞춤 패키지",
-    description: "골프 + 리조트 + 관광을 원하는 대로 조합하는 올인원 패키지.",
-    href: "/package/",
-  },
+const featuredGolf = products.golf[0];
+const featuredActivity = products.activities[0];
+const featuredResort = products.resorts[0];
+
+const mixedGrid = [
+  { ...products.resorts[0], type: "resort" as const, displayName: products.resorts[0].nameKo, sub: products.resorts[0].feature },
+  { ...products.activities[0], type: "activity" as const, displayName: products.activities[0].name, sub: products.activities[0].duration },
+  { ...products.activities[1], type: "activity" as const, displayName: products.activities[1].name, sub: products.activities[1].duration },
+  { ...products.resorts[1], type: "resort" as const, displayName: products.resorts[1].nameKo, sub: products.resorts[1].feature },
+  { ...products.resorts[2], type: "resort" as const, displayName: products.resorts[2].nameKo, sub: products.resorts[2].feature },
+  { ...products.activities[2], type: "activity" as const, displayName: products.activities[2].name, sub: products.activities[2].duration },
 ];
 
 const testimonials = [
@@ -59,8 +46,8 @@ export default function Home() {
       <SiteHeader />
 
       <main className="flex-grow">
-        {/* Hero */}
-        <section className="relative h-screen flex items-center justify-center overflow-hidden">
+        {/* Hero (축소) + Stats 오버레이 */}
+        <section className="relative h-[70vh] min-h-[600px] flex items-center justify-center overflow-hidden">
           <div className="absolute inset-0">
             <Image
               src="/images/hero-golf.webp"
@@ -84,7 +71,7 @@ export default function Home() {
               골프, 리조트, 관광, 교통<br className="sm:hidden" /> 세부 여행의 모든 것을 한번에
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <Link href="#services" className="border border-white/30 hover:bg-white hover:text-navy-900 text-white px-10 py-4 text-[13px] tracking-widest uppercase transition-all duration-300">
+              <Link href="#featured" className="border border-white/30 hover:bg-white hover:text-navy-900 text-white px-10 py-4 text-[13px] tracking-widest uppercase transition-all duration-300">
                 Explore
               </Link>
               <Link href="#cta" className="bg-gold-500 hover:bg-gold-400 text-navy-900 px-10 py-4 text-[13px] tracking-widest uppercase font-medium transition-all duration-300">
@@ -93,67 +80,208 @@ export default function Home() {
             </div>
           </div>
 
-          <div className="absolute bottom-12 left-1/2 -translate-x-1/2 animate-bounce">
-            <ChevronDown className="w-5 h-5 text-white/40" aria-hidden="true" />
-          </div>
-        </section>
-
-        {/* Stats */}
-        <section className="py-16 bg-navy-900 text-white">
-          <div className="max-w-5xl mx-auto px-6">
-            <div className="grid grid-cols-2 md:grid-cols-4 gap-12 text-center">
-              <div>
-                <p className="font-[family-name:var(--font-serif)] text-4xl text-gold-400">6</p>
-                <p className="text-white/50 text-xs tracking-widest uppercase mt-2">Golf Courses</p>
-              </div>
-              <div>
-                <p className="font-[family-name:var(--font-serif)] text-4xl text-gold-400">10+</p>
-                <p className="text-white/50 text-xs tracking-widest uppercase mt-2">Premium Resorts</p>
-              </div>
-              <div>
-                <p className="font-[family-name:var(--font-serif)] text-4xl text-gold-400">15+</p>
-                <p className="text-white/50 text-xs tracking-widest uppercase mt-2">Activities</p>
-              </div>
-              <div>
-                <p className="font-[family-name:var(--font-serif)] text-4xl text-gold-400">24/7</p>
-                <p className="text-white/50 text-xs tracking-widest uppercase mt-2">Korean Support</p>
+          {/* Stats 오버레이 */}
+          <div className="absolute bottom-0 left-0 right-0 bg-navy-900/80 backdrop-blur-sm">
+            <div className="max-w-5xl mx-auto px-6 py-6">
+              <div className="grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
+                <div>
+                  <p className="font-[family-name:var(--font-serif)] text-3xl text-gold-400">6</p>
+                  <p className="text-white/50 text-xs tracking-widest uppercase mt-1">Golf Courses</p>
+                </div>
+                <div>
+                  <p className="font-[family-name:var(--font-serif)] text-3xl text-gold-400">10+</p>
+                  <p className="text-white/50 text-xs tracking-widest uppercase mt-1">Premium Resorts</p>
+                </div>
+                <div>
+                  <p className="font-[family-name:var(--font-serif)] text-3xl text-gold-400">15+</p>
+                  <p className="text-white/50 text-xs tracking-widest uppercase mt-1">Activities</p>
+                </div>
+                <div>
+                  <p className="font-[family-name:var(--font-serif)] text-3xl text-gold-400">24/7</p>
+                  <p className="text-white/50 text-xs tracking-widest uppercase mt-1">Korean Support</p>
+                </div>
               </div>
             </div>
           </div>
         </section>
 
-        {/* Services */}
-        <section id="services" className="py-32 bg-ivory">
+        {/* Editor's Pick - 비대칭 그리드 */}
+        <section id="featured" className="py-20 bg-ivory">
           <div className="max-w-6xl mx-auto px-6">
-            <div className="text-center mb-20">
-              <p className="text-gold-500 text-xs tracking-[0.3em] uppercase mb-4">Our Services</p>
-              <h2 className="font-[family-name:var(--font-serif)] text-4xl md:text-5xl text-navy-900 mb-4">통합 서비스</h2>
-              <div className="line-gold mx-auto mt-6 mb-6" />
-              <p className="text-navy-600/60 max-w-lg mx-auto">
-                세부 여행에 필요한 모든 것을 원스톱으로 대행합니다
-              </p>
+            <p className="text-gold-500 text-xs tracking-[0.3em] uppercase mb-3">Editor&apos;s Pick</p>
+            <h2 className="font-[family-name:var(--font-serif)] text-3xl md:text-4xl mb-10">추천 콘텐츠</h2>
+
+            <div className="grid lg:grid-cols-3 lg:grid-rows-2 gap-4">
+              {/* 큰 카드 - 골프 */}
+              <Link href={`/golf/${featuredGolf.slug}/`} className="group lg:col-span-2 lg:row-span-2 relative h-80 lg:h-auto overflow-hidden">
+                <Image src={featuredGolf.image} alt={featuredGolf.nameKo} fill sizes="(min-width: 1024px) 66vw, 100vw" className="object-cover group-hover:scale-105 transition-transform duration-500" />
+                <div className="absolute inset-0 bg-gradient-to-t from-navy-900/80 via-navy-900/20 to-transparent" />
+                <div className="absolute top-5 left-5 bg-gold-500 text-navy-900 px-3 py-1 text-[10px] font-semibold tracking-[0.15em] uppercase">
+                  GOLF
+                </div>
+                <div className="absolute bottom-0 left-0 right-0 p-8">
+                  <h3 className="font-[family-name:var(--font-serif)] text-2xl lg:text-3xl text-white mb-2">{featuredGolf.nameKo}</h3>
+                  <p className="text-white/60 text-sm line-clamp-2">{featuredGolf.description}</p>
+                </div>
+              </Link>
+
+              {/* 작은 카드 - 액티비티 */}
+              <Link href={`/activity/${featuredActivity.slug}/`} className="group relative h-48 lg:h-auto overflow-hidden">
+                <Image src={featuredActivity.image} alt={featuredActivity.name} fill sizes="(min-width: 1024px) 33vw, 100vw" className="object-cover group-hover:scale-105 transition-transform duration-500" />
+                <div className="absolute inset-0 bg-gradient-to-t from-navy-900/80 via-navy-900/20 to-transparent" />
+                <div className="absolute top-4 left-4 bg-gold-500 text-navy-900 px-3 py-1 text-[10px] font-semibold tracking-[0.15em] uppercase">
+                  ACTIVITY
+                </div>
+                <div className="absolute bottom-0 left-0 right-0 p-5">
+                  <h3 className="font-[family-name:var(--font-serif)] text-lg text-white mb-1">{featuredActivity.name}</h3>
+                  <p className="text-white/60 text-xs line-clamp-1">{featuredActivity.description}</p>
+                </div>
+              </Link>
+
+              {/* 작은 카드 - 리조트 */}
+              <Link href={`/resort/${featuredResort.slug}/`} className="group relative h-48 lg:h-auto overflow-hidden">
+                <Image src={featuredResort.image} alt={featuredResort.nameKo} fill sizes="(min-width: 1024px) 33vw, 100vw" className="object-cover group-hover:scale-105 transition-transform duration-500" />
+                <div className="absolute inset-0 bg-gradient-to-t from-navy-900/80 via-navy-900/20 to-transparent" />
+                <div className="absolute top-4 left-4 bg-gold-500 text-navy-900 px-3 py-1 text-[10px] font-semibold tracking-[0.15em] uppercase">
+                  RESORT
+                </div>
+                <div className="absolute bottom-0 left-0 right-0 p-5">
+                  <h3 className="font-[family-name:var(--font-serif)] text-lg text-white mb-1">{featuredResort.nameKo}</h3>
+                  <p className="text-white/60 text-xs line-clamp-1">{featuredResort.description}</p>
+                </div>
+              </Link>
+            </div>
+          </div>
+        </section>
+
+        {/* Golf Courses - 가로 스크롤 */}
+        <section className="py-20 bg-white">
+          <div className="max-w-6xl mx-auto px-6">
+            <div className="flex justify-between items-end mb-10">
+              <div>
+                <p className="text-gold-500 text-xs tracking-[0.3em] uppercase mb-3">Golf Courses</p>
+                <h2 className="font-[family-name:var(--font-serif)] text-3xl md:text-4xl">세부 골프장</h2>
+              </div>
+              <Link href="/golf/" className="text-sm text-navy-600/50 hover:text-gold-500 transition-colors flex items-center gap-1">
+                전체 보기 <ArrowRight className="w-3.5 h-3.5" />
+              </Link>
             </div>
 
-            <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-px bg-navy-900/10">
-              {services.map((s) => (
-                <Link key={s.title} href={s.href} className="group bg-ivory p-10 hover:bg-white transition-colors duration-300">
-                  <p className="text-gold-500 text-[11px] tracking-[0.3em] uppercase mb-3">{s.title}</p>
-                  <h3 className="font-[family-name:var(--font-serif)] text-xl text-navy-900 mb-3">{s.titleKo}</h3>
-                  <p className="text-navy-600/60 text-sm leading-relaxed mb-6">{s.description}</p>
-                  <ArrowRight className="w-4 h-4 text-gold-500 group-hover:translate-x-1 transition-transform" aria-hidden="true" />
+            <div className="flex gap-5 overflow-x-auto snap-x snap-mandatory pb-4 scrollbar-hide">
+              {products.golf.map((course) => (
+                <Link
+                  key={course.id}
+                  href={`/golf/${course.slug}/`}
+                  className="group flex-shrink-0 w-72 snap-start"
+                >
+                  <div className="relative h-48 overflow-hidden mb-4">
+                    <Image src={course.image} alt={course.nameKo} fill sizes="288px" className="object-cover group-hover:scale-105 transition-transform duration-500" />
+                    {course.badge && (
+                      <div className="absolute top-3 right-3 bg-gold-500 text-navy-900 px-2.5 py-1 text-[9px] font-semibold tracking-[0.1em] uppercase">
+                        {course.badge}
+                      </div>
+                    )}
+                  </div>
+                  <h3 className="font-[family-name:var(--font-serif)] text-lg mb-1 group-hover:text-gold-500 transition-colors">{course.nameKo}</h3>
+                  <p className="text-navy-600/40 text-xs">{course.holes}홀 / Par {course.par} / {course.yards.toLocaleString()}yd / {course.courseType}</p>
                 </Link>
               ))}
             </div>
           </div>
         </section>
 
+        {/* Resort & Activity Grid */}
+        <section className="py-20 bg-ivory">
+          <div className="max-w-6xl mx-auto px-6">
+            <p className="text-gold-500 text-xs tracking-[0.3em] uppercase mb-3">Destinations & Experiences</p>
+            <h2 className="font-[family-name:var(--font-serif)] text-3xl md:text-4xl mb-10">리조트 & 액티비티</h2>
+
+            <div className="grid md:grid-cols-2 gap-5">
+              {mixedGrid.map((item) => (
+                <Link
+                  key={item.id}
+                  href={`/${item.type}/${item.slug}/`}
+                  className="group relative h-64 overflow-hidden"
+                >
+                  <Image src={item.image} alt={item.name} fill sizes="(min-width: 768px) 50vw, 100vw" className="object-cover group-hover:scale-105 transition-transform duration-500" />
+                  <div className="absolute inset-0 bg-gradient-to-t from-navy-900/70 via-navy-900/10 to-transparent" />
+                  <div className="absolute top-4 left-4 border border-white/30 text-white px-2.5 py-1 text-[9px] tracking-[0.15em] uppercase">
+                    {item.type === "resort" ? "RESORT" : "ACTIVITY"}
+                  </div>
+                  <div className="absolute bottom-0 left-0 right-0 p-6">
+                    <h3 className="font-[family-name:var(--font-serif)] text-xl text-white mb-1">
+                      {item.displayName}
+                    </h3>
+                    <p className="text-white/50 text-xs">
+                      {item.sub}
+                    </p>
+                  </div>
+                </Link>
+              ))}
+            </div>
+
+            <div className="flex gap-8 justify-center mt-10">
+              <Link href="/resort/" className="text-sm text-navy-600/50 hover:text-gold-500 transition-colors flex items-center gap-1">
+                리조트 전체 <ArrowRight className="w-3.5 h-3.5" />
+              </Link>
+              <Link href="/activity/" className="text-sm text-navy-600/50 hover:text-gold-500 transition-colors flex items-center gap-1">
+                액티비티 전체 <ArrowRight className="w-3.5 h-3.5" />
+              </Link>
+            </div>
+          </div>
+        </section>
+
+        {/* Packages */}
+        <section className="py-20 bg-white">
+          <div className="max-w-6xl mx-auto px-6">
+            <div className="text-center mb-14">
+              <p className="text-gold-500 text-xs tracking-[0.3em] uppercase mb-3">Packages</p>
+              <h2 className="font-[family-name:var(--font-serif)] text-3xl md:text-4xl mb-4">맞춤 패키지</h2>
+              <div className="line-gold mx-auto" />
+            </div>
+
+            <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-5">
+              {products.packages.map((pkg) => (
+                <div key={pkg.id} className="group border border-navy-900/5 hover:border-gold-500/30 transition-colors">
+                  <div className="relative h-48 overflow-hidden">
+                    <Image src={pkg.image} alt={pkg.name} fill sizes="(min-width: 1024px) 33vw, (min-width: 640px) 50vw, 100vw" className="object-cover group-hover:scale-105 transition-transform duration-500" />
+                    {"badge" in pkg && pkg.badge && (
+                      <div className="absolute top-3 right-3 bg-gold-500 text-navy-900 px-2.5 py-1 text-[9px] font-semibold tracking-[0.1em] uppercase">
+                        {pkg.badge}
+                      </div>
+                    )}
+                  </div>
+                  <div className="p-6">
+                    <h3 className="font-[family-name:var(--font-serif)] text-lg mb-1">{pkg.name}</h3>
+                    <p className="text-navy-600/40 text-xs mb-4">{pkg.duration}</p>
+                    <p className="text-navy-600/60 text-sm leading-relaxed mb-5">{pkg.description}</p>
+                    <div className="flex flex-wrap gap-2">
+                      {pkg.includes.slice(0, 4).map((inc) => (
+                        <span key={inc} className="text-[10px] text-navy-600/50 border border-navy-900/10 px-2.5 py-1 tracking-wide">
+                          {inc}
+                        </span>
+                      ))}
+                    </div>
+                  </div>
+                </div>
+              ))}
+            </div>
+
+            <div className="text-center mt-10">
+              <Link href="#cta" className="inline-block bg-navy-900 hover:bg-navy-800 text-white px-10 py-3.5 text-xs font-semibold tracking-[0.2em] uppercase transition-colors">
+                맞춤 패키지 문의
+              </Link>
+            </div>
+          </div>
+        </section>
+
         {/* Reviews */}
-        <section className="py-32 bg-white">
+        <section className="py-20 bg-ivory">
           <div className="max-w-5xl mx-auto px-6">
-            <div className="text-center mb-20">
-              <p className="text-gold-500 text-xs tracking-[0.3em] uppercase mb-4">Testimonials</p>
-              <h2 className="font-[family-name:var(--font-serif)] text-4xl md:text-5xl text-navy-900 mb-4">고객 후기</h2>
-              <div className="line-gold mx-auto mt-6" />
+            <div className="text-center mb-16">
+              <p className="text-gold-500 text-xs tracking-[0.3em] uppercase mb-3">Testimonials</p>
+              <h2 className="font-[family-name:var(--font-serif)] text-3xl md:text-4xl mb-4">고객 후기</h2>
+              <div className="line-gold mx-auto" />
             </div>
 
             <div className="grid md:grid-cols-3 gap-12">
@@ -175,46 +303,49 @@ export default function Home() {
           </div>
         </section>
 
-        {/* Contact */}
-        <section className="py-16 bg-navy-900">
-          <div className="max-w-4xl mx-auto px-6">
-            <div className="grid grid-cols-1 sm:grid-cols-3 gap-px bg-white/10">
-              <a href="https://open.kakao.com/o/cebuguide" target="_blank" rel="noopener noreferrer" className="bg-navy-900 hover:bg-navy-800 text-white p-8 transition-colors text-center">
-                <MessageCircle className="w-6 h-6 mx-auto mb-3 text-gold-400" aria-hidden="true" />
-                <p className="text-sm font-medium mb-1">KakaoTalk</p>
-                <p className="text-white/30 text-xs">실시간 1:1 상담</p>
-              </a>
-              <a href="https://t.me/cebu_guide" target="_blank" rel="noopener noreferrer" className="bg-navy-900 hover:bg-navy-800 text-white p-8 transition-colors text-center">
-                <MessageCircle className="w-6 h-6 mx-auto mb-3 text-gold-400" aria-hidden="true" />
-                <p className="text-sm font-medium mb-1">Telegram</p>
-                <p className="text-white/30 text-xs">빠른 응답</p>
-              </a>
-              <a href="tel:+639175550123" className="bg-navy-900 hover:bg-navy-800 text-white p-8 transition-colors text-center">
-                <Phone className="w-6 h-6 mx-auto mb-3 text-gold-400" aria-hidden="true" />
-                <p className="text-sm font-medium mb-1">Phone</p>
-                <p className="text-white/30 text-xs">+63 917 555 0123</p>
-              </a>
+        {/* CTA + Contact 통합 */}
+        <section id="cta" className="bg-ivory">
+          {/* Contact 바 */}
+          <div className="bg-navy-900">
+            <div className="max-w-4xl mx-auto px-6">
+              <div className="grid grid-cols-1 sm:grid-cols-3 gap-px bg-white/10">
+                <a href="https://open.kakao.com/o/cebuguide" target="_blank" rel="noopener noreferrer" className="bg-navy-900 hover:bg-navy-800 text-white p-6 transition-colors text-center">
+                  <MessageCircle className="w-5 h-5 mx-auto mb-2 text-gold-400" aria-hidden="true" />
+                  <p className="text-sm font-medium mb-0.5">KakaoTalk</p>
+                  <p className="text-white/30 text-xs">실시간 1:1 상담</p>
+                </a>
+                <a href="https://t.me/cebu_guide" target="_blank" rel="noopener noreferrer" className="bg-navy-900 hover:bg-navy-800 text-white p-6 transition-colors text-center">
+                  <MessageCircle className="w-5 h-5 mx-auto mb-2 text-gold-400" aria-hidden="true" />
+                  <p className="text-sm font-medium mb-0.5">Telegram</p>
+                  <p className="text-white/30 text-xs">빠른 응답</p>
+                </a>
+                <a href="tel:+639175550123" className="bg-navy-900 hover:bg-navy-800 text-white p-6 transition-colors text-center">
+                  <Phone className="w-5 h-5 mx-auto mb-2 text-gold-400" aria-hidden="true" />
+                  <p className="text-sm font-medium mb-0.5">Phone</p>
+                  <p className="text-white/30 text-xs">+63 917 555 0123</p>
+                </a>
+              </div>
             </div>
           </div>
-        </section>
 
-        {/* CTA */}
-        <section id="cta" className="py-32 bg-ivory">
-          <div className="max-w-5xl mx-auto px-6">
-            <div className="grid md:grid-cols-2 gap-16 items-start">
-              <div>
-                <p className="text-gold-500 text-xs tracking-[0.3em] uppercase mb-4">Get in Touch</p>
-                <h2 className="font-[family-name:var(--font-serif)] text-3xl md:text-4xl text-navy-900 mb-6 leading-tight">
-                  세부 여행,<br />지금 문의하세요
-                </h2>
-                <p className="text-navy-600/60 leading-relaxed mb-10">
-                  골프, 리조트, 관광 -- 원하시는 조합을 알려주시면<br className="hidden md:block" /> 최적의 패키지를 안내합니다.
-                </p>
-                <ExchangeRate />
-              </div>
-              <div className="bg-white p-10 border border-navy-900/5">
-                <h3 className="font-[family-name:var(--font-serif)] text-xl text-navy-900 mb-8">무료 상담</h3>
-                <BookingForm />
+          {/* CTA 폼 */}
+          <div className="py-20">
+            <div className="max-w-5xl mx-auto px-6">
+              <div className="grid md:grid-cols-2 gap-16 items-start">
+                <div>
+                  <p className="text-gold-500 text-xs tracking-[0.3em] uppercase mb-4">Get in Touch</p>
+                  <h2 className="font-[family-name:var(--font-serif)] text-3xl md:text-4xl text-navy-900 mb-6 leading-tight">
+                    세부 여행,<br />지금 문의하세요
+                  </h2>
+                  <p className="text-navy-600/60 leading-relaxed mb-10">
+                    골프, 리조트, 관광 -- 원하시는 조합을 알려주시면<br className="hidden md:block" /> 최적의 패키지를 안내합니다.
+                  </p>
+                  <ExchangeRate />
+                </div>
+                <div className="bg-white p-10 border border-navy-900/5">
+                  <h3 className="font-[family-name:var(--font-serif)] text-xl text-navy-900 mb-8">무료 상담</h3>
+                  <BookingForm />
+                </div>
               </div>
             </div>
           </div>

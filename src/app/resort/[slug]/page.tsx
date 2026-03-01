@@ -1,9 +1,12 @@
 import { notFound } from 'next/navigation';
 import Link from 'next/link';
-import { ArrowLeft } from 'lucide-react';
+import { MapPin, Star, Sparkles } from 'lucide-react';
 import type { Metadata } from 'next';
 import products from '@/data/products.json';
 import SiteHeader from '../../components/SiteHeader';
+import DetailHero from '../../components/DetailHero';
+import InfoBar from '../../components/InfoBar';
+import RelatedItems from '../../components/RelatedItems';
 
 const resorts = products.resorts;
 
@@ -32,6 +35,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
       title: `${resort.name} - ${resort.grade || '리조트'}`,
       description: desc,
       url: `https://cebu.sasori.dev/resort/${slug}/`,
+      images: [{ url: resort.image, alt: resort.nameKo }],
     },
   };
 }
@@ -41,63 +45,93 @@ export default async function ResortDetailPage({ params }: Props) {
   const resort = resorts.find((r) => r.slug === slug);
   if (!resort) notFound();
 
+  const related = resorts
+    .filter((r) => r.slug !== slug)
+    .map((r) => ({ slug: r.slug, name: r.nameKo, image: r.image }));
+
+  const resortPackage = products.packages.find((p) => p.id === 'resort-full-package');
+
   return (
     <div className="min-h-screen bg-ivory">
       <SiteHeader active="resort" />
 
       <main className="max-w-4xl mx-auto px-6 py-12">
-        <Link href="/resort/" className="inline-flex items-center gap-1.5 text-xs tracking-[0.15em] text-navy-600/40 hover:text-gold-500 mb-8 transition-colors">
-          <ArrowLeft className="w-3.5 h-3.5" />
-          RESORTS
-        </Link>
+        <DetailHero
+          image={resort.image}
+          title={resort.nameKo}
+          subtitle={resort.name}
+          badge={resort.grade}
+          backHref="/resort/"
+          backLabel="RESORTS"
+        />
 
-        <div className="bg-white border border-navy-900/5 p-8 sm:p-10">
-          <div className="flex items-start justify-between mb-3">
-            <h1 className="text-3xl font-[family-name:var(--font-serif)] text-navy-900">{resort.name}</h1>
-            {resort.grade && (
-              <span className="text-[11px] border border-gold-500/40 text-gold-500 px-3 py-1 tracking-wider font-medium">
-                {resort.grade}
-              </span>
+        <InfoBar items={[
+          { icon: MapPin, text: resort.area },
+          { icon: Star, text: resort.grade },
+          { icon: Sparkles, text: resort.feature },
+        ]} />
+
+        <div className="grid lg:grid-cols-3 gap-10">
+          {/* 왼쪽: 소개 + 시설 */}
+          <div className="lg:col-span-2">
+            {resort.description && (
+              <div className="mb-8">
+                <h2 className="text-xs tracking-[0.2em] text-gold-500 mb-4 uppercase">리조트 소개</h2>
+                <p className="text-sm text-navy-600/60 leading-relaxed whitespace-pre-line">{resort.description}</p>
+              </div>
+            )}
+
+            {resort.features.length > 0 && (
+              <div className="pt-8 border-t border-navy-900/10">
+                <h2 className="text-xs tracking-[0.2em] text-gold-500 mb-4 uppercase">시설 & 서비스</h2>
+                <ul className="space-y-2.5">
+                  {resort.features.map((f) => (
+                    <li key={f} className="text-sm text-navy-600/60 flex items-start gap-2.5">
+                      <span className="text-gold-400 mt-0.5">-</span>
+                      {f}
+                    </li>
+                  ))}
+                </ul>
+              </div>
             )}
           </div>
-          {resort.nameKo && <p className="text-navy-600/40 text-sm mb-1">{resort.nameKo}</p>}
-          {resort.area && <p className="text-xs text-navy-600/30 mb-8">{resort.area}</p>}
 
-          {resort.feature && (
-            <div className="mb-8">
-              <h2 className="text-xs tracking-[0.2em] text-gold-500 mb-3 uppercase">Highlight</h2>
-              <p className="text-sm text-navy-600/60 leading-relaxed">{resort.feature}</p>
+          {/* 오른쪽: 사이드바 */}
+          <div className="space-y-6">
+            <div className="bg-white border border-navy-900/5 p-6">
+              <h3 className="text-xs tracking-[0.2em] text-gold-500 mb-4 uppercase">정보</h3>
+              <dl className="space-y-3 text-sm">
+                <dt className="text-navy-600/40 text-xs">등급</dt>
+                <dd className="text-navy-700 mb-3">{resort.grade}</dd>
+                <dt className="text-navy-600/40 text-xs">지역</dt>
+                <dd className="text-navy-700 mb-3">{resort.area}</dd>
+                <dt className="text-navy-600/40 text-xs">주요 시설</dt>
+                <dd className="text-navy-700">{resort.feature}</dd>
+              </dl>
             </div>
-          )}
 
-          {resort.features.length > 0 && (
-            <div className="mb-8 pt-8 border-t border-navy-900/10">
-              <h2 className="text-xs tracking-[0.2em] text-gold-500 mb-4 uppercase">Facilities</h2>
-              <ul className="space-y-2.5">
-                {resort.features.map((f) => (
-                  <li key={f} className="text-sm text-navy-600/60 flex items-start gap-2.5">
-                    <span className="text-gold-400 mt-0.5">-</span>
-                    {f}
-                  </li>
-                ))}
-              </ul>
-            </div>
-          )}
+            <Link
+              href="/#cta"
+              className="block text-center bg-navy-900 hover:bg-navy-800 text-white px-6 py-3.5 text-xs font-semibold tracking-[0.2em] uppercase transition-colors"
+            >
+              예약 문의
+            </Link>
 
-          {resort.description && (
-            <div className="mb-8 pt-8 border-t border-navy-900/10">
-              <h2 className="text-xs tracking-[0.2em] text-gold-500 mb-4 uppercase">Details</h2>
-              <p className="text-sm text-navy-600/60 leading-relaxed whitespace-pre-line">{resort.description}</p>
-            </div>
-          )}
-
-          <Link
-            href="/#cta"
-            className="inline-block bg-navy-900 hover:bg-navy-800 text-white px-10 py-3.5 text-xs font-semibold tracking-[0.2em] uppercase transition-colors"
-          >
-            INQUIRE NOW
-          </Link>
+            {resortPackage && (
+              <Link href="/package/" className="block border border-navy-900/5 hover:border-gold-500/30 p-5 transition-colors">
+                <p className="text-[10px] text-gold-500 tracking-[0.15em] uppercase mb-2">추천 패키지</p>
+                <p className="text-sm font-medium mb-1">{resortPackage.name}</p>
+                <p className="text-xs text-navy-600/40">{resortPackage.duration}</p>
+              </Link>
+            )}
+          </div>
         </div>
+
+        <RelatedItems
+          title="다른 리조트"
+          items={related}
+          basePath="/resort/"
+        />
       </main>
     </div>
   );
