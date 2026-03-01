@@ -66,31 +66,31 @@ export default function FloatingRemote() {
   }, [rates.updatedAt]);
 
   return (
-    <div className="fixed right-4 bottom-[calc(1rem+env(safe-area-inset-bottom))] z-40 flex flex-col items-end gap-3">
-      <div className="rounded-2xl border border-gold-100/70 bg-ivory/95 backdrop-blur-lg shadow-lg px-4 py-3 w-[220px] sm:w-[240px]">
-        <p className="text-[10px] uppercase tracking-[0.3em] text-gold-500">Exchange</p>
+    <div className="fixed right-3 sm:right-4 bottom-[calc(1rem+env(safe-area-inset-bottom))] z-40 flex flex-col items-end gap-2 sm:gap-3">
+      <div className="rounded-2xl border border-gold-100/70 bg-ivory/95 backdrop-blur-lg shadow-lg px-3 sm:px-4 py-2.5 sm:py-3 w-[185px] sm:w-[240px]">
+        <p className="text-[9px] sm:text-[10px] uppercase tracking-[0.3em] text-gold-500">Exchange</p>
         <div className="flex items-baseline justify-between mt-2">
           <div>
-            <p className="text-[11px] text-navy-600/60">KRW 10,000</p>
-            <p className="text-lg font-semibold text-navy-900">{rates.amount.toLocaleString()}</p>
+            <p className="text-[10px] sm:text-[11px] text-navy-600/60">KRW 10,000</p>
+            <p className="text-base sm:text-lg font-semibold text-navy-900">{rates.amount.toLocaleString()}</p>
           </div>
           <div className="text-right">
-            <p className="text-[11px] text-navy-600/60">PHP</p>
-            <p className="text-lg font-semibold text-gold-500">{rates.php.toLocaleString()}</p>
+            <p className="text-[10px] sm:text-[11px] text-navy-600/60">PHP</p>
+            <p className="text-base sm:text-lg font-semibold text-gold-500">{rates.php.toLocaleString()}</p>
           </div>
         </div>
-        <p className="mt-2 text-[10px] text-navy-600/40">{rates.error ? '환율 정보를 불러오지 못했어요.' : updatedLabel}</p>
+        <p className="mt-2 text-[9px] sm:text-[10px] text-navy-600/40">{rates.error ? '환율 정보를 불러오지 못했어요.' : updatedLabel}</p>
       </div>
 
-      <div className="rounded-2xl border border-gold-100/70 bg-ivory/95 backdrop-blur-lg shadow-lg px-4 py-3 w-[220px] sm:w-[240px]">
+      <div className="rounded-2xl border border-gold-100/70 bg-ivory/95 backdrop-blur-lg shadow-lg px-3 sm:px-4 py-2.5 sm:py-3 w-[185px] sm:w-[240px]">
         <button
           type="button"
           onClick={() => setExpanded((prev) => !prev)}
-          className="w-full flex items-center justify-between text-xs font-semibold tracking-[0.2em] uppercase text-navy-900"
+          className="w-full flex items-center justify-between text-[11px] sm:text-xs font-semibold tracking-[0.2em] uppercase text-navy-900"
           aria-expanded={expanded}
         >
           상담원 연결
-          <span className="text-[10px] text-navy-600/60">{expanded ? '접기' : '열기'}</span>
+          <span className="text-[9px] sm:text-[10px] text-navy-600/60">{expanded ? '접기' : '열기'}</span>
         </button>
         {expanded && (
           <div className="mt-3 space-y-2">
@@ -98,7 +98,7 @@ export default function FloatingRemote() {
               href="https://open.kakao.com/o/cebuguide"
               target="_blank"
               rel="noopener noreferrer"
-              className="flex items-center gap-2 rounded-xl border border-gold-100/60 bg-gold-50/80 px-3 py-2 text-xs text-navy-900 hover:border-gold-500/40"
+              className="flex items-center gap-2 rounded-xl border border-gold-100/60 bg-gold-50/80 px-3 py-2 text-[11px] sm:text-xs text-navy-900 hover:border-gold-500/40"
             >
               <MessageCircle className="w-4 h-4 text-gold-500" />
               KakaoTalk 연결
@@ -107,14 +107,14 @@ export default function FloatingRemote() {
               href="https://t.me/cebu_guide"
               target="_blank"
               rel="noopener noreferrer"
-              className="flex items-center gap-2 rounded-xl border border-gold-100/60 bg-gold-50/80 px-3 py-2 text-xs text-navy-900 hover:border-gold-500/40"
+              className="flex items-center gap-2 rounded-xl border border-gold-100/60 bg-gold-50/80 px-3 py-2 text-[11px] sm:text-xs text-navy-900 hover:border-gold-500/40"
             >
               <MessageCircle className="w-4 h-4 text-gold-500" />
               Telegram 연결
             </a>
             <a
               href="tel:+639175550123"
-              className="flex items-center gap-2 rounded-xl border border-gold-100/60 bg-gold-50/80 px-3 py-2 text-xs text-navy-900 hover:border-gold-500/40"
+              className="flex items-center gap-2 rounded-xl border border-gold-100/60 bg-gold-50/80 px-3 py-2 text-[11px] sm:text-xs text-navy-900 hover:border-gold-500/40"
             >
               <Phone className="w-4 h-4 text-gold-500" />
               전화 연결
@@ -126,7 +126,7 @@ export default function FloatingRemote() {
       <button
         type="button"
         onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
-        className={`rounded-full border border-gold-100/70 bg-ivory/95 backdrop-blur-lg shadow-lg w-11 h-11 flex items-center justify-center text-navy-900 transition-all ${
+        className={`rounded-full border border-gold-100/70 bg-ivory/95 backdrop-blur-lg shadow-lg w-10 h-10 sm:w-11 sm:h-11 flex items-center justify-center text-navy-900 transition-all ${
           showTop ? 'opacity-100 translate-y-0' : 'opacity-0 pointer-events-none translate-y-2'
         }`}
         aria-label="맨 위로 이동"

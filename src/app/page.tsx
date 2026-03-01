@@ -110,6 +110,21 @@ const steps = [
   },
 ];
 
+const subtleReviews = [
+  {
+    tag: "가족 여행",
+    text: "이동 동선이 깔끔해서 일정이 편했습니다.",
+  },
+  {
+    tag: "골프 투어",
+    text: "라운딩, 숙소, 차량 흐름이 자연스러웠어요.",
+  },
+  {
+    tag: "허니문",
+    text: "리조트 선택 폭이 넓어서 비교가 쉬웠습니다.",
+  },
+];
+
 export default function Home() {
   return (
     <div className="min-h-screen flex flex-col bg-ivory text-navy-900 page-wash">
@@ -121,35 +136,35 @@ export default function Home() {
           <div className="absolute -top-32 -right-32 w-[28rem] h-[28rem] rounded-full bg-gold-100/70 blur-3xl animate-[float-slow_10s_ease-in-out_infinite]" />
           <div className="absolute -bottom-40 -left-32 w-[30rem] h-[30rem] rounded-full bg-navy-900/10 blur-3xl" />
 
-          <div className="relative z-10 max-w-6xl mx-auto px-6 py-16 lg:py-24 grid lg:grid-cols-[1.05fr_0.95fr] gap-12 items-center">
+          <div className="relative z-10 max-w-6xl mx-auto px-5 sm:px-6 py-14 sm:py-16 lg:py-24 grid lg:grid-cols-[1.05fr_0.95fr] gap-8 sm:gap-12 items-center">
             <div className="space-y-7 animate-[fade-up_0.8s_ease-out_both]">
               <p className="text-gold-500 text-xs tracking-[0.35em] uppercase">Cebu Premium Travel Guide</p>
-              <h1 className="font-[family-name:var(--font-serif)] text-4xl md:text-5xl lg:text-6xl text-navy-900 font-medium leading-[1.1]">
+              <h1 className="font-[family-name:var(--font-serif)] text-3xl sm:text-4xl md:text-5xl lg:text-6xl text-navy-900 font-medium leading-[1.15] sm:leading-[1.1]">
                 세부 여행을
                 <br />
                 하나의 설계로
               </h1>
-              <p className="text-navy-600/70 text-base md:text-lg max-w-lg leading-relaxed">
+              <p className="text-navy-600/70 text-sm sm:text-base md:text-lg max-w-lg leading-relaxed">
                 골프, 리조트, 관광, 교통까지. 현지 한국인이 운영하는 세부 여행 원스톱 가이드입니다.
               </p>
-              <div className="flex flex-wrap gap-3">
+              <div className="flex flex-col sm:flex-row gap-3">
                 <Link
                   href="/package/"
-                  className="bg-navy-900 text-white px-6 py-3 text-xs tracking-[0.2em] uppercase transition-colors hover:bg-navy-800"
+                  className="bg-navy-900 text-white px-6 py-3 text-[11px] sm:text-xs tracking-[0.2em] uppercase transition-colors hover:bg-navy-800 text-center"
                 >
                   패키지 보기
                 </Link>
                 <Link
                   href="/#cta"
-                  className="border border-navy-900/20 text-navy-900 px-6 py-3 text-xs tracking-[0.2em] uppercase transition-colors hover:border-gold-500/60 hover:text-gold-500"
+                  className="border border-navy-900/20 text-navy-900 px-6 py-3 text-[11px] sm:text-xs tracking-[0.2em] uppercase transition-colors hover:border-gold-500/60 hover:text-gold-500 text-center"
                 >
                   빠른 상담
                 </Link>
               </div>
-              <div className="grid grid-cols-2 sm:grid-cols-4 gap-4 pt-2">
+              <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 sm:gap-4 pt-2">
                 {services.map((service) => (
                   <div key={service.href} className="rounded-2xl bg-ivory/85 border border-gold-100/60 px-4 py-3 text-center shadow-sm">
-                    <p className="text-lg font-semibold text-navy-900">{service.desc}</p>
+                    <p className="text-base sm:text-lg font-semibold text-navy-900">{service.desc}</p>
                     <p className="text-[11px] uppercase tracking-[0.2em] text-navy-600/60">{service.label}</p>
                   </div>
                 ))}
@@ -158,7 +173,7 @@ export default function Home() {
 
             <div className="relative">
               <div className="grid grid-cols-2 gap-4">
-                <div className="col-span-2 relative aspect-[16/9] rounded-[30px] overflow-hidden border border-white/70 shadow-xl">
+                <div className="col-span-2 relative aspect-[16/10] sm:aspect-[16/9] rounded-[26px] sm:rounded-[30px] overflow-hidden border border-white/70 shadow-xl">
                   <Image
                     src="/images/hero-golf.webp"
                     alt="세부 여행"
@@ -169,7 +184,7 @@ export default function Home() {
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-navy-900/45 via-transparent to-transparent" />
                 </div>
-                <div className="relative aspect-[4/5] rounded-[26px] overflow-hidden border border-white/70 shadow-lg">
+                <div className="relative aspect-[3/4] sm:aspect-[4/5] rounded-[22px] sm:rounded-[26px] overflow-hidden border border-white/70 shadow-lg">
                   <Image
                     src={products.resorts[1].image}
                     alt="세부 리조트"
@@ -178,7 +193,7 @@ export default function Home() {
                     className="object-cover"
                   />
                 </div>
-                <div className="relative aspect-[4/5] rounded-[26px] overflow-hidden border border-white/70 shadow-lg">
+                <div className="relative aspect-[3/4] sm:aspect-[4/5] rounded-[22px] sm:rounded-[26px] overflow-hidden border border-white/70 shadow-lg">
                   <Image
                     src={products.activities[0].image}
                     alt="세부 액티비티"
@@ -188,7 +203,7 @@ export default function Home() {
                   />
                 </div>
               </div>
-              <div className="absolute -left-6 -bottom-6 bg-ivory/95 backdrop-blur-md border border-gold-100/70 rounded-2xl px-4 py-3 shadow-lg">
+              <div className="absolute -left-3 -bottom-3 sm:-left-6 sm:-bottom-6 bg-ivory/95 backdrop-blur-md border border-gold-100/70 rounded-2xl px-4 py-3 shadow-lg">
                 <p className="text-xs uppercase tracking-[0.25em] text-gold-500">Local Desk</p>
                 <p className="text-sm font-medium text-navy-900">현지 한국인 운영 상담</p>
               </div>
@@ -206,7 +221,7 @@ export default function Home() {
           </div>
         </section>
 
-        <section className="relative z-20 -mt-12 max-w-6xl mx-auto px-6">
+        <section className="relative z-20 -mt-10 sm:-mt-12 max-w-6xl mx-auto px-5 sm:px-6">
           <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
             {services.map((service) => (
               <Link
@@ -227,8 +242,8 @@ export default function Home() {
           </div>
         </section>
 
-        <section className="py-20">
-          <div className="max-w-6xl mx-auto px-6">
+        <section className="py-16 sm:py-20">
+          <div className="max-w-6xl mx-auto px-5 sm:px-6">
             <div className="flex flex-col md:flex-row md:items-end md:justify-between gap-6 mb-10">
               <div>
                 <p className="text-xs uppercase tracking-[0.35em] text-gold-500 mb-3">Collections</p>
@@ -243,12 +258,12 @@ export default function Home() {
                 전체 패키지 보기 <ArrowUpRight className="w-4 h-4" />
               </Link>
             </div>
-            <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
+            <div className="flex gap-4 overflow-x-auto pb-2 scrollbar-hide sm:grid sm:grid-cols-2 lg:grid-cols-4 sm:gap-6">
               {collections.map((item) => (
                 <Link
                   key={item.title}
                   href={item.href}
-                  className="group relative overflow-hidden rounded-3xl border border-gold-100/60 bg-ivory/80 shadow-sm"
+                  className="group relative overflow-hidden rounded-3xl border border-gold-100/60 bg-ivory/80 shadow-sm min-w-[220px] sm:min-w-0"
                 >
                   <div className="absolute inset-0">
                     <Image
@@ -274,8 +289,8 @@ export default function Home() {
           </div>
         </section>
 
-        <section className="py-20 bg-gold-50/80 border-y border-gold-100/60">
-          <div className="max-w-6xl mx-auto px-6">
+        <section className="py-16 sm:py-20 bg-gold-50/80 border-y border-gold-100/60">
+          <div className="max-w-6xl mx-auto px-5 sm:px-6">
             <div className="flex flex-col md:flex-row md:items-end md:justify-between gap-6 mb-10">
               <div>
                 <p className="text-xs uppercase tracking-[0.35em] text-gold-500 mb-3">Editor&apos;s Picks</p>
@@ -290,12 +305,12 @@ export default function Home() {
                 전체 일정 보기 <ArrowUpRight className="w-4 h-4" />
               </Link>
             </div>
-            <div className="grid lg:grid-cols-3 gap-6">
+            <div className="flex gap-4 overflow-x-auto pb-2 scrollbar-hide lg:grid lg:grid-cols-3 lg:gap-6">
               {editorPicks.map((pick) => (
                 <Link
                   key={pick.title}
                   href={pick.href}
-                  className="group rounded-3xl overflow-hidden border border-gold-100/70 bg-ivory/95 shadow-sm transition-all hover:-translate-y-1 hover:shadow-xl"
+                  className="group rounded-3xl overflow-hidden border border-gold-100/70 bg-ivory/95 shadow-sm transition-all hover:-translate-y-1 hover:shadow-xl min-w-[240px] sm:min-w-[280px] lg:min-w-0"
                 >
                   <div className="relative h-48">
                     <Image
@@ -332,8 +347,35 @@ export default function Home() {
           </div>
         </section>
 
-        <section className="py-20">
-          <div className="max-w-6xl mx-auto px-6 grid lg:grid-cols-[1.1fr_0.9fr] gap-12 items-start">
+        <section className="py-16 sm:py-20">
+          <div className="max-w-6xl mx-auto px-5 sm:px-6">
+            <div className="flex items-center justify-between mb-8">
+              <div>
+                <p className="text-xs uppercase tracking-[0.35em] text-gold-500 mb-3">Notes</p>
+                <h2 className="font-[family-name:var(--font-serif)] text-2xl sm:text-3xl text-navy-900">
+                  고객이 남긴 짧은 한 줄
+                </h2>
+              </div>
+              <span className="text-[11px] uppercase tracking-[0.2em] text-navy-500">Short Reviews</span>
+            </div>
+            <div className="flex gap-4 overflow-x-auto pb-2 scrollbar-hide md:grid md:grid-cols-3 md:gap-6">
+              {subtleReviews.map((review) => (
+                <div
+                  key={review.tag}
+                  className="min-w-[220px] md:min-w-0 rounded-2xl border border-gold-100/60 bg-ivory/90 p-5"
+                >
+                  <span className="text-[10px] uppercase tracking-[0.3em] text-gold-500">{review.tag}</span>
+                  <p className="mt-3 text-sm text-navy-800 leading-relaxed">
+                    {review.text}
+                  </p>
+                </div>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        <section className="py-16 sm:py-20">
+          <div className="max-w-6xl mx-auto px-5 sm:px-6 grid lg:grid-cols-[1.1fr_0.9fr] gap-10 sm:gap-12 items-start">
             <div className="space-y-6">
               <p className="text-xs uppercase tracking-[0.35em] text-gold-500">Why Cebu Guide</p>
               <h2 className="font-[family-name:var(--font-serif)] text-3xl md:text-4xl text-navy-900">
@@ -390,9 +432,9 @@ export default function Home() {
           </div>
         </section>
 
-        <section id="cta" className="py-20 bg-ivory/90 border-t border-gold-100/70">
-          <div className="max-w-6xl mx-auto px-6">
-            <div className="grid lg:grid-cols-[1fr_1.1fr] gap-10 items-start">
+        <section id="cta" className="py-16 sm:py-20 bg-ivory/90 border-t border-gold-100/70">
+          <div className="max-w-6xl mx-auto px-5 sm:px-6">
+            <div className="grid lg:grid-cols-[1fr_1.1fr] gap-8 sm:gap-10 items-start">
               <div className="space-y-6">
                 <p className="text-xs uppercase tracking-[0.35em] text-gold-500">Contact</p>
                 <h2 className="font-[family-name:var(--font-serif)] text-3xl md:text-4xl text-navy-900">
