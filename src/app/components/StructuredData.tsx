@@ -106,7 +106,7 @@ export function TourProductsSchema() {
       "@type": "Product",
       "name": `세부 ${pkg.name}`,
       "description": pkg.description,
-      "image": `https://cebu.sasori.dev${pkg.image}`,
+      "image": pkg.image.startsWith('http') ? pkg.image : `https://cebu.sasori.dev${pkg.image}`,
       "offers": {
         "@type": "Offer",
         "priceCurrency": "KRW",
