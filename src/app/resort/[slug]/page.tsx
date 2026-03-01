@@ -30,11 +30,11 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   return {
     title: `${resort.name} - ${resort.grade || '리조트'}`,
     description: desc,
-    alternates: { canonical: `https://cebu.sasori.dev/resort/${slug}/` },
+    alternates: { canonical: `https://세부.com/resort/${slug}/` },
     openGraph: {
       title: `${resort.name} - ${resort.grade || '리조트'}`,
       description: desc,
-      url: `https://cebu.sasori.dev/resort/${slug}/`,
+      url: `https://세부.com/resort/${slug}/`,
       images: [{ url: resort.image, alt: resort.nameKo }],
     },
   };

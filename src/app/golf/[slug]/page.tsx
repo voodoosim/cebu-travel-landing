@@ -29,11 +29,11 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   return {
     title: course.nameKo,
     description: desc,
-    alternates: { canonical: `https://cebu.sasori.dev/golf/${slug}/` },
+    alternates: { canonical: `https://세부.com/golf/${slug}/` },
     openGraph: {
       title: course.nameKo,
       description: desc,
-      url: `https://cebu.sasori.dev/golf/${slug}/`,
+      url: `https://세부.com/golf/${slug}/`,
       images: [{ url: course.image, alt: course.nameKo }],
     },
   };

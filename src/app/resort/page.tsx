@@ -7,11 +7,11 @@ import PageHero from '@/app/components/PageHero';
 export const metadata: Metadata = {
   title: '세부 리조트 & 호텔',
   description: '세부 최고의 리조트와 호텔을 예약 대행합니다.',
-  alternates: { canonical: 'https://cebu.sasori.dev/resort/' },
+  alternates: { canonical: 'https://세부.com/resort/' },
   openGraph: {
     title: '세부 리조트 & 호텔',
     description: '세부 최고의 리조트와 호텔을 예약 대행합니다.',
-    url: 'https://cebu.sasori.dev/resort/',
+    url: 'https://세부.com/resort/',
   },
 };
 

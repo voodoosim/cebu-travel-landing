@@ -9,11 +9,11 @@ import PageHero from '@/app/components/PageHero';
 export const metadata: Metadata = {
   title: '세부 골프장',
   description: '세부 전역 6개 명문 골프장. 예약부터 캐디, 카트, 차량까지 전부 대행합니다.',
-  alternates: { canonical: 'https://cebu.sasori.dev/golf/' },
+  alternates: { canonical: 'https://세부.com/golf/' },
   openGraph: {
     title: '세부 골프장',
     description: '세부 전역 6개 명문 골프장. 예약부터 캐디, 카트, 차량까지 전부 대행합니다.',
-    url: 'https://cebu.sasori.dev/golf/',
+    url: 'https://세부.com/golf/',
   },
 };
 

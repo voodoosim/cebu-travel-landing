@@ -1,7 +1,7 @@
 import type { MetadataRoute } from 'next';
 import products from '@/data/products.json';
 
-const BASE = 'https://cebu.sasori.dev';
+const BASE = 'https://세부.com';
 const lastModified = new Date();
 
 export default function sitemap(): MetadataRoute.Sitemap {

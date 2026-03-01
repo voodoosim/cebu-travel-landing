@@ -26,11 +26,11 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   return {
     title: activity.name,
     description: desc,
-    alternates: { canonical: `https://cebu.sasori.dev/activity/${slug}/` },
+    alternates: { canonical: `https://세부.com/activity/${slug}/` },
     openGraph: {
       title: activity.name,
       description: desc,
-      url: `https://cebu.sasori.dev/activity/${slug}/`,
+      url: `https://세부.com/activity/${slug}/`,
       images: [{ url: activity.image, alt: activity.name }],
     },
   };

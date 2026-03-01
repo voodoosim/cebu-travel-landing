@@ -13,7 +13,7 @@ export function LocalBusinessSchema() {
     "@type": "TravelAgency",
     "name": "세부가이드",
     "description": "세부 현지 한국인 운영 통합 가이드. 골프 예약, 리조트 예약, 관광 액티비티, 공항 픽업, 전용 차량, 한국어 통역까지 세부 여행 토탈 솔루션.",
-    "url": "https://cebu.sasori.dev",
+    "url": "https://세부.com",
     "telephone": "+63-917-555-0123",
     "address": {
       "@type": "PostalAddress",
@@ -106,12 +106,12 @@ export function TourProductsSchema() {
       "@type": "Product",
       "name": `세부 ${pkg.name}`,
       "description": pkg.description,
-      "image": pkg.image.startsWith('http') ? pkg.image : `https://cebu.sasori.dev${pkg.image}`,
+      "image": pkg.image.startsWith('http') ? pkg.image : `https://세부.com${pkg.image}`,
       "offers": {
         "@type": "Offer",
         "priceCurrency": "KRW",
         "availability": "https://schema.org/InStock",
-        "url": "https://cebu.sasori.dev/package/"
+        "url": "https://세부.com/package/"
       }
     }))
   };

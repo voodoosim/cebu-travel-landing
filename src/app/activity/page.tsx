@@ -7,11 +7,11 @@ import PageHero from '@/app/components/PageHero';
 export const metadata: Metadata = {
   title: '세부 관광 & 액티비티',
   description: '골프 외에도 세부에서 즐길 수 있는 다양한 액티비티를 예약해 드립니다.',
-  alternates: { canonical: 'https://cebu.sasori.dev/activity/' },
+  alternates: { canonical: 'https://세부.com/activity/' },
   openGraph: {
     title: '세부 관광 & 액티비티',
     description: '골프 외에도 세부에서 즐길 수 있는 다양한 액티비티를 예약해 드립니다.',
-    url: 'https://cebu.sasori.dev/activity/',
+    url: 'https://세부.com/activity/',
   },
 };
 

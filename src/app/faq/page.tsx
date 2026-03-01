@@ -8,11 +8,11 @@ import PageHero from '@/app/components/PageHero';
 export const metadata: Metadata = {
   title: '자주 묻는 질문',
   description: '세부 골프, 리조트, 관광 예약에 대한 자주 묻는 질문과 답변.',
-  alternates: { canonical: 'https://cebu.sasori.dev/faq/' },
+  alternates: { canonical: 'https://세부.com/faq/' },
   openGraph: {
     title: '자주 묻는 질문',
     description: '세부 골프, 리조트, 관광 예약에 대한 자주 묻는 질문과 답변.',
-    url: 'https://cebu.sasori.dev/faq/',
+    url: 'https://세부.com/faq/',
   },
 };
 

@@ -17,7 +17,7 @@ const playfair = Playfair_Display({
 });
 
 export const metadata: Metadata = {
-  metadataBase: new URL('https://cebu.sasori.dev'),
+  metadataBase: new URL('https://세부.com'),
 
   title: {
     default: "세부가이드 | 골프, 리조트, 관광 통합 가이드 | 세부 여행 토탈 솔루션",
@@ -55,7 +55,7 @@ export const metadata: Metadata = {
     type: "website",
     locale: "ko_KR",
     siteName: "세부가이드",
-    url: "https://cebu.sasori.dev",
+    url: "https://세부.com",
     images: [
       {
         url: '/images/hero-golf.webp',
@@ -74,7 +74,7 @@ export const metadata: Metadata = {
   },
 
   alternates: {
-    canonical: 'https://cebu.sasori.dev',
+    canonical: 'https://세부.com',
   },
 
   category: 'travel',
