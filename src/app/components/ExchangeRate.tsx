@@ -1,36 +1,7 @@
-const EXCHANGE_API_URL = 'https://open.er-api.com/v6/latest/KRW';
-
-interface ExchangeApiResponse {
-  result: string;
-  rates: Record<string, number>;
-  time_last_update_utc: string;
-}
-
-async function fetchRates(): Promise<{ amount: number; php: number; updatedAt: string | null }> {
-  try {
-    const res = await fetch(EXCHANGE_API_URL, {
-      next: { revalidate: 3600 },
-    });
-
-    if (!res.ok) throw new Error(`API ${res.status}`);
-
-    const data: ExchangeApiResponse = await res.json();
-    if (data.result !== 'success' || !data.rates?.PHP) {
-      throw new Error('Invalid response');
-    }
-
-    return {
-      amount: 10000,
-      php: Math.round(data.rates.PHP * 10000),
-      updatedAt: data.time_last_update_utc,
-    };
-  } catch {
-    return { amount: 10000, php: 420, updatedAt: null };
-  }
-}
+import { fetchExchangeRates } from '@/lib/exchange';
 
 export default async function ExchangeRate() {
-  const rates = await fetchRates();
+  const rates = await fetchExchangeRates();
 
   return (
     <div className="border border-navy-900/10 p-8">
@@ -47,7 +18,7 @@ export default async function ExchangeRate() {
           <span className="text-xs text-navy-600/40">원</span>
         </div>
 
-        <span className="text-xl text-gold-500">=</span>
+        <span className="text-xl text-gold-500" aria-hidden="true">=</span>
 
         <div className="flex flex-col items-center gap-1">
           <span className="text-xs text-navy-600/40 tracking-wider">PHP</span>

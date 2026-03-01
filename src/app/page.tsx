@@ -1,9 +1,9 @@
 import Image from "next/image";
 import Link from "next/link";
 import { Star, ChevronDown, Phone, MessageCircle, ArrowRight } from "lucide-react";
-import SiteHeader from "./components/SiteHeader";
-import ExchangeRate from "./components/ExchangeRate";
-import BookingForm from "./components/BookingForm";
+import SiteHeader from "@/app/components/SiteHeader";
+import ExchangeRate from "@/app/components/ExchangeRate";
+import BookingForm from "@/app/components/BookingForm";
 
 const services = [
   {
@@ -94,7 +94,7 @@ export default function Home() {
           </div>
 
           <div className="absolute bottom-12 left-1/2 -translate-x-1/2 animate-bounce">
-            <ChevronDown className="w-5 h-5 text-white/40" />
+            <ChevronDown className="w-5 h-5 text-white/40" aria-hidden="true" />
           </div>
         </section>
 
@@ -140,7 +140,7 @@ export default function Home() {
                   <p className="text-gold-500 text-[11px] tracking-[0.3em] uppercase mb-3">{s.title}</p>
                   <h3 className="font-[family-name:var(--font-serif)] text-xl text-navy-900 mb-3">{s.titleKo}</h3>
                   <p className="text-navy-600/60 text-sm leading-relaxed mb-6">{s.description}</p>
-                  <ArrowRight className="w-4 h-4 text-gold-500 group-hover:translate-x-1 transition-transform" />
+                  <ArrowRight className="w-4 h-4 text-gold-500 group-hover:translate-x-1 transition-transform" aria-hidden="true" />
                 </Link>
               ))}
             </div>
@@ -161,7 +161,7 @@ export default function Home() {
                 <div key={t.name}>
                   <div className="flex gap-1 mb-6">
                     {Array.from({ length: t.rating }).map((_, i) => (
-                      <Star key={i} className="w-4 h-4 text-gold-400 fill-current" />
+                      <Star key={i} className="w-4 h-4 text-gold-400 fill-current" aria-hidden="true" />
                     ))}
                   </div>
                   <p className="text-navy-700 leading-relaxed mb-8 text-[15px]">&ldquo;{t.text}&rdquo;</p>
@@ -179,20 +179,20 @@ export default function Home() {
         <section className="py-16 bg-navy-900">
           <div className="max-w-4xl mx-auto px-6">
             <div className="grid grid-cols-1 sm:grid-cols-3 gap-px bg-white/10">
-              <a href="https://open.kakao.com/" target="_blank" rel="noopener noreferrer" className="bg-navy-900 hover:bg-navy-800 text-white p-8 transition-colors text-center">
-                <MessageCircle className="w-6 h-6 mx-auto mb-3 text-gold-400" />
+              <a href="https://open.kakao.com/o/cebuguide" target="_blank" rel="noopener noreferrer" className="bg-navy-900 hover:bg-navy-800 text-white p-8 transition-colors text-center">
+                <MessageCircle className="w-6 h-6 mx-auto mb-3 text-gold-400" aria-hidden="true" />
                 <p className="text-sm font-medium mb-1">KakaoTalk</p>
                 <p className="text-white/30 text-xs">실시간 1:1 상담</p>
               </a>
-              <a href="https://t.me/" target="_blank" rel="noopener noreferrer" className="bg-navy-900 hover:bg-navy-800 text-white p-8 transition-colors text-center">
-                <MessageCircle className="w-6 h-6 mx-auto mb-3 text-gold-400" />
+              <a href="https://t.me/cebu_guide" target="_blank" rel="noopener noreferrer" className="bg-navy-900 hover:bg-navy-800 text-white p-8 transition-colors text-center">
+                <MessageCircle className="w-6 h-6 mx-auto mb-3 text-gold-400" aria-hidden="true" />
                 <p className="text-sm font-medium mb-1">Telegram</p>
                 <p className="text-white/30 text-xs">빠른 응답</p>
               </a>
-              <a href="tel:+639123456789" className="bg-navy-900 hover:bg-navy-800 text-white p-8 transition-colors text-center">
-                <Phone className="w-6 h-6 mx-auto mb-3 text-gold-400" />
+              <a href="tel:+639175550123" className="bg-navy-900 hover:bg-navy-800 text-white p-8 transition-colors text-center">
+                <Phone className="w-6 h-6 mx-auto mb-3 text-gold-400" aria-hidden="true" />
                 <p className="text-sm font-medium mb-1">Phone</p>
-                <p className="text-white/30 text-xs">+63 912 345 6789</p>
+                <p className="text-white/30 text-xs">+63 917 555 0123</p>
               </a>
             </div>
           </div>
@@ -257,9 +257,9 @@ export default function Home() {
             <div>
               <h4 className="text-white/60 text-[11px] tracking-[0.2em] uppercase mb-6">Contact</h4>
               <ul className="space-y-3 text-sm">
-                <li>KakaoTalk: 세부가이드</li>
+                <li>KakaoTalk: cebuguide</li>
                 <li>Telegram: @cebu_guide</li>
-                <li>+63 912 345 6789</li>
+                <li>+63 917 555 0123</li>
                 <li>Cebu City, Philippines</li>
               </ul>
             </div>

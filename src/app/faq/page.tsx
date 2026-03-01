@@ -1,8 +1,9 @@
 import Link from 'next/link';
 import { ChevronDown } from 'lucide-react';
 import type { Metadata } from 'next';
-import { FAQSchema } from '../components/StructuredData';
-import SiteHeader from '../components/SiteHeader';
+import { FAQSchema } from '@/app/components/StructuredData';
+import SiteHeader from '@/app/components/SiteHeader';
+import PageHero from '@/app/components/PageHero';
 
 export const metadata: Metadata = {
   title: '자주 묻는 질문',
@@ -31,40 +32,37 @@ export default function FaqPage() {
       <div className="min-h-screen bg-ivory">
         <SiteHeader active="faq" />
 
-      <main className="max-w-3xl mx-auto px-6 py-20">
-        <div className="text-center mb-20">
-          <p className="text-gold-500 text-xs tracking-[0.3em] uppercase mb-4">FAQ</p>
-          <h1 className="text-4xl md:text-5xl font-[family-name:var(--font-serif)] text-navy-900 mb-4">자주 묻는 질문</h1>
-          <div className="line-gold mx-auto mb-6" />
-          <p className="text-navy-600/60 max-w-xl mx-auto text-sm leading-relaxed">
-            궁금한 점이 있으시면 아래를 확인해 주세요.
-          </p>
-        </div>
+        <main className="max-w-3xl mx-auto px-6 py-20">
+          <PageHero
+            label="FAQ"
+            title="자주 묻는 질문"
+            description="궁금한 점이 있으시면 아래를 확인해 주세요."
+          />
 
-        <div className="border-t border-navy-900/10">
-          {faqs.map((faq) => (
-            <details key={faq.q} className="group border-b border-navy-900/10">
-              <summary className="flex items-center justify-between cursor-pointer py-6 text-left text-navy-900 hover:text-gold-500 transition-colors text-[15px]">
-                {faq.q}
-                <ChevronDown className="w-4 h-4 text-navy-600/30 group-open:rotate-180 transition-transform flex-shrink-0 ml-6" />
-              </summary>
-              <div className="pb-6 text-navy-600/60 text-sm leading-relaxed">
-                {faq.a}
-              </div>
-            </details>
-          ))}
-        </div>
+          <div className="border-t border-navy-900/10">
+            {faqs.map((faq) => (
+              <details key={faq.q} className="group border-b border-navy-900/10">
+                <summary className="flex items-center justify-between cursor-pointer py-6 text-left text-navy-900 hover:text-gold-500 transition-colors text-[15px]">
+                  {faq.q}
+                  <ChevronDown className="w-4 h-4 text-navy-600/30 group-open:rotate-180 transition-transform flex-shrink-0 ml-6" aria-hidden="true" />
+                </summary>
+                <div className="pb-6 text-navy-600/60 text-sm leading-relaxed">
+                  {faq.a}
+                </div>
+              </details>
+            ))}
+          </div>
 
-        <div className="text-center mt-16">
-          <p className="text-navy-600/40 text-sm mb-6">찾는 답변이 없으신가요?</p>
-          <Link
-            href="/#cta"
-            className="inline-block bg-navy-900 hover:bg-navy-800 text-white px-10 py-3.5 text-xs font-semibold tracking-[0.2em] uppercase transition-colors"
-          >
-            INQUIRE NOW
-          </Link>
-        </div>
-      </main>
+          <div className="text-center mt-16">
+            <p className="text-navy-600/40 text-sm mb-6">찾는 답변이 없으신가요?</p>
+            <Link
+              href="/#cta"
+              className="inline-block bg-navy-900 hover:bg-navy-800 text-white px-10 py-3.5 text-xs font-semibold tracking-[0.2em] uppercase transition-colors"
+            >
+              INQUIRE NOW
+            </Link>
+          </div>
+        </main>
       </div>
     </>
   );

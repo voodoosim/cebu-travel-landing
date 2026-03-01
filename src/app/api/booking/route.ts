@@ -19,9 +19,35 @@ const TOUR_TO_SERVICE: Record<string, ServiceType> = {
   '맞춤 패키지 (직접 상담)': 'CUSTOM',
 };
 
+const rateLimitMap = new Map<string, { count: number; resetAt: number }>();
+const RATE_LIMIT = 5;
+const RATE_WINDOW = 60_000;
+
+function isRateLimited(ip: string): boolean {
+  const now = Date.now();
+  const entry = rateLimitMap.get(ip);
+  if (!entry || now > entry.resetAt) {
+    rateLimitMap.set(ip, { count: 1, resetAt: now + RATE_WINDOW });
+    return false;
+  }
+  entry.count++;
+  return entry.count > RATE_LIMIT;
+}
+
 export async function POST(request: Request) {
+  const ip = request.headers.get('x-forwarded-for')?.split(',')[0]?.trim() ?? 'unknown';
+  if (isRateLimited(ip)) {
+    return NextResponse.json({ error: 'Too many requests' }, { status: 429 });
+  }
+
+  let body: Record<string, unknown>;
   try {
-    const body = await request.json();
+    body = await request.json();
+  } catch {
+    return NextResponse.json({ error: 'Invalid JSON' }, { status: 400 });
+  }
+
+  try {
     const { name, contact, tour, message } = body;
 
     if (!name || typeof name !== 'string' || name.length > 100) {
@@ -30,7 +56,7 @@ export async function POST(request: Request) {
     if (!contact || typeof contact !== 'string' || contact.length < 3 || contact.length > 100) {
       return NextResponse.json({ error: 'Invalid contact' }, { status: 400 });
     }
-    if (!tour || !TOUR_OPTIONS.includes(tour)) {
+    if (!tour || typeof tour !== 'string' || !TOUR_OPTIONS.includes(tour)) {
       return NextResponse.json({ error: 'Invalid tour' }, { status: 400 });
     }
     if (message && (typeof message !== 'string' || message.length > 500)) {

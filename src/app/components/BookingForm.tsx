@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, FormEvent } from "react";
+import { useState, type FormEvent } from "react";
 
 const TOUR_OPTIONS = [
   "골프 패키지",
@@ -137,7 +137,7 @@ export default function BookingForm() {
       </div>
 
       {status === "error" && (
-        <p className="text-red-500 text-sm">
+        <p role="alert" className="text-red-500 text-sm">
           전송에 실패했습니다. 다시 시도해주세요.
         </p>
       )}

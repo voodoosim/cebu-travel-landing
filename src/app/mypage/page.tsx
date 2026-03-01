@@ -3,9 +3,16 @@ import { prisma } from "@/lib/prisma";
 import { redirect } from "next/navigation";
 import Image from "next/image";
 import Link from "next/link";
+import type { Metadata } from "next";
+import type { BookingStatus, ServiceType } from "@prisma/client";
 import SignOutButton from "./SignOutButton";
 
-const STATUS_LABEL: Record<string, string> = {
+export const metadata: Metadata = {
+  title: "마이페이지",
+  robots: { index: false, follow: false },
+};
+
+const STATUS_LABEL: Record<BookingStatus, string> = {
   INQUIRY: "문의 접수",
   QUOTE_SENT: "견적 발송",
   CONFIRMED: "예약 확정",
@@ -13,7 +20,7 @@ const STATUS_LABEL: Record<string, string> = {
   CANCELLED: "취소",
 };
 
-const STATUS_COLOR: Record<string, string> = {
+const STATUS_COLOR: Record<BookingStatus, string> = {
   INQUIRY: "border-gold-500/40 text-gold-400",
   QUOTE_SENT: "border-blue-400/40 text-blue-300",
   CONFIRMED: "border-emerald-400/40 text-emerald-300",
@@ -21,7 +28,7 @@ const STATUS_COLOR: Record<string, string> = {
   CANCELLED: "border-red-400/40 text-red-300",
 };
 
-const SERVICE_LABEL: Record<string, string> = {
+const SERVICE_LABEL: Record<ServiceType, string> = {
   GOLF: "골프",
   RESORT: "리조트",
   ACTIVITY: "액티비티",
@@ -56,7 +63,6 @@ export default async function MyPage() {
       </header>
 
       <div className="max-w-3xl mx-auto px-6 py-12 space-y-8">
-        {/* 프로필 */}
         <div className="border border-gold-500/15 p-6 flex items-center gap-5">
           {session.user.image ? (
             <Image
@@ -77,7 +83,6 @@ export default async function MyPage() {
           </div>
         </div>
 
-        {/* 예약 내역 */}
         <div>
           <h2 className="text-xs font-medium tracking-[0.2em] text-gold-400 mb-5 uppercase">
             Reservations
@@ -151,7 +156,6 @@ export default async function MyPage() {
           )}
         </div>
 
-        {/* 새 예약 */}
         <div className="text-center pt-4">
           <Link
             href="/#cta"

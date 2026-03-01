@@ -3,7 +3,8 @@ import Image from 'next/image';
 import { Flag, Clock, MapPin } from 'lucide-react';
 import type { Metadata } from 'next';
 import products from '@/data/products.json';
-import SiteHeader from '../components/SiteHeader';
+import SiteHeader from '@/app/components/SiteHeader';
+import PageHero from '@/app/components/PageHero';
 
 export const metadata: Metadata = {
   title: '세부 골프장',
@@ -24,14 +25,11 @@ export default function GolfListPage() {
       <SiteHeader active="golf" />
 
       <main className="max-w-6xl mx-auto px-6 py-20">
-        <div className="text-center mb-20">
-          <p className="text-gold-500 text-xs tracking-[0.3em] uppercase mb-4">Golf Courses</p>
-          <h1 className="text-4xl md:text-5xl font-[family-name:var(--font-serif)] text-navy-900 mb-4">세부 골프장</h1>
-          <div className="line-gold mx-auto mb-6" />
-          <p className="text-navy-600/60 max-w-xl mx-auto text-sm leading-relaxed">
-            세부 전역 {courses.length}개 명문 골프장. 예약부터 캐디, 카트, 차량까지 전부 대행합니다.
-          </p>
-        </div>
+        <PageHero
+          label="Golf Courses"
+          title="세부 골프장"
+          description={`세부 전역 ${courses.length}개 명문 골프장. 예약부터 캐디, 카트, 차량까지 전부 대행합니다.`}
+        />
 
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
           {courses.map((course) => (
@@ -60,18 +58,18 @@ export default function GolfListPage() {
                 <p className="text-navy-600/40 text-xs mb-3">{course.name}</p>
                 <div className="flex flex-wrap gap-3 text-[11px] text-navy-600/50 mb-3">
                   <span className="flex items-center gap-1.5">
-                    <Flag className="w-3 h-3" />
+                    <Flag className="w-3 h-3" aria-hidden="true" />
                     {course.holes}H / Par {course.par} / {course.yards.toLocaleString()}yd
                   </span>
                   {course.distance && (
                     <span className="flex items-center gap-1.5">
-                      <Clock className="w-3 h-3" />
+                      <Clock className="w-3 h-3" aria-hidden="true" />
                       {course.distance}
                     </span>
                   )}
                   {course.courseType && (
                     <span className="flex items-center gap-1.5">
-                      <MapPin className="w-3 h-3" />
+                      <MapPin className="w-3 h-3" aria-hidden="true" />
                       {course.courseType}
                     </span>
                   )}
@@ -79,7 +77,7 @@ export default function GolfListPage() {
                 <ul className="space-y-1.5">
                   {course.features.slice(0, 3).map((f) => (
                     <li key={f} className="text-xs text-navy-600/50 flex items-start gap-2">
-                      <span className="text-gold-400 mt-0.5">-</span>
+                      <span className="text-gold-400 mt-0.5" aria-hidden="true">-</span>
                       {f}
                     </li>
                   ))}

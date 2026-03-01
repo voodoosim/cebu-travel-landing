@@ -1,3 +1,5 @@
+import products from '@/data/products.json';
+
 function safeJsonLd(data: unknown): string {
   return JSON.stringify(data)
     .replace(/</g, '\\u003c')
@@ -12,7 +14,7 @@ export function LocalBusinessSchema() {
     "name": "세부가이드",
     "description": "세부 현지 한국인 운영 통합 가이드. 골프 예약, 리조트 예약, 관광 액티비티, 공항 픽업, 전용 차량, 한국어 통역까지 세부 여행 토탈 솔루션.",
     "url": "https://cebu.sasori.dev",
-    "telephone": "+63-912-345-6789",
+    "telephone": "+63-917-555-0123",
     "address": {
       "@type": "PostalAddress",
       "addressLocality": "Cebu City",
@@ -96,46 +98,22 @@ export function FAQSchema() {
 }
 
 export function TourProductsSchema() {
+  const pkgs = products.packages;
+
   const schema = {
     "@context": "https://schema.org",
-    "@graph": [
-      {
-        "@type": "Product",
-        "name": "세부 골프 패키지",
-        "description": "세부 명문 골프장 3~4곳 라운딩 + 호텔 + 공항 픽업 + 전용 차량.",
-        "image": "https://cebu.sasori.dev/images/golf-highland.webp",
-        "offers": {
-          "@type": "Offer",
-          "priceCurrency": "KRW",
-          "availability": "https://schema.org/InStock",
-          "url": "https://cebu.sasori.dev/package/"
-        }
-      },
-      {
-        "@type": "Product",
-        "name": "세부 골프 + 관광 패키지",
-        "description": "골프 라운딩과 세부 관광을 함께. 아일랜드 호핑, 시티투어 등 액티비티 포함.",
-        "image": "https://cebu.sasori.dev/images/golf-coastal.webp",
-        "offers": {
-          "@type": "Offer",
-          "priceCurrency": "KRW",
-          "availability": "https://schema.org/InStock",
-          "url": "https://cebu.sasori.dev/package/"
-        }
-      },
-      {
-        "@type": "Product",
-        "name": "세부 리조트 풀패키지",
-        "description": "골프 + 리조트 + 관광 올인원. 세부의 모든 것을 한번에 즐기는 프리미엄 패키지.",
-        "image": "https://cebu.sasori.dev/images/golf-clubhouse.webp",
-        "offers": {
-          "@type": "Offer",
-          "priceCurrency": "KRW",
-          "availability": "https://schema.org/InStock",
-          "url": "https://cebu.sasori.dev/package/"
-        }
+    "@graph": pkgs.map((pkg) => ({
+      "@type": "Product",
+      "name": `세부 ${pkg.name}`,
+      "description": pkg.description,
+      "image": `https://cebu.sasori.dev${pkg.image}`,
+      "offers": {
+        "@type": "Offer",
+        "priceCurrency": "KRW",
+        "availability": "https://schema.org/InStock",
+        "url": "https://cebu.sasori.dev/package/"
       }
-    ]
+    }))
   };
 
   return (

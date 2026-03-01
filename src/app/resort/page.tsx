@@ -1,7 +1,8 @@
 import Link from 'next/link';
 import type { Metadata } from 'next';
 import products from '@/data/products.json';
-import SiteHeader from '../components/SiteHeader';
+import SiteHeader from '@/app/components/SiteHeader';
+import PageHero from '@/app/components/PageHero';
 
 export const metadata: Metadata = {
   title: '세부 리조트 & 호텔',
@@ -22,14 +23,11 @@ export default function ResortListPage() {
       <SiteHeader active="resort" />
 
       <main className="max-w-6xl mx-auto px-6 py-20">
-        <div className="text-center mb-20">
-          <p className="text-gold-500 text-xs tracking-[0.3em] uppercase mb-4">Resorts & Hotels</p>
-          <h1 className="text-4xl md:text-5xl font-[family-name:var(--font-serif)] text-navy-900 mb-4">리조트 & 호텔</h1>
-          <div className="line-gold mx-auto mb-6" />
-          <p className="text-navy-600/60 max-w-xl mx-auto text-sm leading-relaxed">
-            세부 최고의 리조트와 호텔을 예약 대행합니다. 골프 패키지와 묶으면 특가 안내.
-          </p>
-        </div>
+        <PageHero
+          label="Resorts & Hotels"
+          title="리조트 & 호텔"
+          description="세부 최고의 리조트와 호텔을 예약 대행합니다. 골프 패키지와 묶으면 특가 안내."
+        />
 
         <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-px bg-navy-900/10 max-w-5xl mx-auto">
           {resorts.map((r) => (
