@@ -1,10 +1,5 @@
-export const EXCHANGE_API_URL = 'https://open.er-api.com/v6/latest/KRW';
-
-export interface ExchangeApiResponse {
-  result: string;
-  rates: Record<string, number>;
-  time_last_update_utc: string;
-}
+import { cache } from 'react';
+import { prisma } from './prisma';
 
 export interface ExchangeRates {
   amount: number;
@@ -18,22 +13,20 @@ export const FALLBACK_RATES: ExchangeRates = {
   updatedAt: null,
 };
 
-export async function fetchExchangeRates(): Promise<ExchangeRates> {
+// React cache(): 동일 렌더 사이클 내 중복 호출 방지 (request-level dedup)
+export const fetchExchangeRates = cache(async (): Promise<ExchangeRates> => {
   try {
-    const res = await fetch(EXCHANGE_API_URL, { next: { revalidate: 3600 } });
-    if (!res.ok) throw new Error(`API ${res.status}`);
-
-    const data: ExchangeApiResponse = await res.json();
-    if (data.result !== 'success' || !data.rates?.PHP) {
-      throw new Error('Invalid response');
-    }
+    const setting = await prisma.siteSetting.findUnique({
+      where: { key: 'exchange_php' },
+    });
+    if (!setting) return FALLBACK_RATES;
 
     return {
       amount: 10000,
-      php: Math.round(data.rates.PHP * 10000),
-      updatedAt: data.time_last_update_utc,
+      php: parseInt(setting.value, 10) || FALLBACK_RATES.php,
+      updatedAt: setting.updatedAt.toISOString(),
     };
   } catch {
     return FALLBACK_RATES;
   }
-}
+});

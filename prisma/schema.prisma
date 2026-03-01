@@ -170,6 +170,14 @@ model VerificationToken {
   @@unique([identifier, token])
 }
 
+// === 사이트 설정 ===
+
+model SiteSetting {
+  key       String   @id
+  value     String
+  updatedAt DateTime @updatedAt
+}
+
 // === Enums ===
 
 enum Role {
