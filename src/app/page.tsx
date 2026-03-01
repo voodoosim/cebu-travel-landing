@@ -120,6 +120,22 @@ export default function Home() {
           <div className="absolute inset-0 bg-[radial-gradient(circle_at_top,_rgba(201,169,110,0.25),_transparent_55%)]" />
           <div className="absolute -top-32 -right-32 w-[28rem] h-[28rem] rounded-full bg-gold-100/70 blur-3xl animate-[float-slow_10s_ease-in-out_infinite]" />
           <div className="absolute -bottom-40 -left-32 w-[30rem] h-[30rem] rounded-full bg-navy-900/10 blur-3xl" />
+          <div className="pointer-events-none absolute right-6 top-8 w-20 sm:w-28 text-gold-500/25">
+            <svg viewBox="0 0 120 120" fill="currentColor" aria-hidden="true">
+              <ellipse cx="38" cy="70" rx="12" ry="18" transform="rotate(-12 38 70)" />
+              <circle cx="24" cy="45" r="4" />
+              <circle cx="33" cy="40" r="3.4" />
+              <circle cx="43" cy="38" r="3.2" />
+              <circle cx="53" cy="40" r="3.4" />
+              <circle cx="61" cy="46" r="3.6" />
+              <ellipse cx="78" cy="88" rx="12" ry="18" transform="rotate(-12 78 88)" />
+              <circle cx="64" cy="63" r="4" />
+              <circle cx="73" cy="58" r="3.4" />
+              <circle cx="83" cy="56" r="3.2" />
+              <circle cx="93" cy="58" r="3.4" />
+              <circle cx="101" cy="64" r="3.6" />
+            </svg>
+          </div>
 
           <div className="relative z-10 max-w-6xl mx-auto px-6 py-16 lg:py-24 grid lg:grid-cols-[1.05fr_0.95fr] gap-12 items-center">
             <div className="space-y-7 animate-[fade-up_0.8s_ease-out_both]">
