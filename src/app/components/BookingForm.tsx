@@ -15,6 +15,8 @@ export default function BookingForm() {
     name: "",
     contact: "",
     tour: "",
+    date: "",
+    people: "",
     message: "",
   });
   const [status, setStatus] = useState<
@@ -34,7 +36,7 @@ export default function BookingForm() {
 
       if (res.ok) {
         setStatus("success");
-        setFormData({ name: "", contact: "", tour: "", message: "" });
+        setFormData({ name: "", contact: "", tour: "", date: "", people: "", message: "" });
       } else {
         setStatus("error");
       }
@@ -119,6 +121,38 @@ export default function BookingForm() {
         </select>
       </div>
 
+      <div className="grid grid-cols-2 gap-4">
+        <div>
+          <label htmlFor="booking-date" className="block text-xs font-medium tracking-[0.15em] text-navy-600/60 mb-2 uppercase">
+            Date
+          </label>
+          <input
+            id="booking-date"
+            type="date"
+            value={formData.date}
+            min={new Date().toISOString().split('T')[0]}
+            onChange={(e) => setFormData({ ...formData, date: e.target.value })}
+            className="w-full px-4 py-3 bg-ivory border border-navy-900/10 text-navy-900 text-sm focus:border-gold-500 focus:outline-none transition-colors"
+          />
+        </div>
+        <div>
+          <label htmlFor="booking-people" className="block text-xs font-medium tracking-[0.15em] text-navy-600/60 mb-2 uppercase">
+            People
+          </label>
+          <select
+            id="booking-people"
+            value={formData.people}
+            onChange={(e) => setFormData({ ...formData, people: e.target.value })}
+            className="w-full px-4 py-3 bg-ivory border border-navy-900/10 text-navy-900 text-sm focus:border-gold-500 focus:outline-none transition-colors appearance-none"
+          >
+            <option value="">인원 선택</option>
+            {[1,2,3,4,5,6,7,8,9,10].map((n) => (
+              <option key={n} value={String(n)}>{n}명{n === 10 ? ' 이상' : ''}</option>
+            ))}
+          </select>
+        </div>
+      </div>
+
       <div>
         <label htmlFor="booking-message" className="block text-xs font-medium tracking-[0.15em] text-navy-600/60 mb-2 uppercase">
           Message
@@ -127,7 +161,7 @@ export default function BookingForm() {
           id="booking-message"
           maxLength={500}
           rows={3}
-          placeholder="희망 날짜, 인원수, 요청사항"
+          placeholder="요청사항 (선택)"
           value={formData.message}
           onChange={(e) =>
             setFormData({ ...formData, message: e.target.value })

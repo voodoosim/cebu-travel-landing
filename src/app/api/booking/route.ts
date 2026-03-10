@@ -48,7 +48,7 @@ export async function POST(request: Request) {
   }
 
   try {
-    const { name, contact, tour, message } = body;
+    const { name, contact, tour, date, people, message } = body;
 
     if (!name || typeof name !== 'string' || name.length > 100) {
       return NextResponse.json({ error: 'Invalid name' }, { status: 400 });
@@ -69,7 +69,9 @@ export async function POST(request: Request) {
       `[${tour}]`,
       `이름: ${name}`,
       `연락처: ${contact}`,
-      message ? `메시지: ${message}` : '',
+      date ? `희망 날짜: ${date}` : '',
+      people ? `인원: ${people}명` : '',
+      message ? `요청사항: ${message}` : '',
     ].filter(Boolean).join('\n');
 
     const booking = await prisma.booking.create({
