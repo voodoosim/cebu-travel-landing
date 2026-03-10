@@ -17,9 +17,15 @@ export async function GET() {
 }
 
 export async function POST(req: NextRequest) {
-  const session = await auth();
-  if (!session?.user || session.user.role !== 'ADMIN') {
-    return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
+  // 텔레그램 봇 API key 인증 OR 관리자 세션 인증
+  const apiSecret = req.headers.get('x-api-secret');
+  const isApiAuth = apiSecret && apiSecret === process.env.RATES_API_SECRET;
+
+  if (!isApiAuth) {
+    const session = await auth();
+    if (!session?.user || session.user.role !== 'ADMIN') {
+      return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
+    }
   }
 
   const body = await req.json();
