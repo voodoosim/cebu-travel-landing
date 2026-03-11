@@ -32,7 +32,7 @@ export default function PackageListPage() {
 
         <div className="grid md:grid-cols-3 gap-8 max-w-5xl mx-auto">
           {packages.map((pkg) => (
-            <div key={pkg.id} className="bg-white border border-navy-900/5 overflow-hidden group hover:shadow-lg transition-shadow duration-300">
+            <Link key={pkg.id} href={`/package/${pkg.slug}/`} className="bg-white border border-navy-900/5 overflow-hidden group hover:shadow-lg transition-shadow duration-300 block">
               <div className="relative h-56 overflow-hidden">
                 <Image
                   src={pkg.image}
@@ -66,7 +66,7 @@ export default function PackageListPage() {
                   </div>
                 </div>
               </div>
-            </div>
+            </Link>
           ))}
         </div>
 
