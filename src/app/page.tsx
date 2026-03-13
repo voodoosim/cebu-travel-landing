@@ -19,10 +19,10 @@ import BookingForm from "@/app/components/BookingForm";
 import products from "@/data/products.json";
 
 const services = [
-  { icon: CircleDot, label: "골프", desc: `${products.golf.length}개 코스`, href: "/golf/" },
-  { icon: Hotel, label: "리조트", desc: `${products.resorts.length}곳`, href: "/resort/" },
-  { icon: Compass, label: "액티비티", desc: `${products.activities.length}개 투어`, href: "/activity/" },
-  { icon: Gift, label: "패키지", desc: `${products.packages.length}개 구성`, href: "/package/" },
+  { icon: CircleDot, label: "골프", desc: `${products.golf.length}개 코스`, href: "/golf/", emoji: "🏌️" },
+  { icon: Hotel, label: "리조트", desc: `${products.resorts.length}곳`, href: "/resort/", emoji: "🏨" },
+  { icon: Compass, label: "액티비티", desc: `${products.activities.length}개 투어`, href: "/activity/", emoji: "🏄" },
+  { icon: Gift, label: "패키지", desc: `${products.packages.length}개 구성`, href: "/package/", emoji: "✈️" },
 ];
 
 const collections = [
@@ -31,24 +31,32 @@ const collections = [
     description: "명문부터 리조트형까지 코스 큐레이션",
     image: products.golf[0].image,
     href: "/golf/",
+    rating: "4.9",
+    isBest: true,
   },
   {
     title: "오션 리조트",
     description: "막탄 & 세부 시티 프리미엄 리조트",
     image: products.resorts[0].image,
     href: "/resort/",
+    rating: "4.8",
+    isBest: false,
   },
   {
     title: "아일랜드 어드벤처",
     description: "호핑, 캐녀닝, 다이빙까지 액티비티",
     image: products.activities[0].image,
     href: "/activity/",
+    rating: "4.9",
+    isBest: true,
   },
   {
     title: "맞춤 패키지",
     description: "골프 + 관광 조합 일정 설계",
     image: products.packages[0].image,
     href: "/package/",
+    rating: "4.8",
+    isBest: false,
   },
 ];
 
@@ -60,6 +68,8 @@ const editorPicks = [
     image: products.golf[1].image,
     href: `/golf/${products.golf[1].slug}/`,
     tags: products.golf[1].features.slice(0, 3),
+    rating: "4.9",
+    isBest: true,
   },
   {
     category: "Resort",
@@ -68,6 +78,8 @@ const editorPicks = [
     image: products.resorts[0].image,
     href: `/resort/${products.resorts[0].slug}/`,
     tags: products.resorts[0].features.slice(0, 3),
+    rating: "4.8",
+    isBest: false,
   },
   {
     category: "Activity",
@@ -76,6 +88,8 @@ const editorPicks = [
     image: products.activities[2].image,
     href: `/activity/${products.activities[2].slug}/`,
     tags: products.activities[2].features.slice(0, 3),
+    rating: "4.9",
+    isBest: true,
   },
 ];
 
@@ -246,7 +260,34 @@ export default function Home() {
           </div>
         </section>
 
-        <section className="relative z-20 -mt-10 sm:-mt-12 max-w-6xl mx-auto px-5 sm:px-6">
+        {/* 신뢰 지표 바 */}
+        <section className="relative z-10 bg-white border-b border-gold-100/60 py-3 sm:py-4">
+          <div className="max-w-6xl mx-auto px-5 sm:px-6">
+            <div className="flex flex-wrap justify-center items-center gap-x-6 gap-y-2 text-xs sm:text-sm text-navy-700">
+              <span className="flex items-center gap-1.5 whitespace-nowrap">
+                <span>⭐</span>
+                <span className="font-medium">평균 4.9점</span>
+              </span>
+              <span className="hidden sm:block text-gold-200">|</span>
+              <span className="flex items-center gap-1.5 whitespace-nowrap">
+                <span>👥</span>
+                <span className="font-medium">2,400+ 예약 완료</span>
+              </span>
+              <span className="hidden sm:block text-gold-200">|</span>
+              <span className="flex items-center gap-1.5 whitespace-nowrap">
+                <span>✓</span>
+                <span className="font-medium">현지 가이드 10년+</span>
+              </span>
+              <span className="hidden sm:block text-gold-200">|</span>
+              <span className="flex items-center gap-1.5 whitespace-nowrap">
+                <span>🏆</span>
+                <span className="font-medium">세부 1등 여행사</span>
+              </span>
+            </div>
+          </div>
+        </section>
+
+        <section className="relative z-20 max-w-6xl mx-auto px-5 sm:px-6 mt-8 sm:mt-10">
           <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
             {services.map((service) => (
               <Link
@@ -254,8 +295,8 @@ export default function Home() {
                 href={service.href}
                 className="group rounded-2xl bg-ivory/90 backdrop-blur border border-gold-100/60 p-5 transition-all hover:-translate-y-1 hover:shadow-xl"
               >
-                <div className="w-11 h-11 rounded-full bg-gold-100/80 flex items-center justify-center mb-3">
-                  <service.icon className="w-5 h-5 text-gold-500" strokeWidth={1.5} />
+                <div className="w-11 h-11 rounded-full bg-gold-100/80 flex items-center justify-center mb-3 text-xl">
+                  {service.emoji}
                 </div>
                 <p className="font-medium text-sm mb-1 text-navy-900">{service.label}</p>
                 <p className="text-navy-600/50 text-xs mb-4">{service.desc}</p>
@@ -300,13 +341,29 @@ export default function Home() {
                     />
                     <div className="absolute inset-0 bg-gradient-to-t from-navy-900/85 via-navy-900/20 to-transparent" />
                   </div>
+                  {/* 상단 배지 */}
+                  <div className="absolute top-3 left-3 flex gap-1.5 z-10">
+                    {item.isBest && (
+                      <span className="text-[10px] font-bold tracking-[0.15em] text-navy-900 bg-gold-400 px-2 py-0.5 rounded-full">
+                        BEST
+                      </span>
+                    )}
+                    <span className="text-[10px] tracking-wide text-white bg-emerald-600/90 px-2 py-0.5 rounded-full flex items-center gap-1">
+                      ✓ 가이드 검증
+                    </span>
+                  </div>
                   <div className="relative z-10 min-h-[260px] p-5 flex flex-col justify-end">
                     <p className="text-xs uppercase tracking-[0.35em] text-gold-200">Collection</p>
                     <h3 className="text-lg font-semibold text-white mt-2">{item.title}</h3>
                     <p className="text-xs text-white/70 mt-1 leading-relaxed">{item.description}</p>
-                    <span className="mt-4 text-[11px] uppercase tracking-[0.2em] text-gold-200 inline-flex items-center gap-2">
-                      Explore <ArrowUpRight className="w-4 h-4" />
-                    </span>
+                    <div className="mt-3 flex items-center justify-between">
+                      <span className="text-[12px] text-gold-300 flex items-center gap-1">
+                        ⭐ {item.rating}
+                      </span>
+                      <span className="text-[11px] uppercase tracking-[0.2em] text-gold-200 inline-flex items-center gap-2">
+                        Explore <ArrowUpRight className="w-4 h-4" />
+                      </span>
+                    </div>
                   </div>
                 </Link>
               ))}
@@ -346,14 +403,33 @@ export default function Home() {
                       className="object-cover transition-transform duration-700 group-hover:scale-105"
                     />
                     <div className="absolute inset-0 bg-gradient-to-t from-navy-900/60 via-transparent to-transparent" />
-                    <span className="absolute top-4 left-4 text-[10px] uppercase tracking-[0.3em] text-gold-200 bg-navy-900/70 px-3 py-1 rounded-full">
-                      {pick.category}
-                    </span>
+                    <div className="absolute top-4 left-4 flex gap-1.5">
+                      <span className="text-[10px] uppercase tracking-[0.3em] text-gold-200 bg-navy-900/70 px-3 py-1 rounded-full">
+                        {pick.category}
+                      </span>
+                      {pick.isBest && (
+                        <span className="text-[10px] font-bold tracking-[0.15em] text-navy-900 bg-gold-400 px-2 py-1 rounded-full">
+                          BEST
+                        </span>
+                      )}
+                    </div>
                   </div>
                   <div className="p-5 space-y-3">
                     <div>
-                      <h3 className="text-lg font-semibold text-navy-900">{pick.title}</h3>
-                      <p className="text-xs text-navy-600/60 mt-1">{pick.subtitle}</p>
+                      <div className="flex items-start justify-between gap-2">
+                        <h3 className="text-lg font-semibold text-navy-900">{pick.title}</h3>
+                      </div>
+                      <div className="flex items-center gap-2 mt-1">
+                        <p className="text-xs text-navy-600/60">{pick.subtitle}</p>
+                      </div>
+                    </div>
+                    <div className="flex items-center gap-3">
+                      <span className="text-xs text-navy-700 flex items-center gap-1">
+                        ⭐ <span className="font-medium">{pick.rating}</span>
+                      </span>
+                      <span className="text-[10px] text-emerald-700 bg-emerald-50 border border-emerald-200 px-2 py-0.5 rounded-full flex items-center gap-1">
+                        ✓ 가이드 검증
+                      </span>
                     </div>
                     <div className="flex flex-wrap gap-2">
                       {pick.tags.map((tag) => (
@@ -538,6 +614,26 @@ export default function Home() {
           </div>
         </section>
       </main>
+
+      {/* 플로팅 CTA 버튼 */}
+      <div className="fixed bottom-6 right-5 z-50 flex flex-col gap-3">
+        <a
+          href="https://open.kakao.com/o/placeholder"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="flex items-center gap-2 bg-yellow-400 hover:bg-yellow-300 text-yellow-900 font-semibold text-sm px-4 py-3 rounded-full shadow-lg transition-all hover:shadow-xl hover:-translate-y-0.5 whitespace-nowrap"
+        >
+          <MessageCircle className="w-4 h-4 shrink-0" />
+          <span>카카오 상담</span>
+        </a>
+        <a
+          href="tel:+63927placeholder"
+          className="flex items-center gap-2 bg-emerald-500 hover:bg-emerald-400 text-white font-semibold text-sm px-4 py-3 rounded-full shadow-lg transition-all hover:shadow-xl hover:-translate-y-0.5 whitespace-nowrap"
+        >
+          <Phone className="w-4 h-4 shrink-0" />
+          <span>전화 문의</span>
+        </a>
+      </div>
 
       <footer className="bg-navy-900 text-white/40 py-12">
         <div className="max-w-5xl mx-auto px-6">
