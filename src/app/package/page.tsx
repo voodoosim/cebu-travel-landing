@@ -23,13 +23,15 @@ export default function PackageListPage() {
     <div className="min-h-screen bg-ivory">
       <SiteHeader active="package" />
 
-      <main className="max-w-6xl mx-auto px-6 py-20">
+      <main>
         <PageHero
           label="Packages"
           title="맞춤 패키지"
           description="골프, 리조트, 관광을 원하는 대로 조합. 일정과 예산에 맞춰 최적의 패키지를 안내합니다."
+          bgImage={packages[0].image}
         />
 
+        <div className="max-w-6xl mx-auto px-6 pb-20">
         <div className="grid md:grid-cols-3 gap-8 max-w-5xl mx-auto">
           {packages.map((pkg) => (
             <Link key={pkg.id} href={`/package/${pkg.slug}/`} className="bg-white border border-navy-900/5 overflow-hidden group hover:shadow-lg transition-shadow duration-300 block">
@@ -77,6 +79,7 @@ export default function PackageListPage() {
           >
             INQUIRE NOW
           </Link>
+        </div>
         </div>
       </main>
     </div>

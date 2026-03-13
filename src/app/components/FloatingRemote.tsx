@@ -104,15 +104,6 @@ export default function FloatingRemote() {
               KakaoTalk 연결
             </a>
             <a
-              href="https://t.me/cebu_guide"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="flex items-center gap-2 rounded-xl border border-gold-100/60 bg-gold-50/80 px-3 py-2 text-[11px] sm:text-xs text-navy-900 hover:border-gold-500/40"
-            >
-              <MessageCircle className="w-4 h-4 text-gold-500" />
-              Telegram 연결
-            </a>
-            <a
               href="tel:+639175550123"
               className="flex items-center gap-2 rounded-xl border border-gold-100/60 bg-gold-50/80 px-3 py-2 text-[11px] sm:text-xs text-navy-900 hover:border-gold-500/40"
             >

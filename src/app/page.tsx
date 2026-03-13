@@ -579,18 +579,6 @@ export default function Home() {
                     </div>
                   </a>
                   <a
-                    href="https://t.me/cebu_guide"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="flex items-center gap-3 rounded-2xl border border-gold-100/60 bg-ivory/90 p-4 transition-colors hover:border-gold-500/40"
-                  >
-                    <MessageCircle className="w-5 h-5 text-gold-500" />
-                    <div>
-                      <p className="text-sm font-medium">Telegram</p>
-                      <p className="text-xs text-navy-600/50">빠른 응답</p>
-                    </div>
-                  </a>
-                  <a
                     href="tel:+639175550123"
                     className="flex items-center gap-3 rounded-2xl border border-gold-100/60 bg-ivory/90 p-4 transition-colors hover:border-gold-500/40"
                   >
@@ -644,7 +632,6 @@ export default function Home() {
               <h4 className="text-white/60 text-[11px] tracking-[0.2em] uppercase mb-4">Contact</h4>
               <ul className="space-y-2 text-xs">
                 <li>KakaoTalk: cebuguide</li>
-                <li>Telegram: @cebu_guide</li>
                 <li>+63 917 555 0123</li>
               </ul>
             </div>

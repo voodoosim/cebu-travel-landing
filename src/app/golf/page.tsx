@@ -24,13 +24,15 @@ export default function GolfListPage() {
     <div className="min-h-screen bg-ivory">
       <SiteHeader active="golf" />
 
-      <main className="max-w-6xl mx-auto px-6 py-20">
+      <main>
         <PageHero
           label="Golf Courses"
           title="세부 골프장"
           description={`세부 전역 ${courses.length}개 명문 골프장. 예약부터 캐디, 카트, 차량까지 전부 대행합니다.`}
+          bgImage={courses[0].image}
         />
 
+        <div className="max-w-6xl mx-auto px-6 pb-20">
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
           {courses.map((course) => (
             <Link
@@ -85,6 +87,7 @@ export default function GolfListPage() {
               </div>
             </Link>
           ))}
+        </div>
         </div>
       </main>
     </div>
