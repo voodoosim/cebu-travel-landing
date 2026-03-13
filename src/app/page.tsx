@@ -615,26 +615,6 @@ export default function Home() {
         </section>
       </main>
 
-      {/* 플로팅 CTA 버튼 */}
-      <div className="fixed bottom-6 right-5 z-50 flex flex-col gap-3">
-        <a
-          href="https://open.kakao.com/o/placeholder"
-          target="_blank"
-          rel="noopener noreferrer"
-          className="flex items-center gap-2 bg-yellow-400 hover:bg-yellow-300 text-yellow-900 font-semibold text-sm px-4 py-3 rounded-full shadow-lg transition-all hover:shadow-xl hover:-translate-y-0.5 whitespace-nowrap"
-        >
-          <MessageCircle className="w-4 h-4 shrink-0" />
-          <span>카카오 상담</span>
-        </a>
-        <a
-          href="tel:+63927placeholder"
-          className="flex items-center gap-2 bg-emerald-500 hover:bg-emerald-400 text-white font-semibold text-sm px-4 py-3 rounded-full shadow-lg transition-all hover:shadow-xl hover:-translate-y-0.5 whitespace-nowrap"
-        >
-          <Phone className="w-4 h-4 shrink-0" />
-          <span>전화 문의</span>
-        </a>
-      </div>
-
       <footer className="bg-navy-900 text-white/40 py-12">
         <div className="max-w-5xl mx-auto px-6">
           <div className="grid grid-cols-2 md:grid-cols-4 gap-8 mb-10">
